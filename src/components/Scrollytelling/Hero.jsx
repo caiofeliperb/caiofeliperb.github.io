@@ -22,46 +22,88 @@ const Hero = () => {
         // We have 468 egressos
         const numParticles = data.length;
 
-        // Abstract representation of RN (simplified elephant shape points roughly mapped to 0-1 range)
-        // For a real implementation, we'd use D3 GeoAlbers with TopoJSON. Here we generate an organic cluster.
-        const rnShapeCenter = { x: width / 2, y: height / 2 };
+        // Soft blue tones requested: variations of Cyan/Azure light
+        const particleColors = ['#009FDF', '#33B2E5', '#66C2FF', '#99D6FF', '#B3E0FF'];
 
-        // Create particles
+        // Creates an accurate Path representing the RN Map silhouette
+        const getRNMapPoints = (count, w, h) => {
+            const points = [];
+
+            // Detailed polygon approximating the RN exact map (Elephant shape)
+            const offPath = new Path2D("M 15 75 L 10 80 L 25 85 L 35 80 L 45 90 L 50 100 L 60 95 L 70 95 L 75 105 L 85 100 L 95 90 L 110 85 L 115 75 L 125 55 L 115 40 L 105 25 L 90 20 L 70 20 L 55 25 L 40 30 L 30 40 L 25 55 L 15 65 Z");
+
+            const tempCanvas = document.createElement('canvas');
+            const tCtx = tempCanvas.getContext('2d');
+            // Do not translate or scale tCtx so isPointInPath evaluates against the raw 0-140 coordinates.
+
+            const scale = Math.min(w, h) * 0.0055; // Slightly larger for clarity
+            const offsetX = w / 2 - 70 * scale;
+            const offsetY = h / 2 - 60 * scale;
+
+            let attempts = 0;
+            // Strict rejection sampling
+            while (points.length < count && attempts < count * 300) {
+                const px = Math.random() * 140;
+                const py = Math.random() * 120;
+
+                // Test point against raw path
+                if (tCtx.isPointInPath(offPath, px, py)) {
+                    // Pre-scale and translate ONLY the injected points to position the elephant correctly
+                    points.push({
+                        x: offsetX + (px * scale),
+                        y: offsetY + (py * scale)
+                    });
+                }
+                attempts++;
+            }
+
+            while (points.length < count) {
+                points.push({ x: w / 2 + (Math.random() - 0.5) * 200, y: h / 2 + (Math.random() - 0.5) * 200 });
+            }
+            return points;
+        };
+
+        const targetPoints = getRNMapPoints(numParticles, width, height);
+
         const particles = Array.from({ length: numParticles }, (_, i) => {
-            // Random starting positions (scattered)
             const startX = Math.random() * width;
             const startY = Math.random() * height;
-
-            // Target position: forming a rough shape in the center (representing RN)
-            // Here we create a clustered ellipse just as a fallback if no path is given
-            const angle = Math.random() * Math.PI * 2;
-            const radius = Math.random() * (Math.min(width, height) * 0.25);
-            const targetX = rnShapeCenter.x + Math.cos(angle) * radius * 1.5; // Wider
-            const targetY = rnShapeCenter.y + Math.sin(angle) * radius * 0.8; // Shorter
 
             return {
                 x: startX,
                 y: startY,
                 startX,
                 startY,
-                targetX,
-                targetY,
-                size: Math.random() * 2 + 1.5,
-                color: i % 3 === 0 ? '#38BDF8' : (i % 5 === 0 ? '#F59E0B' : '#0EA5E9'), // Theme colors
-                alpha: Math.random() * 0.5 + 0.3,
-                progress: 0 // Progress from 0 (start) to 1 (target)
+                targetX: targetPoints[i].x,
+                targetY: targetPoints[i].y,
+                size: Math.random() * 1.5 + 1.2,
+                color: particleColors[i % particleColors.length],
+                alpha: Math.random() * 0.6 + 0.4,
+                // For organic infinite floating - VERY calm and slow
+                phaseX: Math.random() * Math.PI * 2,
+                phaseY: Math.random() * Math.PI * 2,
+                speedX: Math.random() * 0.0008 + 0.0002,
+                speedY: Math.random() * 0.0008 + 0.0002,
+                targetProgress: 0,
+                currentProgress: 0
             };
         });
 
         let animationFrameId;
 
-        const drawParticles = () => {
+        const drawParticles = (time) => {
             ctx.clearRect(0, 0, width, height);
 
             particles.forEach(p => {
-                // Interpolate position based on progress
-                const currentX = p.startX + (p.targetX - p.startX) * p.progress;
-                const currentY = p.startY + (p.targetY - p.startY) * p.progress;
+                // Smooth interpolation for scroll (slower transition)
+                p.currentProgress += (p.targetProgress - p.currentProgress) * 0.015;
+
+                // Infinite organic floating (Sine wave based on time)
+                const floatX = Math.sin(time * p.speedX + p.phaseX) * 15 * (1 - p.currentProgress * 0.5);
+                const floatY = Math.cos(time * p.speedY + p.phaseY) * 15 * (1 - p.currentProgress * 0.5);
+
+                const currentX = p.startX + (p.targetX - p.startX) * p.currentProgress + floatX;
+                const currentY = p.startY + (p.targetY - p.startY) * p.currentProgress + floatY;
 
                 ctx.beginPath();
                 ctx.arc(currentX, currentY, p.size, 0, Math.PI * 2);
@@ -69,8 +111,8 @@ const Hero = () => {
                 ctx.globalAlpha = p.alpha;
                 ctx.fill();
 
-                // Add a subtle glow
-                ctx.shadowBlur = 10;
+                // Bright glowing effect for Cyan/Gold/White
+                ctx.shadowBlur = p.color === '#FFFFFF' ? 8 : 12;
                 ctx.shadowColor = p.color;
             });
             ctx.shadowBlur = 0;
@@ -79,24 +121,20 @@ const Hero = () => {
             animationFrameId = requestAnimationFrame(drawParticles);
         };
 
-        drawParticles();
+        animationFrameId = requestAnimationFrame(drawParticles);
 
-        // GSAP ScrollTrigger to animate progress
-        const proxy = { progress: 0 };
-
+        // GSAP ScrollTrigger to animate progress towards the "Elephant" map
         ScrollTrigger.create({
             trigger: containerRef.current,
             start: "top top",
-            end: "bottom top", // The animation happens over 1 viewport height
-            scrub: 1, // Smooth scrubbing
+            end: "bottom top",
+            scrub: 1.5,
             onUpdate: (self) => {
-                // Easing function for smoother gathering
-                const easeProgress = gsap.parseEase("power2.inOut")(self.progress);
-
+                const easeProgress = gsap.parseEase("power3.inOut")(self.progress);
                 particles.forEach(p => {
-                    // Add some individual variance to progress feeling organic
-                    const individualProgress = Math.min(1, Math.max(0, easeProgress * 1.2 - (p.size * 0.05)));
-                    p.progress = individualProgress;
+                    // Magnetic attraction feeling: adding minor delay variations
+                    const individualProgress = Math.min(1, Math.max(0, easeProgress * 1.2 - (p.size * 0.03)));
+                    p.targetProgress = individualProgress;
                 });
             }
         });
@@ -105,17 +143,11 @@ const Hero = () => {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
 
-            const newCenter = { x: width / 2, y: height / 2 };
-            particles.forEach(p => {
-                // Recalculate target position based on new center
-                const angle = Math.atan2(p.targetY - rnShapeCenter.y, p.targetX - rnShapeCenter.x);
-                const dist = Math.hypot(p.targetX - rnShapeCenter.x, p.targetY - rnShapeCenter.y);
-                p.targetX = newCenter.x + Math.cos(angle) * dist;
-                p.targetY = newCenter.y + Math.sin(angle) * dist;
+            const newTargetPoints = getRNMapPoints(numParticles, width, height);
+            particles.forEach((p, i) => {
+                p.targetX = newTargetPoints[i].x;
+                p.targetY = newTargetPoints[i].y;
             });
-
-            rnShapeCenter.x = newCenter.x;
-            rnShapeCenter.y = newCenter.y;
         };
 
         window.addEventListener('resize', handleResize);
@@ -142,18 +174,21 @@ const Hero = () => {
                 <div className="hero-metrics glass-panel">
                     <div className="metric">
                         <span className="metric-value">468</span>
-                        <span className="metric-label">Formados</span>
+                        <span className="metric-label">FORMADOS</span>
                     </div>
                     <div className="metric-divider"></div>
                     <div className="metric">
-                        <span className="metric-value">544</span>
-                        <span className="metric-label">CRMs Ativos</span>
+                        <span className="metric-value">544*</span>
+                        <span className="metric-label">CRMs ATIVOS</span>
                     </div>
                     <div className="metric-divider"></div>
                     <div className="metric">
-                        <span className="metric-value">194</span>
-                        <span className="metric-label">Histórias Ouvidas</span>
+                        <span className="metric-value" style={{ fontSize: '2.5rem' }}>INÚMERAS</span>
+                        <span className="metric-label">VIDAS IMPACTADAS</span>
                     </div>
+                </div>
+                <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+                    <small style={{ fontStyle: 'italic', color: 'var(--text-muted)' }}>*Geralmente um médico atua em mais de um estado.</small>
                 </div>
             </div>
         </section>

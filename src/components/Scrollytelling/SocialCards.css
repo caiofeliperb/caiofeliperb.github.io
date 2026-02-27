@@ -9,42 +9,45 @@
    Here we rely on global class styling for consistency. */
 
 .cards-scroll-container {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    width: 100%;
     overflow-x: auto;
-    padding: var(--spacing-xl) var(--spacing-md);
-    scroll-snap-type: x mandatory;
+    padding: var(--spacing-xl) 0;
     scroll-padding: var(--spacing-md);
 
-    /* Hide scrollbar but keep functionality */
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* IE and Edge */
+    /* Show thin scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--bg-surface);
 }
 
+/* Chrome/Safari scrollbar */
 .cards-scroll-container::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Safari and Opera */
+    height: 6px;
+}
+
+.cards-scroll-container::-webkit-scrollbar-track {
+    background: var(--bg-surface);
+    border-radius: 10px;
+}
+
+.cards-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 10px;
 }
 
 .cards-track {
     display: flex;
+    flex-wrap: nowrap;
     gap: var(--spacing-lg);
-    padding: 0 5vw;
-    /* Start padding for centering the first item loosely */
+    padding-bottom: 1rem;
+    /* Space for scrollbar */
     perspective: 1000px;
 }
 
 .social-card {
     flex: 0 0 350px;
+    width: 350px;
     scroll-snap-align: center;
     perspective: 1000px;
-    /* Perspective applied to parent for inner tilt */
 }
 
 .card-inner {
@@ -61,7 +64,8 @@
 }
 
 .card-icon {
-    color: var(--color-accent);
+    color: var(--color-primary);
+    /* Azul Ciano */
     margin-bottom: var(--spacing-md);
     transform: translateZ(30px);
     /* Pops out during 3D tilt */
@@ -81,8 +85,16 @@
 }
 
 @media (max-width: 768px) {
+    .cards-track {
+        display: flex;
+        flex-wrap: nowrap;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 1rem;
+    }
+
     .social-card {
         flex: 0 0 85vw;
+        scroll-snap-align: center;
         /* Almost full width on mobile */
     }
 

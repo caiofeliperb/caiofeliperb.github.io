@@ -3,11 +3,12 @@ import * as d3 from 'd3';
 
 const StackedBar = ({ data }) => {
     const svgRef = useRef(null);
+    const containerRef = useRef(null);
 
     const chartData = useMemo(() => {
         // 1. Group by Year
         const byYear = d3.rollup(
-            data.filter(d => Boolean(d.ano_formatura) && d.grande_area_rqe && d.grande_area_rqe !== 'N/A'),
+            data.filter(d => Boolean(d.ano_formatura) && d.grande_area_rqe && d.grande_area_rqe !== 'N/A' && d.grande_area_rqe.trim() !== ''),
             v => d3.rollup(v, leaves => leaves.length, d => d.grande_area_rqe),
             d => d.ano_formatura
         );
@@ -15,12 +16,11 @@ const StackedBar = ({ data }) => {
         // 2. Extract unique specialties
         const allSpecialties = new Set();
         data.forEach(d => {
-            if (d.grande_area_rqe && d.grande_area_rqe !== 'N/A') {
+            if (d.grande_area_rqe && d.grande_area_rqe !== 'N/A' && d.grande_area_rqe.trim() !== '') {
                 allSpecialties.add(d.grande_area_rqe);
             }
         });
 
-        // 3. Convert to tabular format for D3 Stack
         const keys = Array.from(allSpecialties);
         const parsedObj = Array.from(byYear, ([year, specs]) => {
             const obj = { year: String(year) };
@@ -36,56 +36,66 @@ const StackedBar = ({ data }) => {
 
         const { parsedObj, keys } = chartData;
         const svg = d3.select(svgRef.current);
-        svg.selectAll("*").remove(); // Clear previous
+        svg.selectAll("*").remove();
 
-        const width = svgRef.current.parentElement.clientWidth;
+        const width = containerRef.current.clientWidth;
         const height = 300;
         const margin = { top: 20, right: 30, bottom: 40, left: 40 };
 
         svg.attr("viewBox", [0, 0, width, height]);
 
-        const stack = d3.stack()
-            .keys(keys)
-            .order(d3.stackOrderNone)
-            .offset(d3.stackOffsetNone);
-
-        const series = stack(parsedObj);
-
-        const x = d3.scaleBand()
+        // Grouped Bar Scales
+        const x0 = d3.scaleBand()
             .domain(parsedObj.map(d => d.year))
-            .range([margin.left, width - margin.right])
-            .padding(0.2);
+            .rangeRound([margin.left, width - margin.right])
+            .paddingInner(0.2);
+
+        const x1 = d3.scaleBand()
+            .domain(keys)
+            .rangeRound([0, x0.bandwidth()])
+            .padding(0.05);
+
+        // Find max value in any sub-group
+        const maxVal = d3.max(parsedObj, d => d3.max(keys, key => d[key]));
 
         const y = d3.scaleLinear()
-            .domain([0, d3.max(series, d => d3.max(d, d => d[1]))]).nice()
-            .range([height - margin.bottom, margin.top]);
+            .domain([0, maxVal]).nice()
+            .rangeRound([height - margin.bottom, margin.top]);
+
+        const getColor = (key) => {
+            const k = key.toLowerCase();
+            if (k.includes("clínico-cirúrgicas") || k.includes("clinico-cirurgicas")) return "#009FDF"; // Ciano
+            if (k.includes("médica") || k.includes("medica")) return "#4A54A4"; // Azul Claro
+            if (k.includes("família") || k.includes("familia")) return "#10B981"; // Verde (MFC)
+            if (k.includes("pediatria")) return "#20B2AA"; // Verde Água
+            if (k === "cirurgia geral") return "#8B5CF6"; // Purple
+            return "#64748B"; // Cinza
+        };
 
         const color = d3.scaleOrdinal()
             .domain(keys)
-            .range(["#0EA5E9", "#38BDF8", "#F59E0B", "#10B981", "#8B5CF6", "#64748B"]);
+            .range(keys.map(getColor));
 
+        // Draw groups
         svg.append("g")
             .selectAll("g")
-            .data(series)
+            .data(parsedObj)
             .join("g")
-            .attr("fill", d => color(d.key))
+            .attr("transform", d => `translate(${x0(d.year)},0)`)
             .selectAll("rect")
-            .data(d => d)
+            .data(d => keys.map(key => ({ key, value: d[key] })))
             .join("rect")
-            .attr("x", d => x(d.data.year))
-            .attr("y", d => y(d[1]))
-            .attr("height", d => y(d[0]) - y(d[1]))
-            .attr("width", x.bandwidth())
+            .attr("x", d => x1(d.key))
+            .attr("y", d => y(d.value))
+            .attr("width", x1.bandwidth())
+            .attr("height", d => y(0) - y(d.value))
+            .attr("fill", d => color(d.key))
             .append("title")
-            .text(function () {
-                const d = d3.select(this.parentNode).datum();
-                const val = this.__data__[1] - this.__data__[0];
-                return `${d.key}: ${val}`;
-            });
+            .text(d => `${d.key}: ${d.value} RQE(s)`);
 
         svg.append("g")
             .attr("transform", `translate(0,${height - margin.bottom})`)
-            .call(d3.axisBottom(x).tickSizeOuter(0))
+            .call(d3.axisBottom(x0).tickSizeOuter(0))
             .attr("color", "var(--text-muted)");
 
         svg.append("g")
@@ -93,13 +103,40 @@ const StackedBar = ({ data }) => {
             .call(d3.axisLeft(y).ticks(5))
             .attr("color", "var(--text-muted)");
 
-    }, [chartData]); // Re-run when data changes
+        // Add a smooth legend wrapper inside the chart container natively (react level instead of D3 for UX)
+    }, [chartData, containerRef.current?.clientWidth]); // Re-run when resized
 
     return (
-        <div className="bar-chart-container" style={{ width: '100%', height: '100%' }}>
-            <h3 className="card-title">Evolução por Área (RQE)</h3>
+        <div className="bar-chart-container" style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }} ref={containerRef}>
+            <div style={{ marginBottom: '10px' }}>
+                <h3 className="card-title" style={{ marginBottom: '2px' }}>Obtenção de RQE a cada ano</h3>
+                <small style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>(Dados coletados até abril de 2025 com informações do formulário e CFM)</small>
+            </div>
+
             {chartData.parsedObj.length > 0 ? (
-                <svg ref={svgRef} style={{ width: '100%', height: '300px' }}></svg>
+                <>
+                    <svg ref={svgRef} style={{ width: '100%', flex: 1, minHeight: '280px' }}></svg>
+
+                    {/* Native responsive legend below the chart avoiding overlaps */}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '10px', justifyContent: 'center' }}>
+                        {chartData.keys.map((key, i) => {
+                            const k = key.toLowerCase();
+                            let col = "#64748B";
+                            if (k.includes("cirúrgicas")) col = "#009FDF";
+                            else if (k.includes("médica")) col = "#4A54A4";
+                            else if (k.includes("família")) col = "#10B981";
+                            else if (k.includes("pediatria")) col = "#20B2AA";
+                            else if (k === "cirurgia geral") col = "#8B5CF6";
+
+                            return (
+                                <div key={i} style={{ display: 'flex', alignItems: 'center', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                                    <div style={{ width: '12px', height: '12px', backgroundColor: col, marginRight: '5px', borderRadius: '3px' }}></div>
+                                    {key}
+                                </div>
+                            );
+                        })}
+                    </div>
+                </>
             ) : (
                 <div className="text-muted" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '300px' }}>
                     Sem dados suficientes para exibir o gráfico.

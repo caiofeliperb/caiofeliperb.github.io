@@ -85,8 +85,9 @@
     display: inline-block;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
-    background-color: rgba(16, 185, 129, 0.15);
-    color: var(--color-secondary);
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid #009FDF;
+    color: #009FDF;
     font-size: 0.85rem;
     font-weight: 500;
     white-space: nowrap;

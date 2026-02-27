@@ -18,14 +18,13 @@ const StateHeatmap = ({ data }) => {
 
     const maxVolume = Math.max(1, ...Object.values(stateVolumes));
 
-    // Determine opacity based on absolute frequency
     const getStyle = (uf) => {
         const vol = stateVolumes[uf] || 0;
-        if (vol === 0) return { backgroundColor: 'var(--bg-surface)', color: 'transparent', border: '1px solid rgba(255,255,255,0.05)' };
+        if (vol === 0) return { backgroundColor: 'var(--bg-surface)', color: 'transparent', border: '1px solid rgba(0,0,0,0.05)' };
         const ratio = Math.max(0.2, vol / maxVolume);
         return {
             backgroundColor: `rgba(14, 165, 233, ${ratio})`, // Primary color scaling
-            color: ratio > 0.5 ? '#fff' : 'rgba(255,255,255,0.7)',
+            color: ratio > 0.5 ? '#fff' : 'var(--text-main)',
             border: '1px solid rgba(14, 165, 233, 0.5)',
             cursor: 'pointer'
         };

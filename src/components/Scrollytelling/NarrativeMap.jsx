@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MapPin, ArrowUpRight } from 'lucide-react';
+import { MapPin, ArrowUpRight, Stethoscope } from 'lucide-react';
 import './NarrativeMap.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -110,7 +110,7 @@ const NarrativeMap = () => {
     const steps = [
         {
             title: "O Ponto de Partida",
-            description: "Vestimos o jaleco de pesquisadores. Fomos direto na fonte do CFM (Conselho Federal de Medicina) e ouvimos as vivências de 194 egressos que toparam compartilhar suas jornadas conosco."
+            description: "Vestimos o jaleco de pesquisadores! Lançamos um formulário detalhado onde 194 egressos compartilharam suas trajetórias e fomos direto à fonte: consultamos os registros do CFM para mapear o panorama de todos os 468 formados."
         },
         {
             title: "Nossas Raízes Fortes",
@@ -160,13 +160,13 @@ const NarrativeMap = () => {
                         {/* DATA HIGHLIGHTS */}
 
                         <g ref={labelRNRef} style={{ transformOrigin: '780px 180px' }}>
-                            <rect x="730" y="140" width="130" height="40" rx="20" fill="rgba(14, 165, 233, 0.2)" stroke="var(--color-primary-light)" />
-                            <text x="795" y="165" fill="#fff" fontSize="16" fontWeight="700" textAnchor="middle">84.5% no RN</text>
+                            <rect x="710" y="140" width="160" height="40" rx="20" fill="rgba(14, 165, 233, 0.2)" stroke="var(--color-primary-light)" />
+                            <text x="790" y="165" fill="#fff" fontSize="14" fontWeight="700" textAnchor="middle">84.5% iniciaram no RN</text>
                         </g>
 
                         <g ref={labelNERef} style={{ transformOrigin: '700px 300px' }}>
-                            <rect x="630" y="270" width="160" height="40" rx="20" fill="rgba(16, 185, 129, 0.2)" stroke="var(--color-secondary)" />
-                            <text x="710" y="295" fill="#fff" fontSize="16" fontWeight="700" textAnchor="middle">~80% Nordeste</text>
+                            <rect x="580" y="270" width="220" height="40" rx="20" fill="rgba(16, 185, 129, 0.2)" stroke="var(--color-secondary)" />
+                            <text x="690" y="295" fill="#fff" fontSize="14" fontWeight="700" textAnchor="middle">~80% permanecem no Nordeste</text>
                         </g>
 
                         {/* Origin Point: Mossoró RN */}
@@ -198,7 +198,7 @@ const NarrativeMap = () => {
                         <text x="865" y="375" fill="var(--text-muted)" fontSize="13" className="map-label">PE</text>
 
                         {/* Long Path to New York */}
-                        <path ref={pathNYRef} d="M 750 200 C 600 -50 400 -100 200 150" fill="none" stroke="url(#nyGradient)" strokeWidth="3" strokeDasharray="5, 10" filter="url(#glow)" strokeLinecap="round" />
+                        <path ref={pathNYRef} d="M 750 200 C 600 50 400 50 200 150" fill="none" stroke="url(#nyGradient)" strokeWidth="3" strokeDasharray="5, 10" filter="url(#glow)" strokeLinecap="round" />
                         <circle cx="200" cy="150" r="6" fill="var(--color-accent)" filter="url(#glow)" />
                         <text x="130" y="140" fill="var(--color-accent)" fontSize="16" fontWeight="600" className="map-label">Nova York</text>
                     </svg>
@@ -215,7 +215,7 @@ const NarrativeMap = () => {
                     >
                         <div className="step-content glass-panel">
                             <div className="step-icon">
-                                {i === 2 ? <ArrowUpRight size={32} /> : <MapPin size={32} />}
+                                {i === 0 ? <Stethoscope size={32} /> : i === 2 ? <ArrowUpRight size={32} /> : <MapPin size={32} />}
                             </div>
                             <h2 className="step-title">{step.title}</h2>
                             <p className="step-description">{step.description}</p>

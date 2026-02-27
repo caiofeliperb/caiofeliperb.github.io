@@ -15,7 +15,8 @@ const DashboardManager = () => {
         ano: 'Todos',
         uf: 'Todos',
         rqe: 'Todos',
-        social: 'Todos'
+        social: 'Todos',
+        especialidade: 'Todas'
     });
 
     // Unique values for dropdowns
@@ -25,7 +26,6 @@ const DashboardManager = () => {
     }, [data]);
 
     const availableUfs = useMemo(() => {
-        // uf_atuacao_cfm might contain things like "RN / CE" or just "RN". We extract unique pure states.
         if (!data.length) return [];
         const allUfs = new Set();
         data.forEach(d => {
@@ -36,10 +36,20 @@ const DashboardManager = () => {
         return ['Todos', ...Array.from(allUfs).sort()];
     }, [data]);
 
+    const availableSpecialties = useMemo(() => {
+        if (!data.length) return [];
+        const specs = {};
+        data.forEach(d => {
+            if (d.grande_area_rqe && d.grande_area_rqe !== 'N/A' && d.grande_area_rqe.trim() !== '') {
+                specs[d.grande_area_rqe] = (specs[d.grande_area_rqe] || 0) + 1;
+            }
+        });
+        return ['Todas', ...Object.entries(specs).sort((a, b) => b[1] - a[1]).map(([name, count]) => `${name} (${count})`)];
+    }, [data]);
+
     // Handle cross-filtering
     const filteredData = useMemo(() => {
         return data.filter(d => {
-            // 1. Array-based UF matching because of "RN / CE"
             const ufMatches = filters.uf === 'Todos' || (d.uf_atuacao_cfm && d.uf_atuacao_cfm.includes(filters.uf));
             const anoMatches = filters.ano === 'Todos' || d.ano_formatura === Number(filters.ano);
 
@@ -48,10 +58,18 @@ const DashboardManager = () => {
             if (filters.rqe === 'Não') rqeMatches = d.tem_rqe === false;
 
             let socialMatches = true;
-            if (filters.social === 'Sim') socialMatches = d.faz_acao_social === true;
-            if (filters.social === 'Não') socialMatches = d.faz_acao_social === false;
+            const hasImpacto = d.faz_acao_social === true || d.atua_educacao_medica === true;
+            if (filters.social === 'Sim') socialMatches = hasImpacto;
+            if (filters.social === 'Não') socialMatches = !hasImpacto;
 
-            return ufMatches && anoMatches && rqeMatches && socialMatches;
+            let specMatches = true;
+            if (filters.especialidade !== 'Todas') {
+                // Dropdown label has " (Count)" at the end. Match prefix.
+                const specName = filters.especialidade.split(' (')[0];
+                specMatches = d.grande_area_rqe === specName;
+            }
+
+            return ufMatches && anoMatches && rqeMatches && socialMatches && specMatches;
         });
     }, [data, filters]);
 
@@ -99,7 +117,14 @@ const DashboardManager = () => {
                     </div>
 
                     <div className="filter-group">
-                        <label>Faz Ação Social?</label>
+                        <label>Especialidades</label>
+                        <select value={filters.especialidade} onChange={(e) => handleFilterChange('especialidade', e.target.value)}>
+                            {availableSpecialties.map(spec => <option key={spec} value={spec}>{spec}</option>)}
+                        </select>
+                    </div>
+
+                    <div className="filter-group">
+                        <label>Impacto Social</label>
                         <select value={filters.social} onChange={(e) => handleFilterChange('social', e.target.value)}>
                             <option value="Todos">Todos</option>
                             <option value="Sim">Sim</option>

@@ -15,12 +15,14 @@ const Specialties = () => {
     // Hardcoded as per prompt instructions, though we could calculate this from data if needed
     const originalStats = [
         { label: "Clínico-Cirúrgicas", value: 38.4, color: "var(--color-primary)" },
-        { label: "Clínica Médica", value: 25.6, color: "var(--color-primary-light)" },
-        { label: "Medicina de Família (MFC)", value: 10, color: "var(--color-secondary)" },
+        { label: "Especialidades Clínicas", value: 25.6, color: "var(--color-primary-light)" },
+        { label: "Medicina de Família (MFC)", value: 10, color: "#10B981" }, // Verde
         { label: "Pediatria", value: 8.4, color: "var(--color-accent)" },
         { label: "Cirurgia Geral", value: 8.4, color: "#8B5CF6" }, // purple
         { label: "Outras", value: 9.2, color: "#475569" }
     ];
+
+    // ... [skipping middle because we want to replace from line 15 to 78? Wait, if I do a wide replacement it's safer to use multi_replace. Actually I'll just multi_replace Specialties.jsx below... aborting this replace by fixing start and end to just 15-20]
 
     // Chart Setup
     const width = 450;
@@ -64,10 +66,7 @@ const Specialties = () => {
     return (
         <section className="specialties-section container" ref={containerRef}>
             <div className="section-header">
-                <h2>Especialistas de Mão Cheia</h2>
-                <p className="section-subtitle text-muted">
-                    Eles não param de estudar. Hoje, 250 dos nossos médicos já possuem o título oficial de especialista (RQE).
-                </p>
+                <h2>Eles não param de estudar. Hoje, 250 dos nossos médicos já possuem o Registro de Qualificação de Especialista (RQE) ou estão em processo de obtenção.</h2>
             </div>
 
             <div className="specialties-content">
@@ -75,19 +74,17 @@ const Specialties = () => {
                     <svg viewBox={`0 0 ${width} ${height}`} className="donut-chart">
                         {/* Center Text */}
                         <text x={width / 2} y={height / 2 - 10} textAnchor="middle" className="donut-center-num">250</text>
-                        <text x={width / 2} y={height / 2 + 20} textAnchor="middle" className="donut-center-label">com RQE</text>
+                        <text x={width / 2} y={height / 2 + 20} textAnchor="middle" className="donut-center-label" style={{ fontSize: '10px' }}>COM RQE OU EM OBTENÇÃO</text>
 
                         <g transform={`translate(${width / 2},${height / 2})`}>
                             {pieData.map((d, i) => (
                                 <path
                                     key={i}
-                                    ref={el => pathsRef.current[i] = el}
+                                    className="donut-slice"
                                     d={arcGenerator(d)}
-                                    fill="none"
-                                    stroke={d.data.color}
-                                    strokeWidth={radius * 0.5} // Trick to make Draw SVG work like pie chart filling!
-                                    id={`arc-${i}`}
-                                /* The trick here is using a very thick stroke on an arc with innerRadius ~0 to look like a wedge filling by length */
+                                    fill={d.data.color}
+                                    stroke="var(--bg-color)"
+                                    strokeWidth="2"
                                 />
                             ))}
                         </g>
