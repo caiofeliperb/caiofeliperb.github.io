@@ -14,7 +14,15 @@
     flex: 1;
     justify-content: center;
     align-items: center;
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    /* Reduced margin */
+}
+
+/* Force dark blue contrast on light mode */
+.section-header h2,
+.sidebar-title,
+.card-title {
+    color: var(--text-main) !important;
 }
 
 .heatmap-row {

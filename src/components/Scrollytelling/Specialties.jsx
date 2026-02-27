@@ -35,22 +35,17 @@ const Specialties = () => {
     const pieData = useMemo(() => pie(originalStats), [originalStats, pie]);
 
     useEffect(() => {
-        // Set initial state for Draw SVG effect
-        pathsRef.current.forEach(path => {
-            if (path) {
-                const length = path.getTotalLength();
-                gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
-            }
-        });
+        // Set initial state
+        gsap.set('.donut-slice', { opacity: 0 });
 
         ScrollTrigger.create({
             trigger: chartRef.current,
             start: "top 80%",
             onEnter: () => {
-                // Animate pie slices scaling up
+                // Animate pie slices fading elegantly to avoid DOM reflow transform bugs
                 gsap.fromTo('.donut-slice',
-                    { scale: 0, opacity: 0 },
-                    { scale: 1, opacity: 1, duration: 1, stagger: 0.1, ease: "back.out(1.5)", transformOrigin: 'center' }
+                    { opacity: 0 },
+                    { opacity: 1, duration: 1.5, stagger: 0.15, ease: "power2.out" }
                 );
 
                 // Also animate the labels
@@ -66,7 +61,7 @@ const Specialties = () => {
     return (
         <section className="specialties-section container" ref={containerRef}>
             <div className="section-header">
-                <h2>Eles não param de estudar. Hoje, 250 dos nossos médicos já possuem o Registro de Qualificação de Especialista (RQE) ou estão em processo de obtenção.</h2>
+                <h2>Eles não param de estudar.<br />Hoje, 250 dos nossos médicos já possuem o Registro de Qualificação de Especialista (RQE) ou estão em processo de obtenção.</h2>
             </div>
 
             <div className="specialties-content">

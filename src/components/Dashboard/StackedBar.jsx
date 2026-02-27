@@ -48,12 +48,12 @@ const StackedBar = ({ data }) => {
         const x0 = d3.scaleBand()
             .domain(parsedObj.map(d => d.year))
             .rangeRound([margin.left, width - margin.right])
-            .paddingInner(0.2);
+            .paddingInner(0.1); // Thicker grouped cluster
 
         const x1 = d3.scaleBand()
             .domain(keys)
             .rangeRound([0, x0.bandwidth()])
-            .padding(0.05);
+            .padding(0.01); // Thicker individual bars within cluster
 
         // Find max value in any sub-group
         const maxVal = d3.max(parsedObj, d => d3.max(keys, key => d[key]));
@@ -65,11 +65,11 @@ const StackedBar = ({ data }) => {
         const getColor = (key) => {
             const k = key.toLowerCase();
             if (k.includes("clínico-cirúrgicas") || k.includes("clinico-cirurgicas")) return "#009FDF"; // Ciano
-            if (k.includes("médica") || k.includes("medica")) return "#4A54A4"; // Azul Claro
-            if (k.includes("família") || k.includes("familia")) return "#10B981"; // Verde (MFC)
-            if (k.includes("pediatria")) return "#20B2AA"; // Verde Água
-            if (k === "cirurgia geral") return "#8B5CF6"; // Purple
-            return "#64748B"; // Cinza
+            if (k.includes("médica") || k.includes("medica")) return "#2563EB"; // Azul Forte Vibrante
+            if (k.includes("família") || k.includes("familia")) return "#059669"; // Verde Rico
+            if (k.includes("pediatria")) return "#0D9488"; // Teal Forte
+            if (k === "cirurgia geral") return "#7C3AED"; // Roxo Vibrante
+            return "#475569"; // Slate para Outras
         };
 
         const color = d3.scaleOrdinal()
@@ -96,7 +96,10 @@ const StackedBar = ({ data }) => {
         svg.append("g")
             .attr("transform", `translate(0,${height - margin.bottom})`)
             .call(d3.axisBottom(x0).tickSizeOuter(0))
-            .attr("color", "var(--text-muted)");
+            .attr("color", "var(--text-muted)")
+            .selectAll("text")
+            .attr("transform", "translate(-10,0)rotate(-45)")
+            .style("text-anchor", "end");
 
         svg.append("g")
             .attr("transform", `translate(${margin.left},0)`)
@@ -121,12 +124,12 @@ const StackedBar = ({ data }) => {
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '10px', justifyContent: 'center' }}>
                         {chartData.keys.map((key, i) => {
                             const k = key.toLowerCase();
-                            let col = "#64748B";
+                            let col = "#475569";
                             if (k.includes("cirúrgicas")) col = "#009FDF";
-                            else if (k.includes("médica")) col = "#4A54A4";
-                            else if (k.includes("família")) col = "#10B981";
-                            else if (k.includes("pediatria")) col = "#20B2AA";
-                            else if (k === "cirurgia geral") col = "#8B5CF6";
+                            else if (k.includes("médica")) col = "#2563EB";
+                            else if (k.includes("família")) col = "#059669";
+                            else if (k.includes("pediatria")) col = "#0D9488";
+                            else if (k === "cirurgia geral") col = "#7C3AED";
 
                             return (
                                 <div key={i} style={{ display: 'flex', alignItems: 'center', fontSize: '0.8rem', color: 'var(--text-muted)' }}>

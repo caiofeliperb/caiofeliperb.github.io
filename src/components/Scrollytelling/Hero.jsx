@@ -90,8 +90,11 @@ const Hero = () => {
         });
 
         let animationFrameId;
+        let isVisible = true;
 
         const drawParticles = (time) => {
+            if (!isVisible) return; // Performance Optimization: Stop drawing if offscreen
+
             ctx.clearRect(0, 0, width, height);
 
             particles.forEach(p => {
@@ -121,7 +124,17 @@ const Hero = () => {
             animationFrameId = requestAnimationFrame(drawParticles);
         };
 
-        animationFrameId = requestAnimationFrame(drawParticles);
+        const observer = new IntersectionObserver(([entry]) => {
+            isVisible = entry.isIntersecting;
+            if (isVisible && !animationFrameId) {
+                animationFrameId = requestAnimationFrame(drawParticles);
+            } else if (!isVisible && animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        }, { threshold: 0 });
+
+        if (containerRef.current) observer.observe(containerRef.current);
 
         // GSAP ScrollTrigger to animate progress towards the "Elephant" map
         ScrollTrigger.create({
@@ -153,7 +166,8 @@ const Hero = () => {
         window.addEventListener('resize', handleResize);
 
         return () => {
-            cancelAnimationFrame(animationFrameId);
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            observer.disconnect();
             window.removeEventListener('resize', handleResize);
             ScrollTrigger.getAll().forEach(t => t.kill());
         };
@@ -178,12 +192,12 @@ const Hero = () => {
                     </div>
                     <div className="metric-divider"></div>
                     <div className="metric">
-                        <span className="metric-value">544*</span>
+                        <span className="metric-value">544<span style={{ fontSize: '0.35em', verticalAlign: 'super', opacity: 0.8 }}>*</span></span>
                         <span className="metric-label">CRMs ATIVOS</span>
                     </div>
                     <div className="metric-divider"></div>
                     <div className="metric">
-                        <span className="metric-value" style={{ fontSize: '2.5rem' }}>INÚMERAS</span>
+                        <span className="metric-value" style={{ fontSize: '1.8rem' }}>INÚMERAS</span>
                         <span className="metric-label">VIDAS IMPACTADAS</span>
                     </div>
                 </div>

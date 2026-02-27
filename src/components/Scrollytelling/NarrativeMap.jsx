@@ -128,7 +128,7 @@ const NarrativeMap = () => {
             {/* Sticky Map Container */}
             <div className="map-sticky" ref={mapRef}>
                 <div className="map-wrapper glass-panel">
-                    <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" className="map-svg">
+                    <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" className="map-svg">
                         <defs>
                             <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stopColor="var(--color-primary-light)" />
@@ -161,12 +161,12 @@ const NarrativeMap = () => {
 
                         <g ref={labelRNRef} style={{ transformOrigin: '780px 180px' }}>
                             <rect x="710" y="140" width="160" height="40" rx="20" fill="rgba(14, 165, 233, 0.2)" stroke="var(--color-primary-light)" />
-                            <text x="790" y="165" fill="#fff" fontSize="14" fontWeight="700" textAnchor="middle">84.5% iniciaram no RN</text>
+                            <text x="790" y="165" fill="var(--text-main)" fontSize="14" fontWeight="700" textAnchor="middle">84.5% iniciaram no RN</text>
                         </g>
 
                         <g ref={labelNERef} style={{ transformOrigin: '700px 300px' }}>
                             <rect x="580" y="270" width="220" height="40" rx="20" fill="rgba(16, 185, 129, 0.2)" stroke="var(--color-secondary)" />
-                            <text x="690" y="295" fill="#fff" fontSize="14" fontWeight="700" textAnchor="middle">~80% permanecem no Nordeste</text>
+                            <text x="690" y="295" fill="var(--text-main)" fontSize="14" fontWeight="700" textAnchor="middle">~80% permanecem no Nordeste</text>
                         </g>
 
                         {/* Origin Point: Mossoró RN */}
