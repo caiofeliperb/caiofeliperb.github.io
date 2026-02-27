@@ -1,0 +1,231 @@
+import React, { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { MapPin, ArrowUpRight } from 'lucide-react';
+import './NarrativeMap.css';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const NarrativeMap = () => {
+    const containerRef = useRef(null);
+    const mapRef = useRef(null);
+    const stepsRef = useRef([]);
+    // Refs for SVG elements
+    const pathMossoroRef = useRef(null);
+    const pathNatalRef = useRef(null);
+    const pathCERef = useRef(null);
+    const pathPBRef = useRef(null);
+    const pathPERef = useRef(null);
+    const pathNYRef = useRef(null);
+
+    const labelRNRef = useRef(null);
+    const labelNERef = useRef(null);
+
+    useEffect(() => {
+        const paths = [pathMossoroRef, pathNatalRef, pathCERef, pathPBRef, pathPERef, pathNYRef];
+
+        paths.forEach(pRef => {
+            if (pRef.current) {
+                const length = pRef.current.getTotalLength();
+                gsap.set(pRef.current, { strokeDasharray: length, strokeDashoffset: length });
+            }
+        });
+
+        // Hide data labels initially
+        gsap.set([labelRNRef.current, labelNERef.current], { opacity: 0, scale: 0.8 });
+
+        const mm = gsap.matchMedia();
+
+        const commonScrollTrigger = {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "bottom bottom",
+            pin: mapRef.current,
+            pinSpacing: false,
+        };
+
+        // Desktop
+        mm.add("(min-width: 769px)", () => {
+            ScrollTrigger.create(commonScrollTrigger);
+        });
+
+        // Mobile
+        mm.add("(max-width: 768px)", () => {
+            ScrollTrigger.create(commonScrollTrigger);
+        });
+
+        // Animate based on step entering
+        stepsRef.current.forEach((step, i) => {
+            ScrollTrigger.create({
+                trigger: step,
+                start: "top center",
+                end: "bottom center",
+                onEnter: () => animateStep(i, true),
+                onEnterBack: () => animateStep(i, false),
+            });
+        });
+
+        return () => {
+            ScrollTrigger.getAll().forEach(t => t.kill());
+        };
+    }, []);
+
+    const animateStep = (index, isForward) => {
+        if (index === 0) {
+            // Step 1: Base (Reset globally)
+            gsap.to([pathMossoroRef.current, pathNatalRef.current, pathCERef.current, pathPBRef.current, pathPERef.current, pathNYRef.current], {
+                strokeDashoffset: (i, target) => target.getTotalLength(),
+                duration: 0.8, ease: "power2.out"
+            });
+            gsap.to([labelRNRef.current, labelNERef.current], { opacity: 0, scale: 0.8, duration: 0.5 });
+
+        } else if (index === 1) {
+            // Step 2: RN Focus (Mossoró and Natal)
+            gsap.to(pathMossoroRef.current, { strokeDashoffset: 0, duration: 1.5, ease: "power2.out" });
+            gsap.to(pathNatalRef.current, { strokeDashoffset: 0, duration: 1.5, ease: "power2.out", delay: 0.2 });
+            gsap.to(labelRNRef.current, { opacity: 1, scale: 1, duration: 0.8, delay: 1, ease: "back.out(1.5)" });
+
+            // Hide global
+            gsap.to([pathCERef.current, pathPBRef.current, pathPERef.current, pathNYRef.current], {
+                strokeDashoffset: (i, target) => target.getTotalLength(),
+                duration: 0.8
+            });
+            gsap.to(labelNERef.current, { opacity: 0, scale: 0.8, duration: 0.5 });
+
+        } else if (index === 2) {
+            // Step 3: Northeast and World (CE, PE, PB, NY)
+            gsap.to(pathMossoroRef.current, { strokeDashoffset: 0, duration: 0.5 });
+            gsap.to(pathNatalRef.current, { strokeDashoffset: 0, duration: 0.5 });
+            gsap.to(labelRNRef.current, { opacity: 1, scale: 1, duration: 0.5 });
+
+            gsap.to([pathCERef.current, pathPBRef.current, pathPERef.current], {
+                strokeDashoffset: 0, duration: 1.5, ease: "power2.out", stagger: 0.2
+            });
+            gsap.to(labelNERef.current, { opacity: 1, scale: 1, duration: 0.8, delay: 1, ease: "back.out(1.5)" });
+
+            gsap.to(pathNYRef.current, { strokeDashoffset: 0, duration: 2.5, ease: "power2.inOut", delay: 0.5 });
+        }
+    };
+
+    const steps = [
+        {
+            title: "O Ponto de Partida",
+            description: "Vestimos o jaleco de pesquisadores. Fomos direto na fonte do CFM (Conselho Federal de Medicina) e ouvimos as vivências de 194 egressos que toparam compartilhar suas jornadas conosco."
+        },
+        {
+            title: "Nossas Raízes Fortes",
+            description: "Nossas raízes gritam forte! 84,5% deram seus primeiros passos profissionais no próprio RN. Fincamos raízes cuidando da nossa gente, principalmente em Mossoró e Natal."
+        },
+        {
+            title: "Do Nordeste para o Mundo",
+            description: "Quase 80% dos nossos 544 registros ativos estão concentrados no RN, Ceará, Pernambuco e Paraíba. Mas o cuidado não tem fronteiras: temos até egresso voando alto em Nova York!"
+        }
+    ];
+
+    return (
+        <section className="narrative-section" ref={containerRef}>
+
+            {/* Sticky Map Container */}
+            <div className="map-sticky" ref={mapRef}>
+                <div className="map-wrapper glass-panel">
+                    <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" className="map-svg">
+                        <defs>
+                            <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="var(--color-primary-light)" />
+                                <stop offset="100%" stopColor="var(--color-secondary)" />
+                            </linearGradient>
+                            <linearGradient id="nyGradient" x1="100%" y1="100%" x2="0%" y2="0%">
+                                <stop offset="0%" stopColor="var(--color-primary-light)" />
+                                <stop offset="100%" stopColor="var(--color-accent)" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                            <pattern id="dotGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                <circle cx="2" cy="2" r="1.5" fill="rgba(255, 255, 255, 0.05)" />
+                            </pattern>
+                            <path id="brShape" d="M 450 100 L 750 20 L 950 220 L 700 550 L 400 450 L 250 300 Z" />
+                        </defs>
+
+                        {/* Background Map Styling */}
+                        <rect width="100%" height="100%" fill="url(#dotGrid)" />
+                        <use href="#brShape" fill="rgba(30, 41, 59, 0.4)" stroke="rgba(255, 255, 255, 0.03)" strokeWidth="2" />
+                        <polygon points="650,80 920,100 950,220 800,450 550,250" fill="rgba(14, 165, 233, 0.03)" stroke="rgba(14, 165, 233, 0.2)" strokeWidth="1" strokeDasharray="4 4" />
+                        <text x="600" y="350" fill="rgba(255,255,255,0.05)" fontSize="32" fontWeight="600" style={{ letterSpacing: '8px', textTransform: 'uppercase' }}>Brasil</text>
+
+                        {/* DATA HIGHLIGHTS */}
+
+                        <g ref={labelRNRef} style={{ transformOrigin: '780px 180px' }}>
+                            <rect x="730" y="140" width="130" height="40" rx="20" fill="rgba(14, 165, 233, 0.2)" stroke="var(--color-primary-light)" />
+                            <text x="795" y="165" fill="#fff" fontSize="16" fontWeight="700" textAnchor="middle">84.5% no RN</text>
+                        </g>
+
+                        <g ref={labelNERef} style={{ transformOrigin: '700px 300px' }}>
+                            <rect x="630" y="270" width="160" height="40" rx="20" fill="rgba(16, 185, 129, 0.2)" stroke="var(--color-secondary)" />
+                            <text x="710" y="295" fill="#fff" fontSize="16" fontWeight="700" textAnchor="middle">~80% Nordeste</text>
+                        </g>
+
+                        {/* Origin Point: Mossoró RN */}
+                        <circle cx="750" cy="200" r="10" fill="var(--color-primary)" filter="url(#glow)" />
+                        <text x="765" y="205" fill="var(--text-main)" fontSize="18" fontWeight="600" className="map-label">UERN Mossoró</text>
+
+                        {/* Path inside Mossoró (Simulated loop/stay) */}
+                        <path ref={pathMossoroRef} d="M 750 200 C 720 180 730 230 750 200" fill="none" stroke="var(--color-primary-light)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" />
+
+                        {/* Path to Natal */}
+                        <path ref={pathNatalRef} d="M 750 200 Q 800 210 850 240" fill="none" stroke="url(#pathGradient)" strokeWidth="4" filter="url(#glow)" strokeLinecap="round" />
+                        <circle cx="850" cy="240" r="6" fill="var(--color-secondary)" />
+                        <text x="865" y="245" fill="var(--text-muted)" fontSize="14" className="map-label">Natal</text>
+
+                        {/* Paths to CE, PE, PB */}
+                        {/* CE (Fortaleza) */}
+                        <path ref={pathCERef} d="M 750 200 Q 700 160 630 140" fill="none" stroke="url(#pathGradient)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" />
+                        <circle cx="630" cy="140" r="5" fill="var(--color-secondary)" />
+                        <text x="610" y="130" fill="var(--text-muted)" fontSize="13" className="map-label">CE</text>
+
+                        {/* PB (João Pessoa) */}
+                        <path ref={pathPBRef} d="M 750 200 Q 820 280 870 300" fill="none" stroke="url(#pathGradient)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" />
+                        <circle cx="870" cy="300" r="5" fill="var(--color-secondary)" />
+                        <text x="885" y="305" fill="var(--text-muted)" fontSize="13" className="map-label">PB</text>
+
+                        {/* PE (Recife) */}
+                        <path ref={pathPERef} d="M 750 200 Q 800 320 850 370" fill="none" stroke="url(#pathGradient)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" />
+                        <circle cx="850" cy="370" r="5" fill="var(--color-secondary)" />
+                        <text x="865" y="375" fill="var(--text-muted)" fontSize="13" className="map-label">PE</text>
+
+                        {/* Long Path to New York */}
+                        <path ref={pathNYRef} d="M 750 200 C 600 -50 400 -100 200 150" fill="none" stroke="url(#nyGradient)" strokeWidth="3" strokeDasharray="5, 10" filter="url(#glow)" strokeLinecap="round" />
+                        <circle cx="200" cy="150" r="6" fill="var(--color-accent)" filter="url(#glow)" />
+                        <text x="130" y="140" fill="var(--color-accent)" fontSize="16" fontWeight="600" className="map-label">Nova York</text>
+                    </svg>
+                </div>
+            </div>
+
+            {/* Scrolling Text Blocks */}
+            <div className="narrative-scroll">
+                {steps.map((step, i) => (
+                    <div
+                        key={i}
+                        className="narrative-step"
+                        ref={el => stepsRef.current[i] = el}
+                    >
+                        <div className="step-content glass-panel">
+                            <div className="step-icon">
+                                {i === 2 ? <ArrowUpRight size={32} /> : <MapPin size={32} />}
+                            </div>
+                            <h2 className="step-title">{step.title}</h2>
+                            <p className="step-description">{step.description}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+        </section>
+    );
+};
+
+export default NarrativeMap;

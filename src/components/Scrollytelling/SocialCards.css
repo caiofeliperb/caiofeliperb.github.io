@@ -1,0 +1,93 @@
+.social-section {
+    padding: var(--spacing-xxl) 0;
+    overflow: hidden;
+    /* Prevent horizontal scrollbar on body */
+}
+
+/* Inherits .section-header and .section-subtitle from Specialties.css, 
+   but it's good practice to scope if using modules. 
+   Here we rely on global class styling for consistency. */
+
+.cards-scroll-container {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    overflow-x: auto;
+    padding: var(--spacing-xl) var(--spacing-md);
+    scroll-snap-type: x mandatory;
+    scroll-padding: var(--spacing-md);
+
+    /* Hide scrollbar but keep functionality */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+}
+
+.cards-scroll-container::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari and Opera */
+}
+
+.cards-track {
+    display: flex;
+    gap: var(--spacing-lg);
+    padding: 0 5vw;
+    /* Start padding for centering the first item loosely */
+    perspective: 1000px;
+}
+
+.social-card {
+    flex: 0 0 350px;
+    scroll-snap-align: center;
+    perspective: 1000px;
+    /* Perspective applied to parent for inner tilt */
+}
+
+.card-inner {
+    height: 100%;
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.1s ease-out;
+    /* Super fast transition for mouse track tracking */
+    transform-style: preserve-3d;
+    background: var(--bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.card-icon {
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-md);
+    transform: translateZ(30px);
+    /* Pops out during 3D tilt */
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-main);
+    transform: translateZ(20px);
+}
+
+.card-description {
+    color: var(--text-muted);
+    line-height: 1.6;
+    transform: translateZ(10px);
+}
+
+@media (max-width: 768px) {
+    .social-card {
+        flex: 0 0 85vw;
+        /* Almost full width on mobile */
+    }
+
+    .card-inner {
+        transition: transform var(--transition-normal);
+        /* Revert back to normal transition for touch devices */
+    }
+}

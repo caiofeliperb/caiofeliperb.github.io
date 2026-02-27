@@ -1,0 +1,58 @@
+:root {
+  /* Brand Colors - Medical/UERN Theme (Green/Blue/Teal) */
+  --color-primary: #0EA5E9; /* vibrant blue */
+  --color-primary-light: #38BDF8;
+  --color-primary-dark: #0284C7;
+  --color-secondary: #10B981; /* teal/green */
+  --color-accent: #F59E0B; /* amber/yellow for highlights */
+  
+  /* Dark Mode Base Colors */
+  --bg-color: #0F172A; /* Slate 900 */
+  --bg-surface: #1E293B; /* Slate 800 */
+  --bg-surface-light: rgba(30, 41, 59, 0.6); /* Glass effect */
+  
+  /* Typography */
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  
+  /* Fonts */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  /* Layout */
+  --max-width: 1200px;
+  --content-padding: 2rem;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+  --spacing-xxl: 8rem;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.4s ease-in-out;
+  --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Effects */
+  --glass-blur: blur(12px);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.05);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  
+  /* Z-index layers */
+  --z-bg: -1;
+  --z-base: 1;
+  --z-content: 10;
+  --z-sticky: 100;
+  --z-overlay: 1000;
+}
+
+/* Mobile specific overrides */
+@media (max-width: 768px) {
+  :root {
+    --content-padding: 1rem;
+    --spacing-xxl: 4rem;
+  }
+}

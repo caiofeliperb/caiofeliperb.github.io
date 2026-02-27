@@ -1,0 +1,467 @@
+id_egresso,ano_formatura,respondeu_formulario,tem_rqe,grande_area_rqe,especialidade_rqe,uf_atuacao_cfm,cidade_atuacao_form,atua_educacao_medica,faz_acao_social,eixo_acao_social,descricao_acao_social
+1,2010,Não,Sim,Clínica-Cirúrgica,Oftalmologia,RN / SP,Mossoró,N/A,N/A,N/A,N/A
+2,2010,Sim,Sim,Clínica Médica,Neurologia,RN,Mossoró,Preceptor,Não,N/A,N/A
+3,2010,Não,Sim,Cirurgia,Neurocirurgia,RN,Natal,N/A,N/A,N/A,N/A
+4,2010,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+5,2010,Sim,Sim,Clínica-Cirúrgica,Oftalmologia,RN,Natal,Ambos,Não,N/A,N/A
+6,2010,Sim,Sim,Outras,Radiologia e Diagnóstico por Imagem,RN,Mossoró,Preceptor,Não,N/A,N/A
+7,2010,Sim,Sim,Outras,Anestesiologia,RN,Natal,Preceptor,Sim,N/A,N/A
+8,2010,Não,Sim,Clínica Médica,Clínica Médica e Hematologia,RN,Natal,N/A,N/A,N/A,N/A
+9,2010,Sim,Sim,Clínica-Cirúrgica,Oftalmologia,RN,Mossoro,Não,Não,N/A,N/A
+10,2010,Não,Sim,MFC,MFC e Clínica Médica,RN,Mossoró,N/A,N/A,N/A,N/A
+11,2010,Sim,Sim,Clínica Médica,Clínica Médica e Nefrologia,RN,Natal,Preceptor,Não,N/A,N/A
+12,2010,Não,Sim,Pediatria,Pediatria e Neonatologia,RN,Natal,N/A,N/A,N/A,N/A
+13,2010,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,Cruzeta,Preceptor,Não,N/A,N/A
+14,2010,Não,Sim,Clínica-Cirúrgica,Ginecologia e Medicina Fetal,RN,Mossoró,N/A,N/A,N/A,N/A
+15,2010,Sim,Sim,Pediatria,Pediatria e Neonatologia,DF,Brasília,Preceptor,Não,N/A,N/A
+16,2010,Não,Não,N/A,N/A,RN / PE,N/A,N/A,N/A,N/A,N/A
+17,2010,Sim,Sim,Pediatria,Pediatria e Neonatologia,RN,Natal,Preceptor,Não,N/A,N/A
+18,2010,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+19,2010,Sim,Sim,Clínica Médica,Psiquiatria,RN,Mossoró,Docente,Não,N/A,N/A
+20,2010,Não,Sim,Clínica Médica,Dermatologia,RN,Caicó,N/A,N/A,N/A,N/A
+21,2010,Não,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,Mossoró,N/A,N/A,N/A,N/A
+22,2010,Sim,Sim,Cirurgia,Neurocirurgia,RN / RJ,Pau dos Ferros,Não,Sim,Voluntariado,Trabalho na APAE
+23,2010,Não,Sim,Pediatria,Cancerologia Pediátrica,RN,N/A,N/A,N/A,N/A,N/A
+24,2010,Não,Sim,Outras,Anestesiologia,RN / CE,N/A,N/A,N/A,N/A,N/A
+25,2011,Sim,Sim,Clínica Médica,Endocrinologia,RN,Mossoró,Não,Não,N/A,N/A
+26,2011,Sim,Sim,Cirurgia,Cirurgia Geral e Patologia,CE,Fortaleza,Preceptor,Não,N/A,N/A
+27,2011,Não,Não,N/A,N/A,CE / RN / PB,N/A,N/A,N/A,N/A,N/A
+28,2011,Não,Sim,Clínica-Cirúrgica,Ortopedia e Traumatologia,CE,N/A,N/A,N/A,N/A,N/A
+29,2011,Não,Sim,Clínica Médica,Cardiologia,CE,N/A,N/A,N/A,N/A,N/A
+30,2011,Não,Sim,Clínica-Cirúrgica,Ginecologia e Ultrassonografia,RN,N/A,N/A,N/A,N/A,N/A
+31,2011,Sim,Sim,Cirurgia,Cirurgia Vascular e Endovascular,RN,Mossoró,Docente,Não,N/A,N/A
+32,2011,Não,Sim,Outras,Otorrinolaringologia,RN,N/A,N/A,N/A,N/A,N/A
+33,2011,Sim,Sim,Clínica-Cirúrgica,Ortopedia e Traumatologia,RN,Mossoró,Docente,Não,N/A,N/A
+34,2011,Não,Sim,Outras,Radiologia Intervencionista,SP / RN,N/A,N/A,N/A,N/A,N/A
+35,2011,Não,Sim,Clínica Médica,Reumatologia,PE / PB,N/A,N/A,N/A,N/A,N/A
+36,2011,Não,Sim,Outras,Otorrinolaringologia,RN,N/A,N/A,N/A,N/A,N/A
+37,2011,Sim,Sim,Outras,Anestesia,RN,Natal,Não,Não,N/A,N/A
+38,2011,Sim,Sim,Clínica Médica,Clínica Médica / Hematologia,PE,Caruaru,Preceptor,Não,N/A,N/A
+39,2011,Não,Sim,Outras,Patologia,RJ / MG,N/A,N/A,N/A,N/A,N/A
+40,2011,Sim,Sim,MFC,Medicina de Família e Comunidade,RN,Mossoró,Docente,Não,N/A,N/A
+41,2011,Não,Sim,Outras,Anestesiologia,PE,N/A,N/A,N/A,N/A,N/A
+42,2011,Não,Sim,Cirurgia,Cirurgia Geral e Pediátrica,RN,N/A,N/A,N/A,N/A,N/A
+43,2011,Sim,Sim,Outras,Anestesiologia,RN,Natal,Preceptor,Não,N/A,N/A
+44,2011,Sim,Sim,Outras,Ultrassonografia,PB / RN,Alexandria,Não,Não,N/A,N/A
+45,2011,Sim,Sim,Clínica Médica,Psiquiatria e Medicina do Trabalho,RN,Açu,Não,Não,N/A,N/A
+46,2012,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+47,2012,Sim,Sim,Clínica-Cirúrgica,Ortopedia e Traumatologia,RN,Natal,Preceptor,Não,N/A,N/A
+48,2012,Não,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,N/A,N/A,N/A,N/A,N/A
+49,2012,Sim,Sim,Outras,Anestesiologia,RN,Mossoró,Não,Não,N/A,N/A
+50,2012,Sim,Sim,MFC,Medicina de Família e Comunidade,RS,Gramado,Preceptor,Não,N/A,N/A
+51,2012,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+52,2012,Sim,Sim,MFC,Medicina de Família e Comunidade,RN,Mossoró,Preceptor,Sim,Gestão e Política Pública,Diretor Técnico HRTM
+53,2012,Não,Sim,Cirurgia,Neurocirurgia,RN / RJ / BA,N/A,N/A,N/A,N/A,N/A
+54,2012,Não,Não,N/A,N/A,AM,N/A,N/A,N/A,N/A,N/A
+55,2012,Não,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,N/A,N/A,N/A,N/A,N/A
+56,2012,Não,Sim,Cirurgia,Neurocirurgia,BA,N/A,N/A,N/A,N/A,N/A
+57,2012,Não,Sim,Cirurgia,Coloproctologia,RN / CE / PB,N/A,N/A,N/A,N/A,N/A
+58,2012,Sim,Sim,Pediatria,Neonatologia,RN,Natal,Preceptor,Sim,Saúde Pública,RN + Coração
+59,2012,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+60,2012,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,Mossoró,Preceptor,Não,N/A,N/A
+61,2012,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+62,2012,Sim,Sim,Clínica-Cirúrgica,Ginecologia / Mastologia,CE,Fortaleza,Preceptor,Não,N/A,N/A
+63,2012,Não,Sim,Clínica-Cirúrgica,Ginecologia / Ultrassonografia,RN / CE,N/A,N/A,N/A,N/A,N/A
+64,2012,Sim,Sim,Clínica-Cirúrgica,Ginecologia / Endoscopia,RN,Mossoró,Ambos,Não,N/A,N/A
+65,2012,Não,Sim,Clínica-Cirúrgica,Ortopedia / Cirurgia da Mão,PB,N/A,N/A,N/A,N/A,N/A
+66,2012,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,Mossoró,Preceptor,Não,N/A,N/A
+67,2013,Sim,Sim,Clínica Médica,Cardiologia e Ecocardiografia,RN,Mossoró,Docente,Não,N/A,N/A
+68,2013,Não,Sim,Pediatria,Endocrinologia Pediátrica,RN,N/A,N/A,N/A,N/A,N/A
+69,2013,Sim,Sim,Outras,Otorrinolaringologia,RN,Mossoró,Ambos,Não,N/A,N/A
+70,2013,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+71,2013,Não,Sim,Clínica-Cirúrgica,Ortopedia / Medicina Esportiva,RN,N/A,N/A,N/A,N/A,N/A
+72,2013,Sim,Sim,Clínica-Cirúrgica,Ginecologia / Endoscopia,RN,Mossoró,Não,Não,N/A,N/A
+73,2013,Não,Sim,Clínica-Cirúrgica,Ortopedia e Traumatologia,RN / CE,N/A,N/A,N/A,N/A,N/A
+74,2013,Sim,Sim,Pediatria,Neurologia Pediátrica,RN,Natal,Docente,Não,N/A,N/A
+75,2013,Não,Sim,Clínica-Cirúrgica,Ortopedia e Traumatologia,RN,N/A,N/A,N/A,N/A,N/A
+76,2013,Não,Sim,Outras,Otorrinolaringologia,RN,N/A,N/A,N/A,N/A,N/A
+77,2013,Não,Sim,Clínica Médica,Medicina do Tráfego,SP,N/A,N/A,N/A,N/A,N/A
+78,2013,Não,Sim,Pediatria,Medicina Intensiva Pediátrica,RN,N/A,N/A,N/A,N/A,N/A
+79,2013,Não,Sim,Outras,Anestesiologia,CE / BA,N/A,N/A,N/A,N/A,N/A
+80,2013,Sim,Sim,Pediatria,Oncologia Pediátrica,RN,Mossoró,Ambos,Não,N/A,N/A
+81,2013,Não,Sim,Pediatria,Pediatria,RN,N/A,N/A,N/A,N/A,N/A
+82,2013,Não,Sim,Outras,Patologia,SP,N/A,N/A,N/A,N/A,N/A
+83,2013,Não,Sim,Outras,Anestesiologia,RN,N/A,N/A,N/A,N/A,N/A
+84,2013,Sim,Sim,Clínica Médica,Endocrinologia e Metabologia,RN,Mossoró,Docente,Não,N/A,N/A
+85,2013,Não,Sim,Clínica-Cirúrgica,Ortopedia e Traumatologia,PB,N/A,N/A,N/A,N/A,N/A
+86,2013,Não,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,N/A,N/A,N/A,N/A,N/A
+87,2014,Não,Sim,Pediatria,Pediatria e Neonatologia,CE,N/A,N/A,N/A,N/A,N/A
+88,2014,Não,Sim,Outras,Otorrinolaringologia,RN / PE,N/A,N/A,N/A,N/A,N/A
+89,2014,Não,Sim,Outras,Radiologia e Diagnóstico por Imagem,RN,N/A,N/A,N/A,N/A,N/A
+90,2014,Não,Sim,Cirurgia,Cirurgia Geral,RN,N/A,N/A,N/A,N/A,N/A
+91,2014,Sim,Sim,Clínica-Cirúrgica,Oftalmologia,PE,Recife,Não,Não,N/A,N/A
+92,2014,Não,Não,N/A,N/A,RN / CE,N/A,N/A,N/A,N/A,N/A
+93,2014,Sim,Sim,Clínica Médica,Psiquiatria,RN,Mossoró,Ambos,Não,N/A,N/A
+94,2014,Sim,Sim,Pediatria,Pediatria e Cardiopediatria,CE,CE,Preceptor,Não,N/A,N/A
+95,2014,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+96,2014,Sim,Sim,Clínica Médica,Hematologia e Hemoterapia,RN / CE,Mossoró,Ambos,Sim,Voluntariado,ONG em Moçambique
+97,2014,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+98,2014,Não,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN / CE,N/A,N/A,N/A,N/A,N/A
+99,2014,Não,Sim,Clínica-Cirúrgica,Oftalmologia,MA,N/A,N/A,N/A,N/A,N/A
+100,2014,Sim,Sim,Clínica-Cirúrgica,Ortopedia e Cirurgia da Mão,RN,Natal,Docente,Sim,Saúde Pública,N/A
+101,2014,Sim,Sim,Clínica Médica,Neurologia e Neurofisiologia,RN,Mossoró,Docente,Não,N/A,N/A
+102,2014,Não,Sim,Clínica-Cirúrgica,Oftalmologia,RS,N/A,N/A,N/A,N/A,N/A
+103,2014,Sim,Sim,Clínica Médica,Endocrinologia,RN,Mossoró,Docente,Não,N/A,N/A
+104,2014,Sim,Sim,Clínica Médica,Dermatologia,RN,Mossoró,Docente,Não,N/A,N/A
+105,2014,Não,Sim,Outras,Anestesiologia,RN / PB,N/A,N/A,N/A,N/A,N/A
+106,2014,Sim,Sim,Clínica Médica,Cardiologia,RN,Pau dos Ferros,Não,Sim,Gestão e Política Pública,Prefeito de Pilões
+107,2014,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+108,2014,Sim,Sim,MFC,MFC / Ginecologia / Mastologia,RN,Mossoró,Não,Não,N/A,N/A
+109,2014,Sim,Sim,Clínica Médica,Psiquiatria,RN,Mossoró,Ambos,Não,N/A,N/A
+110,2014,Não,Sim,MFC,Medicina de Família e Comunidade,RN,N/A,N/A,N/A,N/A,N/A
+111,2014,Não,Sim,Clínica Médica,Dermatologia,PB,N/A,N/A,N/A,N/A,N/A
+112,2014,Não,Sim,Clínica-Cirúrgica,Ortopedia e Traumatologia,RN / PB,N/A,N/A,N/A,N/A,N/A
+113,2015,Sim,Sim,Clínica-Cirúrgica,Ortopedia e Traumatologia,CE,Fortaleza,Não,Sim,Voluntariado,N/A
+114,2015,Não,Sim,Cirurgia,Cirurgia Vascular e Endovascular,SP,N/A,N/A,N/A,N/A,N/A
+115,2015,Não,Sim,MFC,Medicina de Família e Comunidade,RN / CE,N/A,N/A,N/A,N/A,N/A
+116,2015,Não,Sim,Clínica Médica,Clínica Médica,RN,N/A,N/A,N/A,N/A,N/A
+117,2015,Não,Não,N/A,N/A,SC,N/A,N/A,N/A,N/A,N/A
+118,2015,Não,Sim,Outras,Anestesiologia,PB,N/A,N/A,N/A,N/A,N/A
+119,2015,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+120,2015,Sim,Sim,Outras,Otorrinolaringologia / Sono,RN,Mossoró,Não,Não,N/A,N/A
+121,2015,Não,Sim,Clínica Médica,Psiquiatria,CE,N/A,N/A,N/A,N/A,N/A
+122,2015,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+123,2015,Sim,Sim,Clínica Médica,Psiquiatria,CE,Fortaleza,Não,Não,N/A,N/A
+124,2015,Não,Sim,Clínica Médica,Psiquiatria,RN,N/A,N/A,N/A,N/A,N/A
+125,2015,Sim,Sim,Clínica Médica,Dermatologia,RN,Mossoró,Não,Não,N/A,N/A
+126,2015,Sim,Sim,Pediatria,Pediatria,CE,Fortaleza,Não,Não,N/A,N/A
+127,2015,Não,Não,N/A,N/A,RN / CE,N/A,N/A,N/A,N/A,N/A
+128,2015,Não,Sim,Clínica Médica,Dermatologia,RN,N/A,N/A,N/A,N/A,N/A
+129,2015,Não,Sim,Clínica Médica,Clínica Médica,PE,N/A,N/A,N/A,N/A,N/A
+130,2015,Não,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,CE,N/A,N/A,N/A,N/A,N/A
+131,2015,Não,Sim,MFC,Medicina de Família e Comunidade,RN,N/A,N/A,N/A,N/A,N/A
+132,2016,Não,Sim,MFC,Medicina de Família e Comunidade,CE,N/A,N/A,N/A,N/A,N/A
+133,2016,Sim,Sim,Outras,Medicina do Trabalho,RN,Mossoró,Não,Não,N/A,N/A
+134,2016,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+135,2016,Não,Sim,Outras,Radioterapia,CE,N/A,N/A,N/A,N/A,N/A
+136,2016,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+137,2016,Não,Sim,MFC,Medicina de Família e Comunidade,RN,N/A,N/A,N/A,N/A,N/A
+138,2016,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+139,2016,Sim,Sim,Pediatria,Pediatria,RN,Mossoró,Preceptor,Não,N/A,N/A
+140,2016,Sim,Sim,Outras,Otorrinolaringologia,SP,São Paulo,Não,Não,N/A,N/A
+141,2016,Sim,Sim,Clínica Médica,Nefrologia,CE,Fortaleza,Não,Sim,Organização de Serviços,Fluxograma DRC
+142,2016,Sim,Sim,Clínica Médica,Neurologia / Neurofisiologia,SP,São Paulo,Preceptor,Não,N/A,N/A
+143,2016,Sim,Sim,Clínica Médica,Cardiologia,PE,Recife,Não,Não,N/A,N/A
+144,2016,Não,Não,N/A,N/A,RN / CE,N/A,N/A,N/A,N/A,N/A
+145,2016,Sim,Sim,MFC,Clínica Médica e MFC,CE,Ipu,Preceptor,Sim,Saúde Pública,Tutor APS
+146,2016,Sim,Sim,Clínica Médica,Nefrologia,RN,Natal,Não,Não,N/A,N/A
+147,2016,Sim,Sim,MFC,Medicina Paliativa e MFC,CE,Fortaleza,Preceptor,Não,N/A,N/A
+148,2016,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+149,2016,Não,Sim,Cirurgia,Cirurgia Geral,RN / RJ / SP,N/A,N/A,N/A,N/A,N/A
+150,2017,Sim,Sim,Outras,Radiologia / Medicina Interna,RN,Natal,Não,Não,N/A,N/A
+151,2017,Sim,Sim,Clínica Médica,Cardiologia,SP,São Paulo,Não,Não,N/A,N/A
+152,2017,Sim,Sim,Pediatria,Pediatria e Neonatologia,RN,Natal,Não,Não,N/A,N/A
+153,2017,Não,Não,N/A,N/A,MG,N/A,N/A,N/A,N/A,N/A
+154,2017,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+155,2017,Não,Sim,Clínica Médica,Psiquiatria,SP,N/A,N/A,N/A,N/A,N/A
+156,2017,Sim,Sim,Outras,Anestesiologia,RN,Natal,Preceptor,Não,N/A,N/A
+157,2017,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+158,2017,Não,Não,N/A,N/A,PR,N/A,N/A,N/A,N/A,N/A
+159,2017,Sim,Sim,Clínica Médica,Cardiologia e Ecocardiografia,CE,Fortaleza,Não,Não,N/A,N/A
+160,2017,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+161,2017,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,SP,Jundiaí,Ambos,Não,N/A,N/A
+162,2017,Sim,Sim,Outras,Anestesiologia,RN / BA,Natal,Preceptor,Não,N/A,N/A
+163,2017,Sim,Sim,Clínica-Cirúrgica,Ortopedia e Traumatologia,CE,Fortaleza,Não,Não,N/A,N/A
+164,2017,Sim,Sim,Clínica Médica,Hepatologia,PB,Campina Grande,Não,Não,N/A,N/A
+165,2017,Sim,Sim,Outras,Terapia Intensiva / Clínica Médica,SP,São Paulo,Preceptor,Sim,Gestão e Política Pública,Auditoria UTI
+166,2017,Sim,Sim,Cirurgia,Cirurgia Geral e Mastologia,RN,Mossoró,Ambos,Não,N/A,N/A
+167,2017,Sim,Sim,Clínica-Cirúrgica,Ginecologista,CE,Fortaleza,Não,Não,N/A,N/A
+168,2017,Não,Sim,Pediatria,Endocrinologia Pediátrica,CE,N/A,N/A,N/A,N/A,N/A
+169,2017,Sim,Sim,Outras,Anestesiologia,RN,Rio Grande do Norte,Não,Não,N/A,N/A
+170,2017,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+171,2017,Não,Sim,Clínica Médica,Clínica Médica,RN / CE,N/A,N/A,N/A,N/A,N/A
+172,2017,Sim,Sim,Clínica-Cirúrgica,Ortopedia e Dor,RN / PB,Caicó,Ambos,Não,N/A,N/A
+173,2017,Sim,Sim,Clínica-Cirúrgica,Ortopedia / Cirurgia da Mão,PE,Recife,Não,Não,N/A,N/A
+174,2017,Sim,Sim,Clínica Médica,Psiquiatria / Med. Integrativa,PR,Curitiba,Não,Não,N/A,N/A
+175,2017,Sim,Sim,Clínica-Cirúrgica,Oftalmologia,PE,Recife,Não,Não,N/A,N/A
+176,2017,Não,Sim,MFC,Medicina de Família e Comunidade,SE,N/A,N/A,N/A,N/A,N/A
+177,2017,Não,Não,N/A,N/A,RS,N/A,N/A,N/A,N/A,N/A
+178,2017,Não,Não,N/A,N/A,RS,N/A,N/A,N/A,N/A,N/A
+179,2018,Sim,Sim,Outras,Anestesiologia,RN / CE,RN e CE,Preceptor,Não,N/A,N/A
+180,2018,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+181,2018,Não,Sim,MFC,Clínica Médica e MFC,CE / PB,N/A,N/A,N/A,N/A,N/A
+182,2018,Não,Sim,MFC,Medicina de Família e Comunidade,RN / CE,N/A,N/A,N/A,N/A,N/A
+183,2018,Não,Não,N/A,N/A,RN / CE,N/A,N/A,N/A,N/A,N/A
+184,2018,Sim,Sim,Clínica-Cirúrgica,Ortopedia e Traumatologia,RN / CE,Mossoró,Não,Não,N/A,N/A
+185,2018,Não,Sim,MFC,Medicina de Família e Comunidade,SP,N/A,N/A,N/A,N/A,N/A
+186,2018,Não,Sim,Clínica Médica,Gastro / Endoscopia,RN / CE,N/A,N/A,N/A,N/A,N/A
+187,2018,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+188,2018,Não,Sim,Clínica Médica,Clínica Médica,RN / CE,N/A,N/A,N/A,N/A,N/A
+189,2018,Sim,Sim,Cirurgia,Cirurgia Cardíaca,PE,Recife,Não,Não,N/A,N/A
+190,2018,Não,Sim,MFC,Medicina de Família e Comunidade,RN,N/A,N/A,N/A,N/A,N/A
+191,2018,Sim,Sim,MFC,MFC,RN,N/A,Preceptor,Não,N/A,N/A
+192,2018,Não,Sim,Outras,Radiologia e Ultrassonografia,RN / SP,N/A,N/A,N/A,N/A,N/A
+193,2018,Sim,Sim,Clínica Médica,Dermatologia,SP,São Paulo,Não,Não,N/A,N/A
+194,2018,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+195,2018,Não,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,N/A,N/A,N/A,N/A,N/A
+196,2018,Não,Não,N/A,N/A,RN / PE,N/A,N/A,N/A,N/A,N/A
+197,2018,Não,Sim,Clínica Médica,Endocrinologia e Metabologia,PE / PB,N/A,N/A,N/A,N/A,N/A
+198,2018,Sim,Sim,Outras,Radiologia Intervencionista,RN / SP,São Paulo,Preceptor,Não,N/A,N/A
+199,2018,Sim,Sim,Clínica Médica,Psiquiatria,RN,Mossoró,Preceptor,Não,N/A,N/A
+200,2018,Sim,Não,N/A,Clínica Médica / Atenção Primária,RN,Mossoró,Não,Não,N/A,N/A
+201,2018,Sim,Sim,Pediatria,Pediatria,RN,Natal,Não,Não,N/A,N/A
+202,2018,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+203,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+204,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+205,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+206,2019,Sim,Sim,Clínica Médica,Clínica Médica,PB,João Pessoa,Não,Não,N/A,N/A
+207,2019,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,PE / PB,Múltiplos,Preceptor,Não,N/A,N/A
+208,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+209,2019,Sim,Sim,Outras,Radiologia e Diagnóstico,RN,Natal,Não,Sim,Organização de Serviços,Fluxo COVID
+210,2019,Sim,Sim,Clínica Médica,Dermatologia,PE,Recife,Não,Não,N/A,N/A
+211,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+212,2019,Sim,Sim,Outras,Anestesiologia,SP,São Paulo,Não,Não,N/A,N/A
+213,2019,Sim,Não,N/A,Atenção Primária / Clínica Médica,CE,Pereiro,Preceptor,Não,N/A,N/A
+214,2019,Sim,Sim,Clínica Médica,Dermatologia,CE,Fortaleza,Não,Não,N/A,N/A
+215,2019,Sim,Sim,Outras,Patologia Cirúrgica,RN,Natal,Não,Sim,Organização de Serviços,Fluxo COVID
+216,2019,Sim,Sim,Cirurgia,Cirurgia Geral,PB,Paraíba,Não,Não,N/A,N/A
+217,2019,Sim,Sim,Clínica Médica,Gastroenterologia,PE,Recife,Não,Não,N/A,N/A
+218,2019,Sim,Não,N/A,Atenção Primária / Clínica Médica,RN,Pau dos Ferros,Não,Não,N/A,N/A
+219,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+220,2019,Não,Não,N/A,N/A,RN / CE,N/A,N/A,N/A,N/A,N/A
+221,2019,Sim,Sim,Clínica Médica,Clínica Médica,SP,São Paulo,Preceptor,Não,N/A,N/A
+222,2019,Sim,Sim,Cirurgia,Cirurgia Cabeça e Pescoço,SP,São Paulo,Não,Não,N/A,N/A
+223,2019,Sim,Sim,Outras,Anestesiologia,RN,Mossoró,Não,Não,N/A,N/A
+224,2019,Não,Não,N/A,N/A,PE,N/A,N/A,N/A,N/A,N/A
+225,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+226,2019,Não,Não,N/A,N/A,RN / CE,N/A,N/A,N/A,N/A,N/A
+227,2019,Não,Não,N/A,N/A,PE,N/A,N/A,N/A,N/A,N/A
+228,2019,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,Mossoró,Preceptor,Não,N/A,N/A
+229,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+230,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+231,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+232,2019,Sim,Sim,Clínica Médica,Psiquiatria,RN,Mossoró,Não,Não,N/A,N/A
+233,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+234,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+235,2019,Sim,Sim,Outras,Anestesiologia,RN,Mossoró,Não,Não,N/A,N/A
+236,2019,Sim,Sim,Pediatria,Neuropediatria,RN,Mossoró,Preceptor,Sim,Saúde Pública,Kim na Escola
+237,2019,Sim,Sim,Clínica Médica,Perícia Médica,RN,São Rafael,Não,Sim,Gestão e Política Pública,Diretor Médico
+238,2019,Sim,Sim,Outras,Anestesiologia,CE,Fortaleza,Não,Não,N/A,N/A
+239,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+240,2019,Sim,Sim,Clínica-Cirúrgica,Ortopedia e Traumatologia,RJ,Rio de Janeiro,Não,Não,N/A,N/A
+241,2019,Sim,Não,N/A,"Clínica Médica, Pediatria",RN,N/A,N/A,N/A,N/A,N/A
+242,2019,Sim,Sim,Cirurgia,Cirurgia Vascular,PE,Recife,Preceptor,Sim,Saúde Pública,Recife Cuida
+243,2019,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,CE / SP,Múltiplos,Preceptor,Não,N/A,N/A
+245,2019,Não,Sim,Clínica Médica,Infectologia,PE,N/A,N/A,N/A,N/A,N/A
+246,2019,Não,Não,N/A,N/A,RN / CE,N/A,N/A,N/A,N/A,N/A
+247,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+248,2019,Sim,Sim,MFC,"Medicina de Família, Nutrologia",RN,Mossoró,Preceptor,Sim,N/A,N/A
+249,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+250,2019,Não,Sim,Outras,Radiologia e Diagnóstico por Imagem,SP,N/A,N/A,N/A,N/A,N/A
+251,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+252,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+253,2019,Sim,Sim,Clínica Médica,Clínica Médica,PE,Recife,Não,Não,N/A,N/A
+254,2019,Sim,Sim,Pediatria,Pediatria,RN,Natal,Preceptor,Não,N/A,N/A
+255,2019,Sim,Sim,Clínica Médica,Psiquiatria,RN,Natal,Não,Não,N/A,N/A
+256,2019,Sim,Sim,Clínica Médica,"Cardiologia, Ecocardiografia",PE,Recife,Preceptor,Não,N/A,N/A
+257,2019,Sim,Sim,Outras,Medicina de Emergência,RN,Múltiplos,Não,Sim,Gestão e Política Pública,Diretor Técnico
+258,2019,Não,Não,N/A,N/A,PB / PE,N/A,N/A,N/A,N/A,N/A
+259,2019,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,Mossoró,Preceptor,Não,N/A,N/A
+260,2019,Não,Sim,Clínica Médica,Psiquiatria,PE,N/A,N/A,N/A,N/A,N/A
+261,2019,Não,Não,N/A,N/A,SP / CE,N/A,N/A,N/A,N/A,N/A
+262,2019,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+263,2020,Sim,Sim,Pediatria,Pediatria,CE,Múltiplos,Ambos,Não,N/A,N/A
+264,2020,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+265,2020,Sim,Sim,Clínica Médica,Neurologia,CE,CE,Não,Sim,Saúde Pública,N/A
+266,2020,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+267,2020,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+268,2020,Não,Sim,MFC,Medicina de Família e Comunidade,CE / PB,N/A,N/A,N/A,N/A,N/A
+269,2020,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+270,2020,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+271,2020,Não,Não,N/A,N/A,CE / RN,N/A,N/A,N/A,N/A,N/A
+272,2020,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+273,2020,Não,Não,N/A,N/A,PE,N/A,N/A,N/A,N/A,N/A
+274,2020,Não,Não,N/A,N/A,PE,N/A,N/A,N/A,N/A,N/A
+275,2020,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+276,2020,Não,Não,N/A,N/A,RN / CE,N/A,N/A,N/A,N/A,N/A
+277,2020,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+278,2020,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+279,2020,Sim,Sim,Outras,"Clínica Médica, Terapia Intensiva",RN,Mossoró,Preceptor,Não,N/A,N/A
+280,2020,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+281,2020,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+282,2020,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+283,2021,Sim,Sim,Clínica Médica,Psiquiatria,SP,São Paulo,Não,Não,N/A,N/A
+284,2021,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,PE,Recife,Não,Não,N/A,N/A
+285,2021,Sim,Sim,Cirurgia,Cirurgia Geral,RN,Natal,Preceptor,Não,N/A,N/A
+286,2021,Sim,Sim,Clínica Médica,Neurologia,PB,João Pessoa,Não,Não,N/A,N/A
+287,2021,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+288,2021,Sim,Sim,Clínica-Cirúrgica,Ortopedia e Traumatologia,PE,Recife,Não,Não,N/A,N/A
+289,2021,Sim,Sim,Outras,Anestesiologia,PE,PE,Não,Não,N/A,N/A
+290,2021,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+291,2021,Sim,Sim,Outras,Radiologia e Diagnóstico por Imagem,SP,São Paulo,Não,Não,N/A,N/A
+293,2021,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+294,2021,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,Natal,Não,Não,N/A,N/A
+295,2021,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+296,2021,Não,Não,N/A,N/A,RN / PE,N/A,N/A,N/A,N/A,N/A
+297,2021,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+298,2021,Não,Não,N/A,N/A,GO / DF,N/A,N/A,N/A,N/A,N/A
+299,2021,Não,Não,N/A,N/A,MG / SP,N/A,N/A,N/A,N/A,N/A
+300,2021,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+301,2021,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+302,2021,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+303,2021,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+304,2021,Não,Não,N/A,N/A,RN / PB,N/A,N/A,N/A,N/A,N/A
+305,2021,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+306,2021,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+307,2021,Não,Não,N/A,N/A,BA,N/A,N/A,N/A,N/A,N/A
+308,2021,Sim,Sim,Clínica Médica,Clínica Médica,CE,Fortaleza,Não,Não,N/A,N/A
+309,2021,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+310,2021,Sim,Sim,Clínica Médica,Clínica Médica,RN,Fortaleza,Não,Sim,Saúde Pública,N/A
+311,2021,Sim,Sim,Clínica Médica,Clínica Médica,CE,Fortaleza,Não,Não,N/A,N/A
+312,2021,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+313,2021,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+314,2021,Sim,Sim,Clínica Médica,"Psiquiatria, MFC",RN,Múltiplos,Não,Não,N/A,N/A
+315,2021,Sim,Sim,Clínica Médica,Psiquiatria,SP,São Paulo,Preceptor,Não,N/A,N/A
+316,2021,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+317,2021,Sim,Sim,Clínica-Cirúrgica,Ortopedia e Traumatologia,PE,Recife,Não,Não,N/A,N/A
+318,2022,Não,Não,N/A,N/A,RJ / SP,N/A,N/A,N/A,N/A,N/A
+319,2022,Não,Sim,Pediatria,Pediatria,RN,N/A,N/A,N/A,N/A,N/A
+320,2022,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+321,2022,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+322,2022,Não,Não,N/A,N/A,PR,N/A,N/A,N/A,N/A,N/A
+323,2022,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+324,2022,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+325,2022,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+326,2022,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,MS,Campo Grande,Preceptor,Não,N/A,N/A
+327,2022,Não,Não,N/A,N/A,RS,N/A,N/A,N/A,N/A,N/A
+328,2022,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+329,2022,Não,Não,N/A,N/A,MG,N/A,N/A,N/A,N/A,N/A
+330,2022,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+331,2022,Sim,Sim,Outras,Radiologia e Diagnóstico por Imagem,RN,Natal,Não,Não,N/A,N/A
+332,2022,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+333,2022,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+334,2022,Sim,Sim,MFC,Medicina de Família e Comunidade,RN,Felipe Guerra,Não,Não,N/A,N/A
+335,2022,Não,Não,N/A,N/A,BA,N/A,N/A,N/A,N/A,N/A
+336,2022,Sim,Sim,Outras,Medicina Intensiva,SC,Joinville,Não,Não,N/A,N/A
+337,2022,Não,Não,N/A,N/A,MG,N/A,N/A,N/A,N/A,N/A
+338,2022,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+339,2022,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+340,2022,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+341,2022,Sim,Sim,Outras,Nutrologia,RN,Múltiplos,Não,Não,N/A,N/A
+342,2022,Não,Não,N/A,N/A,SC,N/A,N/A,N/A,N/A,N/A
+343,2022,Não,Não,N/A,N/A,BA / CE,N/A,N/A,N/A,N/A,N/A
+344,2022,Não,Não,N/A,N/A,PR,N/A,N/A,N/A,N/A,N/A
+345,2022,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+346,2022,Não,Não,N/A,N/A,RJ,N/A,N/A,N/A,N/A,N/A
+347,2022,Não,Não,N/A,N/A,GO / RN,N/A,N/A,N/A,N/A,N/A
+348,2022,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+349,2022,Não,Não,N/A,N/A,PE,N/A,N/A,N/A,N/A,N/A
+350,2022,Sim,Sim,MFC,Medicina de Família e Comunidade,RN,Mossoró,Não,Não,N/A,N/A
+351,2022,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+352,2022,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+353,2022,Não,Não,N/A,N/A,MS,N/A,N/A,N/A,N/A,N/A
+354,2022,Não,Não,N/A,N/A,TO,N/A,N/A,N/A,N/A,N/A
+355,2022,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+356,2022,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+357,2022,Não,Não,N/A,N/A,CE / RN,N/A,N/A,N/A,N/A,N/A
+358,2022,Não,Sim,Pediatria,Pediatria,RN,N/A,N/A,N/A,N/A,N/A
+359,2022,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+360,2023,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+361,2023,Sim,Sim,MFC,Medicina de Família e Comunidade,RN,Mossoró,Não,Não,N/A,N/A
+362,2023,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+363,2023,Não,Não,N/A,N/A,MG / PE,N/A,N/A,N/A,N/A,N/A
+364,2023,Sim,Sim,Cirurgia,Cirurgia Geral,CE,Fortaleza,Não,Não,N/A,N/A
+365,2023,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+366,2023,Sim,Sim,MFC,Medicina de Família e Comunidade,RN,Mossoró,Preceptor,Não,N/A,N/A
+367,2023,Não,Não,N/A,N/A,CE / RN,N/A,N/A,N/A,N/A,N/A
+368,2023,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+369,2023,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+370,2023,Não,Não,N/A,N/A,PB / RN,N/A,N/A,N/A,N/A,N/A
+371,2023,Não,Não,N/A,N/A,MG,N/A,N/A,N/A,N/A,N/A
+372,2023,Sim,Sim,Clínica Médica,Clínica Médica,SP,São Paulo,Preceptor,Não,N/A,N/A
+373,2023,Sim,Sim,Cirurgia,"Cirurgia Geral, Cirurgia Vascular",PE,Recife,Preceptor,Sim,Saúde Pública,Recife Cuida
+374,2023,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,MS,Campo Grande,Não,Não,N/A,N/A
+375,2023,Sim,Sim,MFC,Medicina de Família e Comunidade,RN,Mossoró,Preceptor,Não,N/A,N/A
+376,2023,Sim,Sim,Clínica Médica,Clínica Médica,SP,São Paulo,Não,Não,N/A,N/A
+377,2023,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+378,2023,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+379,2023,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+380,2023,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+381,2023,Sim,Sim,MFC,Medicina de Família e Comunidade,SP,Várzea Paulista,Não,Sim,Saúde Pública,Mais Médicos
+382,2023,Sim,Sim,Pediatria,Pediatria,RJ,Rio de Janeiro,N/A,N/A,N/A,N/A
+383,2023,Não,Não,N/A,N/A,RS,N/A,N/A,N/A,N/A,N/A
+384,2023,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+385,2023,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+386,2023,Sim,Sim,Outras,Medicina Intensiva,CE,Fortaleza,Preceptor,Sim,N/A,N/A
+387,2023,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,PE,Recife,Não,Não,N/A,N/A
+388,2023,Sim,Sim,Clínica Médica,Clínica Médica,SP,São Paulo,Não,Não,N/A,N/A
+389,2023,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,PE,Recife,Não,Não,N/A,N/A
+390,2023,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+391,2023,Não,Não,N/A,N/A,RS,N/A,N/A,N/A,N/A,N/A
+392,2023,Sim,Sim,Clínica Médica,Clínica Médica,SP,São Paulo,Não,Não,N/A,N/A
+393,2023,Não,Não,N/A,N/A,RJ,N/A,N/A,N/A,N/A,N/A
+394,2023,Sim,Sim,Clínica Médica,Clínica Médica,SP,São Paulo,Não,Não,N/A,N/A
+395,2023,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+396,2023,Não,Não,N/A,N/A,CE / RN,N/A,N/A,N/A,N/A,N/A
+397,2023,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+398,2023,Sim,Sim,MFC,Medicina de Família e Comunidade,RN,Múltiplos,Ambos,Não,N/A,N/A
+399,2023,Não,Não,N/A,N/A,CE / RN,N/A,N/A,N/A,N/A,N/A
+400,2023,Sim,Sim,MFC,Medicina de Família e Comunidade,RN,Mossoró,Preceptor,Não,N/A,N/A
+401,2023,Sim,Sim,MFC,Medicina de Família e Comunidade,CE / RN,Múltiplos,Não,Sim,Saúde Pública,Mais Médicos
+402,2023,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,Mossoró,Preceptor,Não,N/A,N/A
+403,2023,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+404,2023,Sim,Sim,Clínica Médica,Clínica Médica,DF,Brasília,Preceptor,Não,N/A,N/A
+405,2023,Sim,Sim,Clínica Médica,Clínica Médica,PE,Recife,Preceptor,Não,N/A,N/A
+406,2023,Não,Não,N/A,N/A,SC,N/A,N/A,N/A,N/A,N/A
+407,2023,Sim,Sim,MFC,Medicina de Família e Comunidade,RN,Mossoró,Preceptor,Não,N/A,N/A
+408,2023,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+409,2023,Sim,Sim,Clínica-Cirúrgica,Oftalmologia,SP,São Paulo,Não,Não,N/A,N/A
+410,2023,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,PI,Teresina,Preceptor,Não,N/A,N/A
+411,2023,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+412,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+413,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+414,2024,Não,Não,N/A,N/A,CE / RN,N/A,N/A,N/A,N/A,N/A
+415,2024,Não,Não,N/A,N/A,MA,N/A,N/A,N/A,N/A,N/A
+416,2024,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+417,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+418,2024,Sim,Sim,Clínica Médica,Neurologia,RN,Mossoró,Preceptor,Não,N/A,N/A
+419,2024,Não,Não,N/A,N/A,PB / RN,N/A,N/A,N/A,N/A,N/A
+420,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+421,2024,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+422,2024,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+423,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+424,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+425,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+426,2024,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+427,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+428,2024,Não,Não,N/A,N/A,PR,N/A,N/A,N/A,N/A,N/A
+429,2024,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+430,2024,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+431,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+432,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+433,2024,Não,Não,N/A,N/A,PB,N/A,N/A,N/A,N/A,N/A
+434,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+435,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+436,2024,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+437,2024,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+438,2024,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+439,2024,Não,Não,N/A,N/A,PB,N/A,N/A,N/A,N/A,N/A
+440,2024,Não,Não,N/A,N/A,PB,N/A,N/A,N/A,N/A,N/A
+441,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+442,2024,Não,Não,N/A,N/A,CE / RN,N/A,N/A,N/A,N/A,N/A
+443,2024,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+444,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+445,2024,Sim,Sim,Outras,Medicina do Trabalho,PB,Picuí,Não,Não,N/A,N/A
+446,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+447,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+448,2024,Não,Não,N/A,N/A,CE / RN,N/A,N/A,N/A,N/A,N/A
+449,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+450,2024,Não,Não,N/A,N/A,MG,N/A,N/A,N/A,N/A,N/A
+451,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+452,2024,Sim,Sim,Cirurgia,Cirurgia Geral,SP,N/A,Não,Não,N/A,N/A
+453,2024,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,PB / RN,Múltiplos,Não,Não,N/A,N/A
+454,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+455,2024,Não,Não,N/A,N/A,CE / RN,N/A,N/A,N/A,N/A,N/A
+456,2024,Não,Não,N/A,N/A,CE / RN,N/A,N/A,N/A,N/A,N/A
+457,2024,Não,Não,N/A,N/A,SC,N/A,N/A,N/A,N/A,N/A
+458,2024,Sim,Sim,Clínica Médica,Clínica Médica,CE / RN,Ipu,Preceptor,Sim,Saúde Pública,Mais Médicos
+459,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+460,2024,Sim,Não,N/A,Atenção Primária / Urgência,AM / RN,Tibau,Não,Não,N/A,N/A
+461,2024,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+462,2024,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
+463,2024,Não,Não,N/A,N/A,PR / RN,N/A,N/A,N/A,N/A,N/A
+464,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
+465,2024,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+466,2024,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
+467,2024,Não,Não,N/A,N/A,CE / RN,N/A,N/A,N/A,N/A,N/A
+468,2024,Sim,Não,N/A,Ainda não estou atuando,GO,N/A,Não,Não,N/A,N/A
