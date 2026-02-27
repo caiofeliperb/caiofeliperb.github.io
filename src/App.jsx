@@ -24,7 +24,7 @@ function App() {
     <DataProvider>
       <main className="app-main">
         {/* Top Navigation for Logo changing based on color-scheme */}
-        <header className="app-header" style={{ position: 'absolute', top: 0, left: 0, right: 0, padding: '1.5rem var(--content-padding)', zIndex: 100, display: 'flex', maxWidth: 'var(--max-width)', margin: '0 auto', width: '100%' }}>
+        <header className="app-header" style={{ position: 'absolute', top: 0, left: 0, right: 0, padding: '1.5rem var(--content-padding)', zIndex: 100, display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
           <img src={logoLight} alt="Logotipo UERN" className="logo-light" style={{ width: '150px', height: 'auto', objectFit: 'contain' }} />
           <img src={logoDark} alt="Logotipo UERN" className="logo-dark" style={{ width: '150px', height: 'auto', objectFit: 'contain' }} />
         </header>
