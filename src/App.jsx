@@ -9,9 +9,8 @@ import SocialCards from './components/Scrollytelling/SocialCards';
 import DashboardManager from './components/Dashboard/DashboardManager';
 import Footer from './components/Footer';
 
-// Use logos from assets folder specifically as the user uploaded them
-import logoLight from './assets/uern_logo_azul.png';
 import logoDark from './assets/uern_logo_branca.png';
+import logoLight from './assets/uern_logo_azul.png';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false); // Default to light
@@ -23,10 +22,10 @@ function App() {
   return (
     <DataProvider>
       <main className="app-main">
-        {/* Top Navigation for Logo changing based on color-scheme */}
-        <header className="app-header" style={{ position: 'absolute', top: 0, left: 0, right: 0, padding: '1.5rem var(--content-padding)', zIndex: 100, display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-          <img src={logoLight} alt="Logotipo UERN" className="logo-light" style={{ width: '150px', height: 'auto', objectFit: 'contain' }} />
-          <img src={logoDark} alt="Logotipo UERN" className="logo-dark" style={{ width: '150px', height: 'auto', objectFit: 'contain' }} />
+        {/* Simple Floating Header for Logos */}
+        <header className="simple-app-header">
+          <img src={logoLight} alt="Logotipo UERN" className="logo-light" style={{ height: '45px', width: 'auto', maxWidth: '160px', objectFit: 'contain' }} />
+          <img src={logoDark} alt="Logotipo UERN" className="logo-dark" style={{ height: '45px', width: 'auto', maxWidth: '160px', objectFit: 'contain' }} />
         </header>
 
         {/* Toggler placed completely outside header bounds for bottom-right absolute safety */}

@@ -178,11 +178,12 @@ const Hero = () => {
             <canvas ref={canvasRef} className="hero-canvas" />
 
             <div className="hero-content container">
+
                 <h1 className="hero-title text-gradient">
                     A Jornada dos Nossos Médicos:<br />Onde Estão e o Que Fazem?
                 </h1>
                 <p className="hero-subtitle">
-                    Bem-vindo aos bastidores da nossa história! Qual o impacto real do curso de medicina da UERN? Mapeamos 468 egressos formados entre 2010 e 2024 para descobrir o impacto das nossas raízes na saúde.
+                    Bem-vindo (a) aos bastidores da nossa história! Qual o impacto real do curso de medicina da UERN? Mapeamos 468 egressos formados entre 2010 e 2024 para descobrir o impacto das nossas raízes na saúde.
                 </p>
 
                 <div className="hero-metrics glass-panel">
@@ -196,9 +197,9 @@ const Hero = () => {
                         <span className="metric-label">CRMs ATIVOS</span>
                     </div>
                     <div className="metric-divider"></div>
-                    <div className="metric">
-                        <span className="metric-value" style={{ fontSize: '1.8rem' }}>INÚMERAS</span>
-                        <span className="metric-label">VIDAS IMPACTADAS</span>
+                    <div className="metric" style={{ flex: 1.2 }}>
+                        <span className="metric-value" style={{ fontSize: '1.5rem', lineHeight: '1.2', display: 'flex', alignItems: 'center' }}>INÚMERAS</span>
+                        <span className="metric-label" style={{ whiteSpace: 'nowrap' }}>VIDAS IMPACTADAS</span>
                     </div>
                 </div>
                 <div style={{ textAlign: 'center', marginTop: '1rem' }}>

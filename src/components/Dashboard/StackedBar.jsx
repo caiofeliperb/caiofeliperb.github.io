@@ -63,13 +63,14 @@ const StackedBar = ({ data }) => {
             .rangeRound([height - margin.bottom, margin.top]);
 
         const getColor = (key) => {
+            if (!key) return "#64748B"; // Fallback para keys vazios
             const k = key.toLowerCase();
-            if (k.includes("clínico-cirúrgicas") || k.includes("clinico-cirurgicas")) return "#009FDF"; // Ciano
-            if (k.includes("médica") || k.includes("medica")) return "#2563EB"; // Azul Forte Vibrante
-            if (k.includes("família") || k.includes("familia")) return "#059669"; // Verde Rico
-            if (k.includes("pediatria")) return "#0D9488"; // Teal Forte
-            if (k === "cirurgia geral") return "#7C3AED"; // Roxo Vibrante
-            return "#475569"; // Slate para Outras
+            if (k.includes("cirúrgic") || k.includes("cirurgic")) return "#009FDF"; // Ciano
+            if (k.includes("médica") || k.includes("medica")) return "#353C7C"; // Azul Azure
+            if (k.includes("mfc") || k.includes("família")) return "#10B981"; // Verde Rico
+            if (k.includes("pediatria")) return "#FFC107"; // Amarelo
+            if (k.includes("cirurgia")) return "#8B5CF6"; // Roxo
+            return "#64748B"; // Cinza
         };
 
         const color = d3.scaleOrdinal()
@@ -123,13 +124,14 @@ const StackedBar = ({ data }) => {
                     {/* Native responsive legend below the chart avoiding overlaps */}
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '10px', justifyContent: 'center' }}>
                         {chartData.keys.map((key, i) => {
+                            if (!key) return null; // Prevenção contra nulos na legenda
                             const k = key.toLowerCase();
-                            let col = "#475569";
-                            if (k.includes("cirúrgicas")) col = "#009FDF";
-                            else if (k.includes("médica")) col = "#2563EB";
-                            else if (k.includes("família")) col = "#059669";
-                            else if (k.includes("pediatria")) col = "#0D9488";
-                            else if (k === "cirurgia geral") col = "#7C3AED";
+                            let col = "#64748B"; // Cinza fallback
+                            if (k.includes("cirúrgic") || k.includes("cirurgic")) col = "#009FDF"; // Ciano
+                            else if (k.includes("médica") || k.includes("medica")) col = "#353C7C"; // Azul Azure
+                            else if (k.includes("mfc") || k.includes("família")) col = "#10B981"; // Verde Rico
+                            else if (k.includes("pediatria")) col = "#FFC107"; // Amarelo
+                            else if (k.includes("cirurgia")) col = "#8B5CF6"; // Roxo
 
                             return (
                                 <div key={i} style={{ display: 'flex', alignItems: 'center', fontSize: '0.8rem', color: 'var(--text-muted)' }}>

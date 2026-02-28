@@ -26,8 +26,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--bg-color);
@@ -63,39 +61,47 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.app-header {
+.simple-app-header {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  box-sizing: border-box;
   padding: 1.5rem 2rem;
-  z-index: 100;
+  z-index: 1000;
+  pointer-events: none;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
-.app-header img {
-  height: auto;
-  max-width: 150px;
-  max-height: 45px;
+.simple-app-header img {
+  height: 45px !important;
+  max-height: 45px !important;
+  width: auto !important;
+  max-width: 150px !important;
   object-fit: contain;
+  pointer-events: auto;
+}
+
+/* Light Mode: Logo Azul no Canto Esquerdo */
+.logo-light {
+  display: block;
 }
 
 .logo-dark {
   display: none;
 }
 
-.logo-light {
-  display: block;
+/* Dark Mode: Logo Branca no Canto Direito */
+[data-theme='dark'] .logo-light {
+  display: none;
 }
 
 [data-theme='dark'] .logo-dark {
   display: block;
-}
-
-[data-theme='dark'] .logo-light {
-  display: none;
+  margin-left: auto;
+  /* Push it forcefully to the right side if flex fails */
 }
 
 .theme-toggle-btn {

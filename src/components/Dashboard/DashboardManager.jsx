@@ -43,38 +43,26 @@ const DashboardManager = () => {
                 { name: "Ginecologia e Obstetrícia", count: 31 },
                 { name: "Anestesiologia", count: 19 },
                 { name: "Ortopedia e Traumatologia", count: 18 },
-                { name: "Oftalmologia", count: 12 },
-                { name: "Otorrinolaringologia", count: 8 },
-                { name: "Cirurgia da Mão", count: 2 }
+                { name: "Outras especialidades", count: 28 }
             ]
         },
         {
-            category: "ESPECIALIDADES CLÍNICAS",
+            category: "CLÍNICA MÉDICA",
             items: [
                 { name: "Clínica Médica", count: 22 },
                 { name: "Psiquiatria", count: 15 },
-                { name: "Cardiologia", count: 7 },
+                { name: "Cardiologia/Ecocardiografia", count: 7 },
                 { name: "Neurologia", count: 6 },
-                { name: "Endocrinologia e Metabologia", count: 5 },
-                { name: "Dermatologia", count: 4 },
-                { name: "Nefrologia", count: 2 },
-                { name: "Hematologia e Hemoterapia", count: 2 },
-                { name: "Gastroenterologia", count: 1 },
-                { name: "Reumatologia", count: 1 },
-                { name: "Infectologia", count: 1 },
-                { name: "Geriatria", count: 1 }
+                { name: "Outras especialidades", count: 14 }
             ]
         },
         {
-            category: "CIRURGIA GERAL",
+            category: "CIRURGIA",
             items: [
                 { name: "Cirurgia Geral", count: 6 },
                 { name: "Cirurgia Vascular", count: 5 },
                 { name: "Neurocirurgia", count: 4 },
-                { name: "Cirurgia Pediátrica", count: 2 },
-                { name: "Coloproctologia", count: 1 },
-                { name: "Cirurgia Cardiovascular", count: 1 },
-                { name: "Mastologia", count: 1 }
+                { name: "Outras especialidades", count: 6 }
             ]
         },
         {
@@ -82,11 +70,7 @@ const DashboardManager = () => {
             items: [
                 { name: "Pediatria", count: 9 },
                 { name: "Neonatologia", count: 6 },
-                { name: "Neurologia Pediátrica", count: 2 },
-                { name: "Cardiopediatria", count: 1 },
-                { name: "Endocrinologia Pediátrica", count: 1 },
-                { name: "Oncologia Pediátrica", count: 1 },
-                { name: "Medicina Intensiva Pediátrica", count: 1 }
+                { name: "Outras especialidades", count: 6 }
             ]
         },
         {
@@ -96,18 +80,12 @@ const DashboardManager = () => {
             ]
         },
         {
-            category: "OUTRAS",
+            category: "OUTRAS ÁREAS",
             items: [
                 { name: "Radiologia e Diagnóstico por Imagem", count: 12 },
                 { name: "Patologia", count: 4 },
-                { name: "Medicina Intensiva", count: 3 },
                 { name: "Medicina do Trabalho", count: 2 },
-                { name: "Medicina de Emergência", count: 2 },
-                { name: "Nutrologia", count: 1 },
-                { name: "Perícia Médica", count: 1 },
-                { name: "Radioterapia", count: 1 },
-                { name: "Medicina do Tráfego", count: 1 },
-                { name: "Medicina Paliativa", count: 1 }
+                { name: "Outras especialidades", count: 3 }
             ]
         }
     ];
@@ -131,24 +109,10 @@ const DashboardManager = () => {
             if (filters.especialidade !== 'Todas') {
                 if (filters.especialidade.startsWith('CAT:')) {
                     const catName = filters.especialidade.replace('CAT:', '');
-                    const group = especialidadesHierarchy.find(g => g.category === catName);
-
-                    const fallbackMatch =
-                        (catName.includes("CLÍNICO") && d.grande_area_rqe?.toUpperCase().includes("CIRÚRGIC")) ||
-                        (catName.includes("ESPECIALIDADES CLÍNIC") && (d.grande_area_rqe?.toUpperCase().includes("MEDICA") || d.grande_area_rqe?.toUpperCase().includes("MÉDICA") || d.grande_area_rqe?.toUpperCase().includes("CLÍNICA"))) ||
-                        (catName.includes("PEDIATRIA") && d.grande_area_rqe?.toUpperCase().includes("PEDIATRIA")) ||
-                        (catName.includes("CIRURGIA") && d.grande_area_rqe?.toUpperCase().includes("GERAL")) ||
-                        (catName.includes("MFC") && d.grande_area_rqe?.toUpperCase().includes("FAMÍLIA"));
-
-                    if (group) {
-                        const validSpecs = group.items.map(i => i.name.toLowerCase());
-                        specMatches = fallbackMatch || (d.especialidade_rqe && validSpecs.some(v => d.especialidade_rqe.toLowerCase().includes(v)));
-                    } else {
-                        specMatches = fallbackMatch;
-                    }
+                    specMatches = d.grande_area_rqe === catName;
                 } else if (filters.especialidade.startsWith('SPEC:')) {
                     const specName = filters.especialidade.replace('SPEC:', '');
-                    specMatches = d.especialidade_rqe && d.especialidade_rqe.toLowerCase().includes(specName.toLowerCase());
+                    specMatches = d.especialidade_rqe === specName;
                 }
             }
 
@@ -226,13 +190,13 @@ const DashboardManager = () => {
                     </div>
 
                     <div className="filter-summary">
-                        Mostrando <strong>{filteredData.length === data.length ? 468 : filteredData.length}</strong> egressos
+                        Mostrando <strong>{filteredData.length}</strong> egressos
                     </div>
                 </aside>
 
                 {/* Main Grid */}
                 <div className="dashboard-main">
-                    <KPIs data={filteredData} totalData={data} />
+                    <KPIs data={filteredData} totalData={data} filters={filters} />
 
                     <div className="dashboard-charts-row">
                         <div className="dashboard-card glass-panel flex-1">

@@ -61,7 +61,8 @@ const Specialties = () => {
     return (
         <section className="specialties-section container" ref={containerRef}>
             <div className="section-header">
-                <h2>Eles não param de estudar.<br />Hoje, 250 dos nossos médicos já possuem o Registro de Qualificação de Especialista (RQE) ou estão em processo de obtenção.</h2>
+                <h2>Eles não param de estudar!<br />
+                    Hoje, 250 dos nossos médicos já possuem o Registro de Qualificação de Especialista (RQE) ou estão em processo de obtenção.</h2>
             </div>
 
             <div className="specialties-content">

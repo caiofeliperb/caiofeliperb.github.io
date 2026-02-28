@@ -1,105 +1,110 @@
 .social-section {
-    padding: var(--spacing-xxl) 0;
-    overflow: hidden;
-    /* Prevent horizontal scrollbar on body */
-}
-
-/* Inherits .section-header and .section-subtitle from Specialties.css, 
-   but it's good practice to scope if using modules. 
-   Here we rely on global class styling for consistency. */
-
-.cards-scroll-container {
-    width: 100%;
-    overflow-x: auto;
     padding: var(--spacing-xl) 0;
-    scroll-padding: var(--spacing-md);
-
-    /* Show thin scrollbar */
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-primary) var(--bg-surface);
+    margin-top: 15rem;
+    overflow: hidden;
 }
 
-/* Chrome/Safari scrollbar */
-.cards-scroll-container::-webkit-scrollbar {
-    height: 6px;
-}
-
-.cards-scroll-container::-webkit-scrollbar-track {
-    background: var(--bg-surface);
-    border-radius: 10px;
-}
-
-.cards-scroll-container::-webkit-scrollbar-thumb {
-    background: var(--color-primary);
-    border-radius: 10px;
-}
-
-.cards-track {
+.carousel-wrapper {
     display: flex;
-    flex-wrap: nowrap;
-    gap: var(--spacing-lg);
-    padding-bottom: 1rem;
-    /* Space for scrollbar */
-    perspective: 1000px;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: var(--spacing-lg) 0 var(--spacing-md);
 }
 
-.social-card {
-    flex: 0 0 350px;
-    width: 350px;
-    scroll-snap-align: center;
-    perspective: 1000px;
+.carousel-card-area {
+    flex: 1;
+    max-width: 480px;
+    min-height: 280px;
+    display: flex;
+    align-items: stretch;
 }
 
-.card-inner {
-    height: 100%;
-    padding: var(--spacing-lg);
+.carousel-card {
+    width: 100%;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
-    transition: transform 0.1s ease-out;
-    /* Super fast transition for mouse track tracking */
-    transform-style: preserve-3d;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    animation: fade-in 0.3s ease;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.carousel-arrow {
     background: var(--bg-surface);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+.carousel-arrow:hover {
+    background: var(--color-primary);
+    color: #fff;
+    transform: scale(1.08);
+}
+
+/* Dot indicators */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-bottom: var(--spacing-md);
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: var(--text-muted);
+    opacity: 0.4;
+    cursor: pointer;
+    transition: opacity 0.2s, background 0.2s, transform 0.2s;
+    padding: 0;
+}
+
+.carousel-dot--active {
+    background: var(--color-primary);
+    opacity: 1;
+    transform: scale(1.3);
 }
 
 .card-icon {
-    color: var(--color-primary);
-    /* Azul Ciano */
-    margin-bottom: var(--spacing-md);
-    transform: translateZ(30px);
-    /* Pops out during 3D tilt */
+    color: var(--color-primary-light);
+    margin-bottom: 0.5rem;
 }
 
 .card-title {
-    font-size: 1.5rem;
-    margin-bottom: var(--spacing-sm);
+    font-size: 1.25rem;
+    font-weight: 700;
     color: var(--text-main);
-    transform: translateZ(20px);
+    margin: 0;
 }
 
 .card-description {
+    font-size: 0.95rem;
     color: var(--text-muted);
-    line-height: 1.6;
-    transform: translateZ(10px);
-}
-
-@media (max-width: 768px) {
-    .cards-track {
-        display: flex;
-        flex-wrap: nowrap;
-        scroll-snap-type: x mandatory;
-        padding-bottom: 1rem;
-    }
-
-    .social-card {
-        flex: 0 0 85vw;
-        scroll-snap-align: center;
-        /* Almost full width on mobile */
-    }
-
-    .card-inner {
-        transition: transform var(--transition-normal);
-        /* Revert back to normal transition for touch devices */
-    }
+    line-height: 1.7;
+    margin: 0;
 }
