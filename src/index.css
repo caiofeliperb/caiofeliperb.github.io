@@ -102,24 +102,25 @@ button:focus-visible {
   }
 }
 
-/* Light Mode: Logo Azul no Canto Esquerdo com Neon Azul */
+/* Light Mode: Logo Azul no Canto Esquerdo com Sombra Escura + Neon Azul */
 .logo-light {
   display: block;
-  filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.6));
+  /* Multi-layered drop-shadow for deep contrast under light background and blue aura */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 12px rgba(14, 165, 233, 0.6));
 }
 
 .logo-dark {
   display: none;
 }
 
-/* Dark Mode: Logo Branca no Canto Esquerdo com Neon Azul Claro/Branco */
+/* Dark Mode: Logo Branca no Canto Esquerdo com Sombra Escura + Neon Azul Claro/Branco */
 [data-theme='dark'] .logo-light {
   display: none;
 }
 
 [data-theme='dark'] .logo-dark {
   display: block;
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8)) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
 }
 
 .theme-toggle-btn {
