@@ -108,9 +108,10 @@ const NarrativeMap = () => {
             gsap.to([pathMossoroRef.current, pathNatalRef.current], {
                 strokeDashoffset: 0, duration: 1.5, ease: "power2.inOut", overwrite: true
             });
+            // O texto 84.5% no RN surge aqui
             gsap.to(labelRNRef.current, { opacity: 1, scale: 1, duration: 0.8, delay: 0.3, ease: "back.out(1.5)", overwrite: true });
 
-            // Hide global
+            // Hide global - GARANTINDO QUE O RESTO SOME (80% NE E NY)
             gsap.to([pathCERef.current, pathPBRef.current, pathPERef.current, pathNYRef.current], {
                 strokeDashoffset: (i, target) => target.getTotalLength(),
                 duration: 0.8, overwrite: true
@@ -126,11 +127,13 @@ const NarrativeMap = () => {
             gsap.to([pathCERef.current, pathPBRef.current, pathPERef.current], {
                 strokeDashoffset: 0, duration: 2, ease: "power2.out", overwrite: true
             });
-            gsap.to(labelNERef.current, { opacity: 1, scale: 1, duration: 0.8, delay: 0.3, ease: "back.out(1.5)", overwrite: true });
 
-            // NY Path Animation (longer delay for dramatic effect)
-            gsap.to([document.getElementById('ny-dot'), document.getElementById('ny-text'), pathNYRef.current], { opacity: 1, scale: 1, duration: 0.5, delay: 0.5, overwrite: true });
-            gsap.to(pathNYRef.current, { strokeDashoffset: 0, duration: 2.5, ease: "power2.inOut", delay: 0.5, overwrite: true });
+            // O texto de 80% do NE só surge AGORA JUNTO com Nova York, no Step 3 de expansão
+            gsap.to(labelNERef.current, { opacity: 1, scale: 1, duration: 1.2, delay: 0.5, ease: "power2.out", overwrite: true });
+
+            // NY Path Animation junto com o texto de cima, mesma lentidão
+            gsap.to([document.getElementById('ny-dot'), document.getElementById('ny-text'), pathNYRef.current], { opacity: 1, scale: 1, duration: 1.5, delay: 0.5, ease: "power2.out", overwrite: true });
+            gsap.to(pathNYRef.current, { strokeDashoffset: 0, duration: 3, ease: "power2.inOut", delay: 0.5, overwrite: true });
         }
     };
 
