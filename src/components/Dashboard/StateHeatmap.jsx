@@ -2,19 +2,29 @@ import React, { useMemo } from 'react';
 
 // Heatmap using a simple CSS Grid abstraction of Brazil for "ultra-lightweight"
 // D3 geographical projection is heavy, so we map UF abbreviations to generic blocks.
-const StateHeatmap = ({ data }) => {
+const StateHeatmap = ({ data, filters }) => {
     const stateVolumes = useMemo(() => {
         const volumes = {};
+        const isFilteringSpecificState = filters?.uf && filters.uf !== 'Todos';
+
         data.forEach(d => {
             if (d.uf_atuacao_cfm && d.uf_atuacao_cfm !== 'N/A') {
                 const states = d.uf_atuacao_cfm.split('/').map(s => s.trim());
+
                 states.forEach(state => {
-                    volumes[state] = (volumes[state] || 0) + 1;
+                    // Requisito: se um estado foi selecionado no filtro, contabilizar e mostrar APENAS aquele estado
+                    if (isFilteringSpecificState) {
+                        if (state === filters.uf) {
+                            volumes[state] = (volumes[state] || 0) + 1;
+                        }
+                    } else {
+                        volumes[state] = (volumes[state] || 0) + 1;
+                    }
                 });
             }
         });
         return volumes;
-    }, [data]);
+    }, [data, filters]);
 
     const maxVolume = Math.max(1, ...Object.values(stateVolumes));
 

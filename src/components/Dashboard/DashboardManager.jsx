@@ -222,7 +222,7 @@ const DashboardManager = () => {
 
                     <div className="dashboard-charts-row">
                         <div className="dashboard-card glass-panel flex-1">
-                            <StateHeatmap data={filteredData} />
+                            <StateHeatmap data={filteredData} filters={filters} />
                         </div>
                         <div className="dashboard-card glass-panel flex-2">
                             <StackedBar data={filteredData} />
