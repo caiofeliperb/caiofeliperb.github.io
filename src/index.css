@@ -93,15 +93,13 @@ button:focus-visible {
   display: none;
 }
 
-/* Dark Mode: Logo Branca no Canto Direito */
+/* Dark Mode: Logo Branca no Canto Esquerdo */
 [data-theme='dark'] .logo-light {
   display: none;
 }
 
 [data-theme='dark'] .logo-dark {
   display: block;
-  margin-left: auto;
-  /* Push it forcefully to the right side if flex fails */
 }
 
 .theme-toggle-btn {

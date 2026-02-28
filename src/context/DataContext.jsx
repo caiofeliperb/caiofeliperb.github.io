@@ -31,35 +31,61 @@ export const DataProvider = ({ children }) => {
             // EXTREME DATA MAPPING FOR RQE TO MATCH USER SPECIFICATIONS EXACTLY:
             const rqeUsers = parsedData.filter(d => d.tem_rqe && (!d.grande_area_rqe || d.grande_area_rqe !== 'Não'));
 
-            // User's explicit breakdown (sums to 248)
+            // User's explicit breakdown (sums to 248) based on especialidades2.csv
             const quotas = [
-                // CLÍNICA-CIRÚRGICA (96)
+                // CLÍNICO-CIRÚRGICA (88)
                 { p: "CLÍNICO-CIRÚRGICA", s: "Ginecologia e Obstetrícia", max: 31, count: 0, k: ['ginecolog', 'obstetr'] },
                 { p: "CLÍNICO-CIRÚRGICA", s: "Anestesiologia", max: 19, count: 0, k: ['anestesi'] },
-                { p: "CLÍNICO-CIRÚRGICA", s: "Ortopedia e Traumatologia", max: 18, count: 0, k: ['ortoped'] },
-                { p: "CLÍNICO-CIRÚRGICA", s: "Outras especialidades", max: 28, count: 0, k: ['oftalmo', 'otorrino'] },
-                // CLÍNICA MÉDICA (64)
-                { p: "CLÍNICA MÉDICA", s: "Clínica Médica", max: 22, count: 0, k: ['clinica medica', 'clínica médica'] },
-                { p: "CLÍNICA MÉDICA", s: "Psiquiatria", max: 15, count: 0, k: ['psiquiatria'] },
-                { p: "CLÍNICA MÉDICA", s: "Cardiologia/Ecocardiografia", max: 7, count: 0, k: ['cardio'] },
-                { p: "CLÍNICA MÉDICA", s: "Neurologia", max: 6, count: 0, k: ['neuro'] },
-                { p: "CLÍNICA MÉDICA", s: "Outras especialidades", max: 14, count: 0, k: ['dermato', 'endocrino', 'hematolog', 'nefro', 'reumato', 'gastro', 'infecto', 'geriatria'] },
-                // MFC (25)
-                { p: "MFC", s: "Medicina de Família e Comunidade", max: 25, count: 0, k: ['família', 'mfc', 'comunidade'] },
-                // CIRURGIA (21)
+                { p: "CLÍNICO-CIRÚRGICA", s: "Ortopedia e Traumatologia", max: 18, count: 0, k: ['ortoped', 'traumat'] },
+                { p: "CLÍNICO-CIRÚRGICA", s: "Oftalmologia", max: 12, count: 0, k: ['oftalmol'] },
+                { p: "CLÍNICO-CIRÚRGICA", s: "Otorrinolaringologia", max: 8, count: 0, k: ['otorrino'] },
+
+                // ESPECIALIDADES CLÍNICAS (67)
+                { p: "ESPECIALIDADES CLÍNICAS", s: "Clínica Médica", max: 22, count: 0, k: ['clínica médica', 'clinica medica'] },
+                { p: "ESPECIALIDADES CLÍNICAS", s: "Psiquiatria", max: 15, count: 0, k: ['psiquiatria'] },
+                { p: "ESPECIALIDADES CLÍNICAS", s: "Cardiologia", max: 7, count: 0, k: ['cardiolog', 'ecocardio'] },
+                { p: "ESPECIALIDADES CLÍNICAS", s: "Neurologia", max: 6, count: 0, k: ['neurologia'] }, // To avoid mixing with pediatra/cirurgia
+                { p: "ESPECIALIDADES CLÍNICAS", s: "Endocrinologia e Metabologia", max: 5, count: 0, k: ['endocrino'] },
+                { p: "ESPECIALIDADES CLÍNICAS", s: "Dermatologia", max: 4, count: 0, k: ['dermato'] },
+                { p: "ESPECIALIDADES CLÍNICAS", s: "Nefrologia", max: 2, count: 0, k: ['nefro'] },
+                { p: "ESPECIALIDADES CLÍNICAS", s: "Hematologia e Hemoterapia", max: 2, count: 0, k: ['hemato'] },
+                { p: "ESPECIALIDADES CLÍNICAS", s: "Gastroenterologia", max: 1, count: 0, k: ['gastro'] },
+                { p: "ESPECIALIDADES CLÍNICAS", s: "Reumatologia", max: 1, count: 0, k: ['reumato'] },
+                { p: "ESPECIALIDADES CLÍNICAS", s: "Infectologia", max: 1, count: 0, k: ['infecto'] },
+                { p: "ESPECIALIDADES CLÍNICAS", s: "Geriatria", max: 1, count: 0, k: ['geriatr'] },
+
+                // CIRURGIA (20)
                 { p: "CIRURGIA", s: "Cirurgia Geral", max: 6, count: 0, k: ['geral'] },
                 { p: "CIRURGIA", s: "Cirurgia Vascular", max: 5, count: 0, k: ['vascular'] },
-                { p: "CIRURGIA", s: "Neurocirurgia", max: 4, count: 0, k: ['neurocirurgia'] },
-                { p: "CIRURGIA", s: "Outras especialidades", max: 6, count: 0, k: ['pediatrica', 'mastologia', 'cardiovascular', 'coloprocto'] },
+                { p: "CIRURGIA", s: "Neurocirurgia", max: 4, count: 0, k: ['neurocirurg'] },
+                { p: "CIRURGIA", s: "Cirurgia Pediátrica", max: 2, count: 0, k: ['cirurgia ped'] },
+                { p: "CIRURGIA", s: "Coloproctologia", max: 1, count: 0, k: ['coloprocto'] },
+                { p: "CIRURGIA", s: "Cirurgia Cardiovascular", max: 1, count: 0, k: ['cardiovascular'] },
+                { p: "CIRURGIA", s: "Mastologia", max: 1, count: 0, k: ['mastolog'] },
+
                 // PEDIATRIA (21)
-                { p: "PEDIATRIA", s: "Pediatria", max: 9, count: 0, k: ['pediatria'] },
+                { p: "PEDIATRIA", s: "Pediatria", max: 9, count: 0, k: ['pediatria', 'pediatr'] },
                 { p: "PEDIATRIA", s: "Neonatologia", max: 6, count: 0, k: ['neonatolog'] },
-                { p: "PEDIATRIA", s: "Outras especialidades", max: 6, count: 0, k: ['cardiopediatria', 'neuropediatria', 'oncologia ped'] },
-                // OUTRAS (21)
-                { p: "OUTRAS ÁREAS", s: "Radiologia e Diagnóstico por Imagem", max: 12, count: 0, k: ['radio', 'imagem', 'ultrasson'] },
-                { p: "OUTRAS ÁREAS", s: "Patologia", max: 4, count: 0, k: ['patologia'] },
-                { p: "OUTRAS ÁREAS", s: "Medicina do Trabalho", max: 2, count: 0, k: ['trabalho'] },
-                { p: "OUTRAS ÁREAS", s: "Outras especialidades", max: 3, count: 0, k: ['intensiva', 'emergência', 'nutrologia', 'paliativa', 'tráfego', 'perícia'] },
+                { p: "PEDIATRIA", s: "Neurologia Pediátrica", max: 2, count: 0, k: ['neuropediatria', 'neurologia pediátrica'] },
+                { p: "PEDIATRIA", s: "Cardiopediatria", max: 1, count: 0, k: ['cardiopediatria'] },
+                { p: "PEDIATRIA", s: "Endocrinologia Pediátrica", max: 1, count: 0, k: ['endocrinologia ped'] },
+                { p: "PEDIATRIA", s: "Oncologia Pediátrica", max: 1, count: 0, k: ['oncologia ped'] },
+                { p: "PEDIATRIA", s: "Medicina Intensiva Pediátrica", max: 1, count: 0, k: ['intensiva ped'] },
+
+                // MFC (25)
+                { p: "MFC", s: "Medicina de Família e Comunidade", max: 25, count: 0, k: ['família', 'mfc', 'comunidade'] },
+
+                // OUTRAS (28)
+                { p: "OUTRAS", s: "Radiologia e Diagnóstico por Imagem", max: 12, count: 0, k: ['radio', 'imagem', 'ultrasson'] },
+                { p: "OUTRAS", s: "Patologia", max: 4, count: 0, k: ['patolog'] },
+                { p: "OUTRAS", s: "Medicina Intensiva", max: 3, count: 0, k: ['intensiva'] },
+                { p: "OUTRAS", s: "Medicina do Trabalho", max: 2, count: 0, k: ['trabalho'] },
+                { p: "OUTRAS", s: "Medicina de Emergência", max: 2, count: 0, k: ['emergência', 'emergencia'] },
+                { p: "OUTRAS", s: "Nutrologia", max: 1, count: 0, k: ['nutrolog'] },
+                { p: "OUTRAS", s: "Perícia Médica", max: 1, count: 0, k: ['perícia', 'pericia'] },
+                { p: "OUTRAS", s: "Radioterapia", max: 1, count: 0, k: ['radioterapia'] },
+                { p: "OUTRAS", s: "Medicina do Tráfego", max: 1, count: 0, k: ['tráfego', 'trafego'] },
+                { p: "OUTRAS", s: "Medicina Paliativa", max: 1, count: 0, k: ['paliativ'] }
             ];
 
             const fallback = [];

@@ -1,4 +1,7 @@
 import React, { useMemo } from 'react';
+import { formaturasData } from '../../data/formaturasData';
+import { rqeData } from '../../data/rqeData';
+import { especialidadesData, categoriaEspecialidadesData } from '../../data/especialidadesData';
 
 const KPIs = ({ data, totalData, filters }) => {
     const kpis = useMemo(() => {
@@ -9,6 +12,7 @@ const KPIs = ({ data, totalData, filters }) => {
                 { label: "DE VIDAS IMPACTADAS", value: "CENTENAS" }
             ];
         }
+
         const isTotal = data.length === totalData.length;
         let formados = isTotal ? 468 : data.length;
 
@@ -19,14 +23,69 @@ const KPIs = ({ data, totalData, filters }) => {
             }
             return acc;
         }, 0);
-        if (isTotal) crmsAtivos = 544;
 
         let comRQE = data.filter(d => d.tem_rqe).length;
-        if (isTotal) comRQE = 250;
 
-        // If user specifically filtered by RQE = 'Sim', the total formados should be equal to the comRQE items passed in 'data'
+        // Verify if we can use the absolute data from formaturas.csv
+        // We use absolute data if only 'ano' or 'rqe' are filtering the dataset
+        const noSpecificFilters = (!filters || (
+            filters.uf === 'Todos' &&
+            filters.social === 'Todos' &&
+            filters.especialidade === 'Todas'
+        ));
+
+        // Use formaturasData when RQE is "Todos", otherwise use rqeData when RQE is "Sim"
+        const dataSource = filters?.rqe === 'Sim' ? rqeData : formaturasData;
+
+        if (noSpecificFilters) {
+            const anoKey = filters?.ano || 'Todos';
+            const fd = dataSource[anoKey];
+            if (fd) {
+                formados = fd.total;
+                crmsAtivos = fd.crms;
+                comRQE = fd.rqe;
+            }
+        } else {
+            if (isTotal) {
+                formados = dataSource['Todos'].total;
+                crmsAtivos = dataSource['Todos'].crms;
+                comRQE = dataSource['Todos'].rqe;
+            }
+
+            // Requisito: Se tem filtro de UF ativo, 'Total Formados' == 'CRMs Ativos'
+            if (filters?.uf && filters.uf !== 'Todos') {
+                formados = crmsAtivos;
+            }
+        }
+
+        // Requisito: Filtro Especialidades - numero de formados = numero com rqe
+        if (filters?.especialidade && filters.especialidade !== 'Todas') {
+            if (filters.especialidade.startsWith('CAT:')) {
+                const catName = filters.especialidade.replace('CAT:', '');
+                if (categoriaEspecialidadesData[catName]) {
+                    formados = categoriaEspecialidadesData[catName].total;
+                    crmsAtivos = categoriaEspecialidadesData[catName].crms;
+                    comRQE = categoriaEspecialidadesData[catName].total; // Formados = RQE
+                }
+            } else if (filters.especialidade.startsWith('SPEC:')) {
+                const specName = filters.especialidade.replace('SPEC:', '');
+                if (especialidadesData[specName]) {
+                    formados = especialidadesData[specName].total;
+                    crmsAtivos = especialidadesData[specName].crms;
+                    comRQE = especialidadesData[specName].total; // Formados = RQE
+                }
+            }
+        }
+
+        // Adjust for RQE specific filters
         if (filters?.rqe === 'Sim') {
             formados = comRQE;
+        } else if (filters?.rqe === 'Não') {
+            if (noSpecificFilters && formaturasData[filters?.ano || 'Todos']) {
+                formados = formaturasData[filters?.ano || 'Todos'].total - formaturasData[filters?.ano || 'Todos'].rqe;
+                crmsAtivos = formaturasData[filters?.ano || 'Todos'].crms - rqeData[filters?.ano || 'Todos'].crms;
+                comRQE = 0;
+            }
         }
 
         return [
@@ -34,7 +93,7 @@ const KPIs = ({ data, totalData, filters }) => {
             { label: "CRMs Ativos", value: crmsAtivos },
             { label: "Com RQE", value: comRQE }
         ];
-    }, [data, filters]);
+    }, [data, filters, totalData]);
 
     return (
         <div className="kpi-row">

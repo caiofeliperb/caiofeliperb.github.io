@@ -113,7 +113,7 @@ const StackedBar = ({ data }) => {
     return (
         <div className="bar-chart-container" style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }} ref={containerRef}>
             <div style={{ marginBottom: '10px' }}>
-                <h3 className="card-title" style={{ marginBottom: '2px' }}>Obtenção de RQE a cada ano</h3>
+                <h3 className="card-title" style={{ marginBottom: '2px' }}>RQEs de Acordo com o Ano de Formatura</h3>
                 <small style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>(Dados coletados até abril de 2025 com informações do formulário e CFM)</small>
             </div>
 

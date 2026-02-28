@@ -43,17 +43,25 @@ const DashboardManager = () => {
                 { name: "Ginecologia e Obstetrícia", count: 31 },
                 { name: "Anestesiologia", count: 19 },
                 { name: "Ortopedia e Traumatologia", count: 18 },
-                { name: "Outras especialidades", count: 28 }
+                { name: "Oftalmologia", count: 12 },
+                { name: "Otorrinolaringologia", count: 8 }
             ]
         },
         {
-            category: "CLÍNICA MÉDICA",
+            category: "ESPECIALIDADES CLÍNICAS",
             items: [
                 { name: "Clínica Médica", count: 22 },
                 { name: "Psiquiatria", count: 15 },
-                { name: "Cardiologia/Ecocardiografia", count: 7 },
+                { name: "Cardiologia", count: 7 },
                 { name: "Neurologia", count: 6 },
-                { name: "Outras especialidades", count: 14 }
+                { name: "Endocrinologia e Metabologia", count: 5 },
+                { name: "Dermatologia", count: 4 },
+                { name: "Nefrologia", count: 2 },
+                { name: "Hematologia e Hemoterapia", count: 2 },
+                { name: "Gastroenterologia", count: 1 },
+                { name: "Reumatologia", count: 1 },
+                { name: "Infectologia", count: 1 },
+                { name: "Geriatria", count: 1 }
             ]
         },
         {
@@ -62,7 +70,10 @@ const DashboardManager = () => {
                 { name: "Cirurgia Geral", count: 6 },
                 { name: "Cirurgia Vascular", count: 5 },
                 { name: "Neurocirurgia", count: 4 },
-                { name: "Outras especialidades", count: 6 }
+                { name: "Cirurgia Pediátrica", count: 2 },
+                { name: "Coloproctologia", count: 1 },
+                { name: "Cirurgia Cardiovascular", count: 1 },
+                { name: "Mastologia", count: 1 }
             ]
         },
         {
@@ -70,7 +81,11 @@ const DashboardManager = () => {
             items: [
                 { name: "Pediatria", count: 9 },
                 { name: "Neonatologia", count: 6 },
-                { name: "Outras especialidades", count: 6 }
+                { name: "Neurologia Pediátrica", count: 2 },
+                { name: "Cardiopediatria", count: 1 },
+                { name: "Endocrinologia Pediátrica", count: 1 },
+                { name: "Oncologia Pediátrica", count: 1 },
+                { name: "Medicina Intensiva Pediátrica", count: 1 }
             ]
         },
         {
@@ -80,12 +95,18 @@ const DashboardManager = () => {
             ]
         },
         {
-            category: "OUTRAS ÁREAS",
+            category: "OUTRAS",
             items: [
                 { name: "Radiologia e Diagnóstico por Imagem", count: 12 },
                 { name: "Patologia", count: 4 },
+                { name: "Medicina Intensiva", count: 3 },
                 { name: "Medicina do Trabalho", count: 2 },
-                { name: "Outras especialidades", count: 3 }
+                { name: "Medicina de Emergência", count: 2 },
+                { name: "Nutrologia", count: 1 },
+                { name: "Perícia Médica", count: 1 },
+                { name: "Radioterapia", count: 1 },
+                { name: "Medicina do Tráfego", count: 1 },
+                { name: "Medicina Paliativa", count: 1 }
             ]
         }
     ];
@@ -185,13 +206,14 @@ const DashboardManager = () => {
                         <select value={filters.social} onChange={(e) => handleFilterChange('social', e.target.value)}>
                             <option value="Todos">Todos</option>
                             <option value="Sim">Sim</option>
-                            <option value="Não">Não</option>
                         </select>
                     </div>
 
-                    <div className="filter-summary">
-                        Mostrando <strong>{filteredData.length}</strong> egressos
-                    </div>
+                    {filters.social !== 'Sim' && (
+                        <div className="filter-summary">
+                            Mostrando <strong>{filteredData.length}</strong> egressos
+                        </div>
+                    )}
                 </aside>
 
                 {/* Main Grid */}
