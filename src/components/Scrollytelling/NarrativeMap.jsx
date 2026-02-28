@@ -28,9 +28,8 @@ const NarrativeMap = () => {
 
         paths.forEach(pRef => {
             if (pRef.current) {
-                const length = pRef.current.getTotalLength();
-                // Apply length for dash offset drawing animation to all paths
-                gsap.set(pRef.current, { strokeDasharray: length, strokeDashoffset: length });
+                // Hardcoding 1000 prevents zero-length evaluations from hidden SVGs on initial paint
+                gsap.set(pRef.current, { strokeDasharray: 1000, strokeDashoffset: 1000 });
             }
         });
 
@@ -93,7 +92,7 @@ const NarrativeMap = () => {
         if (index === 0) {
             // Step 1: Base - Reset globally, keep SVG map visible but clean
             gsap.to([pathMossoroRef.current, pathNatalRef.current, pathCERef.current, pathPBRef.current, pathPERef.current, pathNYRef.current], {
-                strokeDashoffset: (i, target) => target.getTotalLength(),
+                strokeDashoffset: 1000,
                 duration: 0.8, ease: "power2.out", overwrite: true
             });
             gsap.to([labelRNRef.current, labelNERef.current, document.getElementById('ny-dot'), document.getElementById('ny-text'), pathNYRef.current], { opacity: 0, scale: 0.8, duration: 0.5, overwrite: true });
@@ -109,7 +108,7 @@ const NarrativeMap = () => {
 
             // Hide global - GARANTINDO QUE O RESTO SOME (80% NE E NY)
             gsap.to([pathCERef.current, pathPBRef.current, pathPERef.current, pathNYRef.current], {
-                strokeDashoffset: (i, target) => target.getTotalLength(),
+                strokeDashoffset: 1000,
                 duration: 0.8, overwrite: true
             });
             gsap.to([labelNERef.current, document.getElementById('ny-dot'), document.getElementById('ny-text'), pathNYRef.current], { opacity: 0, scale: 0.8, duration: 0.5, overwrite: true });
@@ -125,13 +124,13 @@ const NarrativeMap = () => {
             });
 
             // O texto de 80% do NE só surge AGORA JUNTO com Nova York, no Step 3 de expansão
-            gsap.to(labelNERef.current, { opacity: 1, scale: 1, duration: 1.2, delay: 0.5, ease: "power2.out", overwrite: true });
+            gsap.to(labelNERef.current, { opacity: 1, scale: 1, duration: 1.2, delay: 0.1, ease: "power2.out", overwrite: true });
 
-            // NY Path Animation junto com o texto de cima, mesma lentidão
-            gsap.to([document.getElementById('ny-dot'), document.getElementById('ny-text')], { opacity: 1, scale: 1, duration: 1.5, delay: 0.5, ease: "power2.out", overwrite: true });
+            // NY Path Animation junto com o texto de cima, delay minimizado para encaixe perfeito
+            gsap.to([document.getElementById('ny-dot'), document.getElementById('ny-text')], { opacity: 1, scale: 1, duration: 1.5, delay: 0.1, ease: "power2.out", overwrite: true });
 
             // NY Line gets opacity 1 and stroke offset animation combined so overwrite doesn't kill opacity
-            gsap.to(pathNYRef.current, { opacity: 1, strokeDashoffset: 0, duration: 3, ease: "power2.inOut", delay: 0.5, overwrite: true });
+            gsap.to(pathNYRef.current, { opacity: 1, strokeDashoffset: 0, duration: 3, ease: "power2.inOut", delay: 0.1, overwrite: true });
         }
     };
 
@@ -146,7 +145,7 @@ const NarrativeMap = () => {
         },
         {
             title: "Do Nordeste para o Mundo",
-            description: "Quase 80% dos nossos 544 registros ativos estão concentrados no RN, Ceará, Pernambuco e Paraíba. Mas o cuidado não tem fronteiras: temos até egresso voando alto em Nova York!"
+            description: "Quase 80% dos nossos 545 registros ativos estão concentrados no RN, Ceará, Pernambuco e Paraíba. Mas o cuidado não tem fronteiras: temos até egresso voando alto em Nova York!"
         }
     ];
 

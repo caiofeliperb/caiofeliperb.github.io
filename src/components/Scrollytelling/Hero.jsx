@@ -193,7 +193,7 @@ const Hero = () => {
                     </div>
                     <div className="metric-divider"></div>
                     <div className="metric">
-                        <span className="metric-value">544<span style={{ fontSize: '0.35em', verticalAlign: 'super', opacity: 0.8 }}>*</span></span>
+                        <span className="metric-value">545<span style={{ fontSize: '0.35em', verticalAlign: 'super', opacity: 0.8 }}>*</span></span>
                         <span className="metric-label">CRMs ATIVOS</span>
                     </div>
                     <div className="metric-divider"></div>
