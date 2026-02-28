@@ -17,15 +17,16 @@
 .narrative-map-wrapper {
     position: relative;
     display: flex;
-    min-height: 200vh;
-    /* 2 viewports for the 2 remaining scrolly steps */
+    flex-direction: row-reverse;
+    /* Map on the right, text on the left */
+    justify-content: space-between;
+    align-items: flex-start;
+    /* Important for sticky to work correctly */
 }
 
 .map-sticky {
-    position: absolute;
-    /* Changed to absolute, pinned via GSAP */
+    position: sticky;
     top: 0;
-    right: 0;
     width: 50%;
     height: 100vh;
     display: flex;

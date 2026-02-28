@@ -47,17 +47,8 @@ const NarrativeMap = () => {
 
         const mm = gsap.matchMedia();
 
-        const commonScrollTrigger = {
-            trigger: containerRef.current,
-            start: "top top",
-            end: "bottom bottom",
-            pin: mapRef.current,
-            pinSpacing: false,
-        };
-
         // Scrollytelling Triggers using MatchMedia for correct cleanup
         mm.add("(min-width: 0px)", () => {
-            ScrollTrigger.create(commonScrollTrigger);
 
             // Map general appearance bound to scrub scroll
             gsap.to(gMapRef.current, {
