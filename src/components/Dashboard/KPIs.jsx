@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { formaturasData } from '../../data/formaturasData';
 import { rqeData } from '../../data/rqeData';
 import { especialidadesData, categoriaEspecialidadesData } from '../../data/especialidadesData';
+import { ufData } from '../../data/ufData';
 
 const KPIs = ({ data, totalData, filters }) => {
     const kpis = useMemo(() => {
@@ -52,9 +53,13 @@ const KPIs = ({ data, totalData, filters }) => {
                 comRQE = dataSource['Todos'].rqe;
             }
 
-            // Requisito: Se tem filtro de UF ativo, 'Total Formados' == 'CRMs Ativos'
+            // Requisito: Exibir dados absolutos atrelados à UF de atuação
             if (filters?.uf && filters.uf !== 'Todos') {
-                formados = crmsAtivos;
+                if (ufData[filters.uf]) {
+                    formados = ufData[filters.uf].total;
+                    crmsAtivos = ufData[filters.uf].crms;
+                    comRQE = ufData[filters.uf].rqe;
+                }
             }
         }
 

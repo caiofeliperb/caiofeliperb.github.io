@@ -1,0 +1,22 @@
+export const ufData = {
+    'RN': { total: 210, crms: 265, rqe: 140 },
+    'CE': { total: 96, crms: 98, rqe: 47 },
+    'SP': { total: 50, crms: 59, rqe: 33 },
+    'PE': { total: 33, crms: 37, rqe: 27 },
+    'PB': { total: 23, crms: 27, rqe: 18 },
+    'MG': { total: 8, crms: 8, rqe: 1 },
+    'BA': { total: 7, crms: 7, rqe: 4 },
+    'RJ': { total: 7, crms: 9, rqe: 6 },
+    'RS': { total: 7, crms: 7, rqe: 2 },
+    'PR': { total: 6, crms: 6, rqe: 1 },
+    'SC': { total: 5, crms: 5, rqe: 1 },
+    'DF': { total: 3, crms: 3, rqe: 2 },
+    'MS': { total: 3, crms: 3, rqe: 2 },
+    'AM': { total: 2, crms: 2, rqe: 0 },
+    'GO': { total: 2, crms: 3, rqe: 0 },
+    'MA': { total: 2, crms: 2, rqe: 1 },
+    'PI': { total: 1, crms: 1, rqe: 1 },
+    'SE': { total: 1, crms: 1, rqe: 1 },
+    'TO': { total: 1, crms: 1, rqe: 0 },
+    'NY, EUA': { total: 1, crms: 1, rqe: 1 }
+};
