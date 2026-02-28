@@ -28,8 +28,10 @@ const NarrativeMap = () => {
 
         paths.forEach(pRef => {
             if (pRef.current) {
-                // Hardcoding 1000 prevents zero-length evaluations from hidden SVGs on initial paint
-                gsap.set(pRef.current, { strokeDasharray: 1000, strokeDashoffset: 1000 });
+                const length = pRef.current.getTotalLength() || 1500;
+                // Save original length for precise toggles
+                pRef.current.dataset.length = length;
+                gsap.set(pRef.current, { strokeDasharray: length, strokeDashoffset: length });
             }
         });
 
@@ -92,45 +94,43 @@ const NarrativeMap = () => {
         if (index === 0) {
             // Step 1: Base - Reset globally, keep SVG map visible but clean
             gsap.to([pathMossoroRef.current, pathNatalRef.current, pathCERef.current, pathPBRef.current, pathPERef.current, pathNYRef.current], {
-                strokeDashoffset: 1000,
-                duration: 0.8, ease: "power2.out", overwrite: true
+                strokeDashoffset: (i, target) => target.dataset.length || 1500,
+                duration: 0.8, ease: "power2.out", overwrite: "auto"
             });
-            gsap.to([labelRNRef.current, labelNERef.current, document.getElementById('ny-dot'), document.getElementById('ny-text'), pathNYRef.current], { opacity: 0, scale: 0.8, duration: 0.5, overwrite: true });
+            gsap.to([labelRNRef.current, labelNERef.current, document.getElementById('ny-dot'), document.getElementById('ny-text'), pathNYRef.current], { opacity: 0, scale: 0.8, duration: 0.5, overwrite: "auto" });
 
         } else if (index === 1) {
             // Step 2: RN Focus (Mossoró and Natal)
             // Show base paths and animate local
             gsap.to([pathMossoroRef.current, pathNatalRef.current], {
-                strokeDashoffset: 0, duration: 1.5, ease: "power2.inOut", overwrite: true
+                strokeDashoffset: 0, duration: 1.5, ease: "power2.inOut", overwrite: "auto"
             });
             // O texto 84.5% no RN surge aqui
-            gsap.to(labelRNRef.current, { opacity: 1, scale: 1, duration: 0.8, delay: 0.3, ease: "back.out(1.5)", overwrite: true });
+            gsap.to(labelRNRef.current, { opacity: 1, scale: 1, duration: 0.8, delay: 0.3, ease: "back.out(1.5)", overwrite: "auto" });
 
-            // Hide global - GARANTINDO QUE O RESTO SOME (80% NE E NY)
+            // Hide global - GARANTINDO QUE NY SUME E SÓ APAREÇA DEPOIS
             gsap.to([pathCERef.current, pathPBRef.current, pathPERef.current, pathNYRef.current], {
-                strokeDashoffset: 1000,
-                duration: 0.8, overwrite: true
+                strokeDashoffset: (i, target) => target.dataset.length || 1500,
+                duration: 0.8, overwrite: "auto"
             });
-            gsap.to([labelNERef.current, document.getElementById('ny-dot'), document.getElementById('ny-text'), pathNYRef.current], { opacity: 0, scale: 0.8, duration: 0.5, overwrite: true });
+            gsap.to([labelNERef.current, document.getElementById('ny-dot'), document.getElementById('ny-text'), pathNYRef.current], { opacity: 0, scale: 0.8, duration: 0.5, overwrite: "auto" });
 
         } else if (index === 2) {
             // Step 3: BR/NY Expansion
-            gsap.to(pathMossoroRef.current, { strokeDashoffset: 0, duration: 0.5, overwrite: true });
-            gsap.to(pathNatalRef.current, { strokeDashoffset: 0, duration: 0.5, overwrite: true });
-            gsap.to(labelRNRef.current, { opacity: 1, scale: 1, duration: 0.5, overwrite: true });
+            gsap.to(pathMossoroRef.current, { strokeDashoffset: 0, duration: 0.5, overwrite: "auto" });
+            gsap.to(pathNatalRef.current, { strokeDashoffset: 0, duration: 0.5, overwrite: "auto" });
+            gsap.to(labelRNRef.current, { opacity: 1, scale: 1, duration: 0.5, overwrite: "auto" });
 
             gsap.to([pathCERef.current, pathPBRef.current, pathPERef.current], {
-                strokeDashoffset: 0, duration: 2, ease: "power2.out", overwrite: true
+                strokeDashoffset: 0, duration: 2, ease: "power2.out", overwrite: "auto"
             });
 
             // O texto de 80% do NE só surge AGORA JUNTO com Nova York, no Step 3 de expansão
-            gsap.to(labelNERef.current, { opacity: 1, scale: 1, duration: 1.2, delay: 0.1, ease: "power2.out", overwrite: true });
+            gsap.to(labelNERef.current, { opacity: 1, scale: 1, duration: 1.2, delay: 0.5, ease: "power2.out", overwrite: "auto" });
 
-            // NY Path Animation junto com o texto de cima, delay minimizado para encaixe perfeito
-            gsap.to([document.getElementById('ny-dot'), document.getElementById('ny-text')], { opacity: 1, scale: 1, duration: 1.5, delay: 0.1, ease: "power2.out", overwrite: true });
-
-            // NY Line gets opacity 1 and stroke offset animation combined so overwrite doesn't kill opacity
-            gsap.to(pathNYRef.current, { opacity: 1, strokeDashoffset: 0, duration: 3, ease: "power2.inOut", delay: 0.1, overwrite: true });
+            // NY Line gets opacity 1, and drawing starts properly
+            gsap.to([document.getElementById('ny-dot'), document.getElementById('ny-text')], { opacity: 1, scale: 1, duration: 1.5, delay: 0.5, ease: "power2.out", overwrite: "auto" });
+            gsap.to(pathNYRef.current, { opacity: 1, strokeDashoffset: 0, duration: 3, ease: "power2.inOut", delay: 0.5, overwrite: "auto" });
         }
     };
 
@@ -229,7 +229,7 @@ const NarrativeMap = () => {
                                     <text x="865" y="375" fill="var(--text-muted)" fontSize="13" className="map-label">PE</text>
 
                                     {/* Long Path to New York - Origem em 750,200 (certificando ponto exato) */}
-                                    <path ref={pathNYRef} d="M 750 200 C 600 80 300 100 200 150" fill="none" stroke="var(--color-accent)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" opacity="0" />
+                                    <path ref={pathNYRef} d="M 750 200 C 600 -50 400 -50 200 150" fill="none" stroke="var(--color-accent)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" opacity="0" />
                                     <circle cx="200" cy="150" r="6" fill="var(--color-accent)" filter="url(#glow)" id="ny-dot" opacity="0" />
                                     <text x="130" y="140" fill="var(--color-accent)" fontSize="16" fontWeight="600" className="map-label" id="ny-text" opacity="0">Nova York</text>
 
