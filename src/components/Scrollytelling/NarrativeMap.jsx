@@ -29,12 +29,8 @@ const NarrativeMap = () => {
         paths.forEach(pRef => {
             if (pRef.current) {
                 const length = pRef.current.getTotalLength();
-                // If it's the NY path, preserve the dotted dasharray
-                if (pRef === pathNYRef) {
-                    gsap.set(pRef.current, { strokeDasharray: `5, 10`, strokeDashoffset: length });
-                } else {
-                    gsap.set(pRef.current, { strokeDasharray: length, strokeDashoffset: length });
-                }
+                // Apply length for dash offset drawing animation to all paths
+                gsap.set(pRef.current, { strokeDasharray: length, strokeDashoffset: length });
             }
         });
 
@@ -232,7 +228,7 @@ const NarrativeMap = () => {
                                     <text x="865" y="375" fill="var(--text-muted)" fontSize="13" className="map-label">PE</text>
 
                                     {/* Long Path to New York */}
-                                    <path ref={pathNYRef} d="M 750 200 C 600 50 400 50 200 150" fill="none" stroke="url(#nyGradient)" strokeWidth="3" strokeDasharray="5, 10" filter="url(#glow)" strokeLinecap="round" opacity="0" />
+                                    <path ref={pathNYRef} d="M 750 200 C 600 50 400 50 200 150" fill="none" stroke="var(--color-accent)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" opacity="0" />
                                     <circle cx="200" cy="150" r="6" fill="var(--color-accent)" filter="url(#glow)" id="ny-dot" opacity="0" />
                                     <text x="130" y="140" fill="var(--color-accent)" fontSize="16" fontWeight="600" className="map-label" id="ny-text" opacity="0">Nova York</text>
 
