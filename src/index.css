@@ -81,6 +81,7 @@ button:focus-visible {
   width: auto !important;
   max-width: 150px !important;
   object-fit: contain;
+  object-position: left center;
   pointer-events: auto;
 }
 
