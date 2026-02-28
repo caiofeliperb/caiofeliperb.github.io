@@ -77,21 +77,33 @@ const KPIs = ({ data, totalData, filters }) => {
             }
         }
 
-        // Adjust for RQE specific filters
+        // Adjust for RQE specific filters (Hardcoded user requested overrides for 'Todos')
+        let finalLabelRQE = "Com RQE";
+
         if (filters?.rqe === 'Sim') {
             formados = comRQE;
+            if (noSpecificFilters && (!filters.ano || filters.ano === 'Todos')) {
+                formados = 250;
+                crmsAtivos = 288;
+                comRQE = 250;
+            }
         } else if (filters?.rqe === 'Não') {
-            if (noSpecificFilters && formaturasData[filters?.ano || 'Todos']) {
+            finalLabelRQE = "Sem RQE";
+            if (noSpecificFilters && (!filters.ano || filters.ano === 'Todos')) {
+                formados = 218;
+                crmsAtivos = 257;
+                comRQE = 218; // The user requested the third card to show 218 as well.
+            } else if (noSpecificFilters && formaturasData[filters?.ano || 'Todos']) {
                 formados = formaturasData[filters?.ano || 'Todos'].total - formaturasData[filters?.ano || 'Todos'].rqe;
                 crmsAtivos = formaturasData[filters?.ano || 'Todos'].crms - rqeData[filters?.ano || 'Todos'].crms;
-                comRQE = 0;
+                comRQE = formados; // Keep it consistent with total for 'Não'
             }
         }
 
         return [
             { label: "Total Formados", value: formados },
             { label: "CRMs Ativos", value: crmsAtivos },
-            { label: "Com RQE", value: comRQE }
+            { label: finalLabelRQE, value: comRQE }
         ];
     }, [data, filters, totalData]);
 

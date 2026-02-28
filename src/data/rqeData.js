@@ -14,5 +14,5 @@ export const rqeData = {
     2022: { total: 8, crms: 46, rqe: 8 },
     2023: { total: 26, crms: 58, rqe: 26 },
     2024: { total: 7, crms: 70, rqe: 7 },
-    'Todos': { total: 288, crms: 545, rqe: 288 } // TODO: VERIFY THE TOTAL. The user said 250 formados, 288 ativos, 250 com RQE. Wait. Let's look at the CSV again.
+    'Todos': { total: 250, crms: 288, rqe: 250 }
 };
