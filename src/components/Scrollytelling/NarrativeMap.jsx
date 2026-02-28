@@ -128,8 +128,10 @@ const NarrativeMap = () => {
             gsap.to(labelNERef.current, { opacity: 1, scale: 1, duration: 1.2, delay: 0.5, ease: "power2.out", overwrite: true });
 
             // NY Path Animation junto com o texto de cima, mesma lentidão
-            gsap.to([document.getElementById('ny-dot'), document.getElementById('ny-text'), pathNYRef.current], { opacity: 1, scale: 1, duration: 1.5, delay: 0.5, ease: "power2.out", overwrite: true });
-            gsap.to(pathNYRef.current, { strokeDashoffset: 0, duration: 3, ease: "power2.inOut", delay: 0.5, overwrite: true });
+            gsap.to([document.getElementById('ny-dot'), document.getElementById('ny-text')], { opacity: 1, scale: 1, duration: 1.5, delay: 0.5, ease: "power2.out", overwrite: true });
+
+            // NY Line gets opacity 1 and stroke offset animation combined so overwrite doesn't kill opacity
+            gsap.to(pathNYRef.current, { opacity: 1, strokeDashoffset: 0, duration: 3, ease: "power2.inOut", delay: 0.5, overwrite: true });
         }
     };
 
