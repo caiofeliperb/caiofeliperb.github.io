@@ -229,8 +229,8 @@ const NarrativeMap = () => {
                                     <circle cx="850" cy="370" r="5" fill="var(--color-secondary)" />
                                     <text x="865" y="375" fill="var(--text-muted)" fontSize="13" className="map-label">PE</text>
 
-                                    {/* Long Path to New York */}
-                                    <path ref={pathNYRef} d="M 750 200 C 600 50 400 50 200 150" fill="none" stroke="var(--color-accent)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" opacity="0" />
+                                    {/* Long Path to New York - Origem em 750,200 (certificando ponto exato) */}
+                                    <path ref={pathNYRef} d="M 750 200 C 600 80 300 100 200 150" fill="none" stroke="var(--color-accent)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" opacity="0" />
                                     <circle cx="200" cy="150" r="6" fill="var(--color-accent)" filter="url(#glow)" id="ny-dot" opacity="0" />
                                     <text x="130" y="140" fill="var(--color-accent)" fontSize="16" fontWeight="600" className="map-label" id="ny-text" opacity="0">Nova York</text>
 
