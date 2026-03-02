@@ -72,7 +72,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-xl) 0;
+    padding: 0;
 }
 
 .step-content {
@@ -145,9 +145,8 @@
         scroll-snap-align: center;
         min-height: 100vh;
         align-items: flex-start;
-        /* Align to top over map */
-        padding-top: 15vh;
-        padding-bottom: 10vh;
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
     .step-content {
