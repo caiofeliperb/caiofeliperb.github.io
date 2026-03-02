@@ -102,8 +102,7 @@
 
 @media (max-width: 768px) {
     .specialties-section {
-        margin-top: 80px;
-        /* Safely more than 60px to account for any overlaps */
+        margin-top: 30px;
     }
 
     .specialties-content {

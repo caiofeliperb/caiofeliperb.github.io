@@ -6,8 +6,17 @@
 
 @media (max-width: 768px) {
     .social-section {
-        margin-top: 60px;
+        margin-top: 30px;
         padding: var(--spacing-lg) 0;
+    }
+
+    .social-section .section-subtitle {
+        padding: 0 10%;
+    }
+
+    .section-header h2 {
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }
 

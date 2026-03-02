@@ -125,6 +125,8 @@
 
     .narrative-map-wrapper {
         flex-direction: column;
+        padding-bottom: 15vh;
+        /* Stops the sticky map earlier */
     }
 
     /* On mobile, map takes top half and sticks */
@@ -134,6 +136,7 @@
         max-height: 48vh;
         /* Limit expansion */
         padding: var(--spacing-sm);
+        margin-bottom: 2rem;
         top: 0;
         bottom: auto;
         z-index: 20;

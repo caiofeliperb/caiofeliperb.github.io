@@ -18,7 +18,7 @@ const CUSTOM_SUB_SPECIALTY_COLORS = {
     "nefrologia": "#CDDC39", // Verde Lima
     "gastroenterologia": "#795548", // Marrom Escuro
 
-    "neurologia": "#8A2BE2", // Blue Violet
+    "neurologia": "#C79733", // Amarelo Mustarda
     "infectologia": "#10B981", // Verde Esmeralda
 
     "neurocirurgia": "#007FFF", // Azul Azure
@@ -32,18 +32,19 @@ const CUSTOM_SUB_SPECIALTY_COLORS = {
     "pediatria": "#DA70D6", // Orchid
     "endocrinologia pediátrica": "#4682B4", // Steel Blue
 
-    "radiologia e diagnóstico por imagem": "#145C6B", // Azul Petróleo Escuro
+    "radiologia e diagnóstico por imagem": "#3F4B55", // Cinza Chumbo
     "patologia": "#0A9B6B", // Verde Esmeralda
     "medicina do tráfego": "#C79733", // Amarelo Mostarda
-    "medicina do trabalho": "#3F4B55", // Cinza Chumbo
+    "medicina do trabalho": "#D8BFD8", // Lilás
     "perícia médica": "#F0E592", // Amarelo Pálido / Creme
     "medicina de emergência": "#CB7B4A", // Laranja Queimado / Terracota
     "medicina intensiva": "#6F1E2F", // Vermelho Vinho / Borgonha
-    "nutrologia": "#32573B", // Verde Oliva Escuro
+    "nutrologia": "#353C7C", // Azul Azure
     "radioterapia": "#4D205F", // Roxo Profundo
     "medicina paliativa": "#874A2B", // Marrom Terra
 
-    "geriatria": "#a9a9a9" // Gray
+    "geriatria": "#a9a9a9", // Gray
+    "reumatologia": "#4D205F" // Roxo Profundo
 };
 
 const StackedBar = ({ data, filters = {} }) => {
@@ -99,8 +100,9 @@ const StackedBar = ({ data, filters = {} }) => {
         const svg = d3.select(svgRef.current);
         svg.selectAll("*").remove();
 
-        const width = containerRef.current.clientWidth;
-        const height = 240; // Diminui a altura total para a barra não ficar tão "esticada"
+        const baseWidth = containerRef.current.clientWidth;
+        const width = Math.max(baseWidth, parsedObj.length * 45);
+        const height = 240;
         const margin = { top: 20, right: 30, bottom: 40, left: 40 };
 
         svg.attr("viewBox", [0, 0, width, height]);
@@ -200,7 +202,14 @@ const StackedBar = ({ data, filters = {} }) => {
 
             {chartData.parsedObj.length > 0 ? (
                 <>
-                    <svg ref={svgRef} style={{ width: '100%', flex: 1, minHeight: '280px' }}></svg>
+                    <div style={{ width: '100%', overflowX: 'auto', flex: 1, minHeight: '300px', cursor: 'grab' }}>
+                        <svg ref={svgRef} style={{
+                            width: '100%',
+                            minWidth: chartData.parsedObj.length > 8 ? `${chartData.parsedObj.length * 45}px` : '100%',
+                            height: '100%',
+                            minHeight: '280px'
+                        }}></svg>
+                    </div>
 
                     {/* Native responsive legend below the chart avoiding overlaps */}
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '10px', justifyContent: 'center' }}>
