@@ -76,15 +76,15 @@ const NarrativeMap = () => {
         const animateStep = (index) => {
             if (index === 0) {
                 // Step 0: Intro. Cards are dim, rings are empty.
-                gsap.to('.card-rn', { opacity: 0, y: 30, scale: 0.95, duration: 0.6, ease: "power2.out", overwrite: "auto" });
-                gsap.to('.cards-expandable', { height: 0, opacity: 0, marginTop: 0, duration: 0.6, ease: "power2.out", overwrite: "auto" });
+                gsap.to('.card-rn', { autoAlpha: 0, y: 30, scale: 0.95, duration: 0.6, ease: "power2.out", overwrite: "auto", force3D: true });
+                gsap.to('.cards-expandable', { height: 0, autoAlpha: 0, marginTop: 0, duration: 0.6, ease: "power2.out", overwrite: "auto", force3D: true });
                 gsap.to('.donut-path-rn, .donut-path-ne', { strokeDashoffset: circ, duration: 0.8, ease: "power2.inOut", overwrite: "auto" });
 
             } else if (index === 1) {
                 // Step 1: Nossas Raízes Fortes (RN Focus)
                 // Highlight RN Card beautifully, hide the rest
-                gsap.to('.card-rn', { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out", overwrite: "auto" });
-                gsap.to('.cards-expandable', { height: 0, opacity: 0, marginTop: 0, duration: 0.6, ease: "power2.out", overwrite: "auto" });
+                gsap.to('.card-rn', { autoAlpha: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out", overwrite: "auto", force3D: true, immediateRender: false });
+                gsap.to('.cards-expandable', { height: 0, autoAlpha: 0, marginTop: 0, duration: 0.6, ease: "power2.out", overwrite: "auto", force3D: true });
 
                 // Animate RN Donut
                 gsap.to('.donut-path-rn', { strokeDashoffset: circ - (circ * 0.845), duration: 1.5, ease: "power3.out", overwrite: "auto" });
@@ -93,9 +93,22 @@ const NarrativeMap = () => {
             } else if (index === 2) {
                 // Step 2: Do Nordeste para o Mundo (NE + NY Focus)
                 // Dim RN slightly, expand container to reveal NE and NY
-                gsap.to('.card-rn', { opacity: 0.8, scale: 0.98, duration: 0.6, overwrite: "auto" });
+                gsap.to('.card-rn', { opacity: 0.8, scale: 0.98, duration: 0.6, overwrite: "auto", force3D: true });
 
-                gsap.to('.cards-expandable', { height: 'auto', opacity: 1, marginTop: '1.5rem', duration: 0.8, ease: "power3.inOut", overwrite: "auto" });
+                // Use a measured or stable height for expansion
+                gsap.to('.cards-expandable', {
+                    height: 'auto',
+                    autoAlpha: 1,
+                    marginTop: '1.5rem',
+                    duration: 0.8,
+                    ease: "power3.inOut",
+                    overwrite: "auto",
+                    force3D: true,
+                    onStart: () => {
+                        // Refresh ScrollTrigger to account for new height
+                        ScrollTrigger.refresh();
+                    }
+                });
 
                 // Maintain RN Donut filled, animate NE Donut
                 gsap.to('.donut-path-rn', { strokeDashoffset: circ - (circ * 0.845), duration: 0.5, overwrite: "auto" });
