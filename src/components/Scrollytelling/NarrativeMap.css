@@ -33,7 +33,7 @@
     align-items: center;
     justify-content: center;
     padding: var(--spacing-lg);
-    z-index: var(--z-base);
+    z-index: 10;
 }
 
 .map-wrapper {
@@ -122,35 +122,45 @@
         flex-direction: column;
     }
 
-    /* On mobile, sticky card sticks to top with solid background to block text underneath */
+    /* On mobile, sticky container is transparent to allow text to scroll behind cards clearly */
     .map-sticky {
         width: 100%;
-        height: 45vh;
+        height: 35vh;
         padding: var(--spacing-sm);
         top: 0;
         bottom: auto;
-        z-index: 100;
-        background: var(--bg-color);
-        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+        background: transparent;
+        pointer-events: none;
+        /* Let clicks pass to text if necessary */
+    }
+
+    .map-sticky>* {
+        pointer-events: auto;
+        /* Re-enable for the cards themselves */
     }
 
     .narrative-scroll {
         width: 100%;
         padding: 0 var(--spacing-md);
         margin-top: 0;
+        z-index: 20;
     }
 
     .narrative-step {
         scroll-snap-align: start;
-        min-height: auto;
+        min-height: 80vh;
         align-items: flex-start;
-        /* Each step starts below the sticky card (45vh) */
-        padding-top: 48vh;
-        padding-bottom: 3rem;
+        /* First and subsequent steps start with breathing room for the compact cards */
+        padding-top: 38vh;
+        padding-bottom: 5vh;
     }
 
     .step-content {
         padding: var(--spacing-md);
+        background: var(--bg-color);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     }
 }
 
