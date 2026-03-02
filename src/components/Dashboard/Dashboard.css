@@ -159,6 +159,13 @@
     }
 }
 
+@media (max-width: 768px) {
+    .dashboard-section {
+        margin-top: 6rem;
+        padding: var(--spacing-lg) 0 4rem;
+    }
+}
+
 @media (max-width: 600px) {
     .kpi-row {
         flex-direction: column;

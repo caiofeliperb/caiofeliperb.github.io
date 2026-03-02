@@ -93,6 +93,10 @@
 }
 
 @media (max-width: 768px) {
+    .hero-section {
+        height: 155vh;
+    }
+
     .hero-metrics {
         flex-direction: column;
         gap: var(--spacing-md);

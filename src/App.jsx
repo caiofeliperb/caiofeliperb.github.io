@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { DataProvider } from './context/DataContext';
 import { Sun, Moon } from 'lucide-react';
 
 import Hero from './components/Scrollytelling/Hero';
 import NarrativeMap from './components/Scrollytelling/NarrativeMap';
 import Specialties from './components/Scrollytelling/Specialties';
-import SocialCards from './components/Scrollytelling/SocialCards';
-import DashboardManager from './components/Dashboard/DashboardManager';
-import Footer from './components/Footer';
+
+// Lazy loading below-the-fold components to improve initial load time
+const SocialCards = lazy(() => import('./components/Scrollytelling/SocialCards'));
+const DashboardManager = lazy(() => import('./components/Dashboard/DashboardManager'));
+const Footer = lazy(() => import('./components/Footer'));
 
 import logoDark from './assets/uern_logo_branca.png';
 import logoLight from './assets/uern_logo_azul.png';
@@ -41,13 +43,14 @@ function App() {
         <Hero />
         <NarrativeMap />
         <Specialties />
-        <SocialCards />
 
-        <div id="dashboard-section-wrapper">
-          <DashboardManager />
-        </div>
-
-        <Footer />
+        <Suspense fallback={<div style={{ textAlign: 'center', padding: '5rem', color: 'var(--text-muted)' }}>Carregando seções...</div>}>
+          <SocialCards />
+          <div id="dashboard-section-wrapper">
+            <DashboardManager />
+          </div>
+          <Footer />
+        </Suspense>
       </main>
     </DataProvider>
   );

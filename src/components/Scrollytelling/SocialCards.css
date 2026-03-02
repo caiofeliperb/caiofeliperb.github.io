@@ -4,6 +4,13 @@
     overflow: hidden;
 }
 
+@media (max-width: 768px) {
+    .social-section {
+        margin-top: 4rem;
+        padding: var(--spacing-lg) 0;
+    }
+}
+
 .carousel-wrapper {
     display: flex;
     align-items: center;
