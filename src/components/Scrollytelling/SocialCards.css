@@ -6,7 +6,7 @@
 
 @media (max-width: 768px) {
     .social-section {
-        margin-top: 4rem;
+        margin-top: 60px;
         padding: var(--spacing-lg) 0;
     }
 }

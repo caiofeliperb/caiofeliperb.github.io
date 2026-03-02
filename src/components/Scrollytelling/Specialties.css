@@ -1,5 +1,6 @@
 .specialties-section {
     padding: var(--spacing-xxl) 0;
+    margin-top: 60px;
 }
 
 .section-header {
@@ -100,6 +101,11 @@
 }
 
 @media (max-width: 768px) {
+    .specialties-section {
+        margin-top: 80px;
+        /* Safely more than 60px to account for any overlaps */
+    }
+
     .specialties-content {
         flex-direction: column;
     }
