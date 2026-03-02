@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useData } from '../../hooks/useData';
@@ -9,7 +9,48 @@ gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
     const canvasRef = useRef(null);
     const containerRef = useRef(null);
+    const metricsRef = useRef(null);
     const { data, loading } = useData();
+
+    // States for Animated Numbers
+    const [formados, setFormados] = useState(0);
+    const [crms, setCrms] = useState(0);
+
+    // Number Animation Effect
+    useEffect(() => {
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                // Animate to 468
+                gsap.to({ val: 0 }, {
+                    val: 468,
+                    duration: 2,
+                    ease: "power2.out",
+                    onUpdate: function () {
+                        setFormados(Math.floor(this.targets()[0].val));
+                    }
+                });
+
+                // Animate to 545
+                gsap.to({ val: 0 }, {
+                    val: 545,
+                    duration: 2.2,
+                    delay: 0.2, // slight delay for cascade effect
+                    ease: "power2.out",
+                    onUpdate: function () {
+                        setCrms(Math.floor(this.targets()[0].val));
+                    }
+                });
+
+                observer.disconnect(); // Only animate once
+            }
+        }, { threshold: 0.5 }); // Trigger when 50% visible
+
+        if (metricsRef.current) {
+            observer.observe(metricsRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     useEffect(() => {
         if (loading || !data.length) return;
@@ -186,14 +227,14 @@ const Hero = () => {
                     Bem-vindo (a) aos bastidores da nossa história! Qual o impacto real do curso de medicina da UERN? Mapeamos 468 egressos formados entre 2010 e 2024 para descobrir o impacto das nossas raízes na saúde.
                 </p>
 
-                <div className="hero-metrics glass-panel">
+                <div className="hero-metrics glass-panel" ref={metricsRef}>
                     <div className="metric">
-                        <span className="metric-value">468</span>
+                        <span className="metric-value">{formados}</span>
                         <span className="metric-label">FORMADOS</span>
                     </div>
                     <div className="metric-divider"></div>
                     <div className="metric">
-                        <span className="metric-value">545<span style={{ fontSize: '0.35em', verticalAlign: 'super', opacity: 0.8 }}>*</span></span>
+                        <span className="metric-value">{crms}<span style={{ fontSize: '0.35em', verticalAlign: 'super', opacity: 0.8 }}>*</span></span>
                         <span className="metric-label">CRMs ATIVOS</span>
                     </div>
                     <div className="metric-divider"></div>

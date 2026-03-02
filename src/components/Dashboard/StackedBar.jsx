@@ -63,16 +63,16 @@ const StackedBar = ({ data }) => {
             .rangeRound([height - margin.bottom, margin.top]);
 
         const getColor = (key) => {
-            if (!key) return "#64748B"; // Fallback para keys vazios
+            if (!key) return "#0097A7"; // Fallback para keys vazios
             const k = key.toLowerCase();
-            // CLÍNICO-CIRÚRGICA -> Azul Azure
-            if (k.includes("clínico-cirúrgic") || k.includes("clinico-cirurgi")) return "#2563EB";
-            // ESPECIALIDADES CLÍNICAS -> Azul Ciano
-            if (k.includes("clínica") || k.includes("clinica") || k.includes("clínic") || k.includes("clinic")) return "#06B6D4";
-            if (k.includes("mfc") || k.includes("família")) return "#10B981"; // Verde Rico
-            if (k.includes("pediatria")) return "#FFC107"; // Amarelo
-            if (k.includes("cirurgia")) return "#8B5CF6"; // Roxo
-            return "#64748B"; // Cinza (Outras)
+            // CLÍNICO-CIRÚRGICA
+            if (k.includes("clínico-cirúrgic") || k.includes("clinico-cirurgi")) return "#1D5C8F";
+            // ESPECIALIDADES CLÍNICAS
+            if (k.includes("clínica") || k.includes("clinica") || k.includes("clínic") || k.includes("clinic")) return "#ECA427";
+            if (k.includes("mfc") || k.includes("família")) return "#2E7D32";
+            if (k.includes("pediatria")) return "#7B1FA2";
+            if (k.includes("cirurgia")) return "#C62828";
+            return "#0097A7"; // Outras
         };
 
         const color = d3.scaleOrdinal()
@@ -128,14 +128,14 @@ const StackedBar = ({ data }) => {
                         {chartData.keys.map((key, i) => {
                             if (!key) return null; // Prevenção contra nulos na legenda
                             const k = key.toLowerCase();
-                            let col = "#64748B"; // Cinza fallback (Outras)
-                            // CLÍNICO-CIRÚRGICA -> Azul Azure
-                            if (k.includes("clínico-cirúrgic") || k.includes("clinico-cirurgi")) col = "#2563EB";
-                            // ESPECIALIDADES CLÍNICAS -> Azul Ciano
-                            else if (k.includes("clínica") || k.includes("clinica") || k.includes("clínic") || k.includes("clinic")) col = "#06B6D4";
-                            else if (k.includes("mfc") || k.includes("família")) col = "#10B981"; // Verde Rico
-                            else if (k.includes("pediatria")) col = "#FFC107"; // Amarelo
-                            else if (k.includes("cirurgia")) col = "#8B5CF6"; // Roxo
+                            let col = "#0097A7"; // Fallback (Outras)
+                            // CLÍNICO-CIRÚRGICA
+                            if (k.includes("clínico-cirúrgic") || k.includes("clinico-cirurgi")) col = "#1D5C8F";
+                            // ESPECIALIDADES CLÍNICAS
+                            else if (k.includes("clínica") || k.includes("clinica") || k.includes("clínic") || k.includes("clinic")) col = "#ECA427";
+                            else if (k.includes("mfc") || k.includes("família")) col = "#2E7D32";
+                            else if (k.includes("pediatria")) col = "#7B1FA2";
+                            else if (k.includes("cirurgia")) col = "#C62828";
 
                             return (
                                 <div key={i} style={{ display: 'flex', alignItems: 'center', fontSize: '0.8rem', color: 'var(--text-muted)' }}>

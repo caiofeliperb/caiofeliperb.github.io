@@ -137,15 +137,15 @@ const NarrativeMap = () => {
     const steps = [
         {
             title: "O Ponto de Partida",
-            description: "Vestimos o jaleco de pesquisadores! Lançamos um formulário detalhado onde conseguimos 194 respostas e mapeamos um total de 468 egressos formados de 2010 a 2024 cruzando informações com o CFM."
+            description: "Vestimos o jaleco de pesquisadores! Lançamos um formulário detalhado que nos rendeu 194 respostas. Para completar a busca e garantir o quadro geral, recorremos aos dados do CFM, conseguindo mapear 468 egressos formados entre 2010 e 2024."
         },
         {
             title: "Nossas Raízes Fortes",
-            description: "Nossas raízes gritam forte! Dos nossos egressos que responderam a pesquisa, 84,5% (n=164) iniciaram sua atuação profissional no próprio RN. Fincamos raízes cuidando da nossa gente, principalmente em Mossoró e Natal."
+            description: "O chamado da nossa terra fala mais alto! Entre os que responderam à pesquisa, 84,5% (n=164) escolheram dar seus primeiros passos profissionais aqui mesmo, no RN. É o compromisso de fincar raízes e cuidar da nossa gente, com forte atuação em Mossoró e Natal."
         },
         {
             title: "Do Nordeste para o Mundo",
-            description: "Quase 80% dos nossos 545 registros ativos estão concentrados no RN, Ceará, Pernambuco e Paraíba. Mas o cuidado não tem fronteiras: temos até egresso voando alto em Nova York!"
+            description: "Quase 80% dos nossos 545 registros ativos estão concentrados no Rio Grande do Norte, Ceará, Pernambuco e Paraíba. Mas o cuidado não tem fronteiras: temos até egresso voando alto em Nova York!"
         }
     ];
 
