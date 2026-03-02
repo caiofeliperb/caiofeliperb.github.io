@@ -13,7 +13,6 @@ const CUSTOM_SUB_SPECIALTY_COLORS = {
     "dermatologia": "#9C27B0", // Roxo Magenta
     "endocrinologia e metabologia": "#FF9800", // Laranja Vibrante
     "cardiologia": "#00BCD4", // Azul Ciano
-    "reumatologia": "#F44336", // Vermelho Vivo
     "hematologia e hemoterapia": "#DC2626", // Vermelho Carmesim
     "nefrologia": "#CDDC39", // Verde Lima
     "gastroenterologia": "#795548", // Marrom Escuro
@@ -94,7 +93,7 @@ const StackedBar = ({ data, filters = {} }) => {
     }, [data]);
 
     useEffect(() => {
-        if (!chartData.parsedObj.length || !svgRef.current) return;
+        if (!chartData.parsedObj.length || !svgRef.current || !containerRef.current) return;
 
         const { parsedObj, keys } = chartData;
         const svg = d3.select(svgRef.current);
