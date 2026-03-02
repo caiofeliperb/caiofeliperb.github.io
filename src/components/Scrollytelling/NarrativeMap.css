@@ -122,31 +122,31 @@
         flex-direction: column;
     }
 
-    /* On mobile, map takes top half and sticks */
+    /* On mobile, sticky card sticks to top with solid background to block text underneath */
     .map-sticky {
         width: 100%;
         height: 45vh;
-        /* Takes 45% of height */
         padding: var(--spacing-sm);
         top: 0;
         bottom: auto;
+        z-index: 100;
+        background: var(--bg-color);
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
     }
 
     .narrative-scroll {
         width: 100%;
         padding: 0 var(--spacing-md);
-        margin-top: 45vh;
-        margin-bottom: 0;
-        /* Push start below map */
+        margin-top: 0;
     }
 
     .narrative-step {
-        /* Snaps to viewport on mobile per requirements */
-        scroll-snap-align: center;
-        min-height: 100vh;
+        scroll-snap-align: start;
+        min-height: auto;
         align-items: flex-start;
-        padding-top: 0;
-        padding-bottom: 0;
+        /* Each step starts below the sticky card (45vh) */
+        padding-top: 48vh;
+        padding-bottom: 3rem;
     }
 
     .step-content {
@@ -214,8 +214,9 @@
         height: 52vh;
     }
 
-    .narrative-scroll {
-        margin-top: 52vh;
+    /* Update padding-top to match new map height */
+    .narrative-step {
+        padding-top: 55vh;
     }
 }
 
@@ -251,7 +252,7 @@
         height: 55vh;
     }
 
-    .narrative-scroll {
-        margin-top: 55vh;
+    .narrative-step {
+        padding-top: 58vh;
     }
 }
