@@ -33,7 +33,7 @@
     align-items: center;
     justify-content: center;
     padding: var(--spacing-lg);
-    z-index: var(--z-base);
+    z-index: 10;
 }
 
 .map-wrapper {
@@ -63,7 +63,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    z-index: var(--z-content);
+    z-index: 20;
 }
 
 .narrative-step {
@@ -122,36 +122,39 @@
         flex-direction: column;
     }
 
-    /* On mobile, map takes top half and sticks */
+    /* On mobile, the infographic sticks at top while text scrolls below it */
     .map-sticky {
         width: 100%;
-        height: 45vh;
-        /* Takes 45% of height */
+        height: 40vh;
         padding: var(--spacing-sm);
         top: 0;
         bottom: auto;
+        z-index: 10;
+        background: var(--bg-color);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     }
 
     .narrative-scroll {
         width: 100%;
-        padding: 0 var(--spacing-md);
-        margin-top: 45vh;
-        margin-bottom: 0;
-        /* Push start below map */
+        padding: 40vh var(--spacing-md) 4rem;
+        margin-top: 0;
+        z-index: 20;
     }
 
     .narrative-step {
-        /* Snaps to viewport on mobile per requirements */
-        scroll-snap-align: center;
-        min-height: 100vh;
+        scroll-snap-align: start;
+        min-height: 60vh;
         align-items: flex-start;
-        /* Align to top over map */
-        padding-top: 15vh;
-        padding-bottom: 10vh;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
     }
 
     .step-content {
         padding: var(--spacing-md);
+        background: var(--bg-color);
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
     }
 }
 
@@ -212,11 +215,12 @@
 
     /* Give sticky container more room on mobile to prevent squishing the 3 cards */
     .map-sticky {
-        height: 52vh;
+        height: 48vh;
     }
 
     .narrative-scroll {
-        margin-top: 52vh;
+        padding-top: 48vh;
+        margin-top: 0;
     }
 }
 
@@ -249,10 +253,11 @@
     }
 
     .map-sticky {
-        height: 55vh;
+        height: 50vh;
     }
 
     .narrative-scroll {
-        margin-top: 55vh;
+        padding-top: 50vh;
+        margin-top: 0;
     }
 }
