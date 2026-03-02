@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 // Heatmap using a simple CSS Grid abstraction of Brazil for "ultra-lightweight"
 // D3 geographical projection is heavy, so we map UF abbreviations to generic blocks.
-const StateHeatmap = ({ data, filters }) => {
+const StateHeatmap = ({ data, filters, onStateClick }) => {
     const stateVolumes = useMemo(() => {
         const volumes = {};
         const isFilteringSpecificState = filters?.uf && filters.uf !== 'Todos';
@@ -63,6 +63,12 @@ const StateHeatmap = ({ data, filters }) => {
                                 className={`heatmap-cell ${!uf ? 'empty-cell' : ''}`}
                                 style={uf ? getStyle(uf) : {}}
                                 title={uf ? `${uf}: ${stateVolumes[uf] || 0} médicos` : ''}
+                                onClick={() => {
+                                    if (uf && onStateClick) {
+                                        // Se clicar no estado que já está selecionado, volta para "Todos"
+                                        onStateClick(uf === filters?.uf ? 'Todos' : uf);
+                                    }
+                                }}
                             >
                                 {uf}
                             </div>

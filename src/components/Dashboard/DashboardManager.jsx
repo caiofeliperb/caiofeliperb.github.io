@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useData } from '../../hooks/useData';
+import { ufData } from '../../data/ufData';
 import KPIs from './KPIs';
 import StateHeatmap from './StateHeatmap';
 import StackedBar from './StackedBar';
@@ -213,7 +214,6 @@ const DashboardManager = () => {
                         <div className="filter-summary">
                             Mostrando <strong>
                                 {(() => {
-                                    // Verify if we can use the absolute 468 total from requirements
                                     const noSpecificFilters = (
                                         filters.uf === 'Todos' &&
                                         filters.social === 'Todos' &&
@@ -221,7 +221,22 @@ const DashboardManager = () => {
                                         filters.rqe === 'Todos' &&
                                         filters.especialidade === 'Todas'
                                     );
-                                    return noSpecificFilters ? 468 : filteredData.length;
+
+                                    const onlyUfFilter = (
+                                        filters.uf !== 'Todos' &&
+                                        filters.social === 'Todos' &&
+                                        filters.ano === 'Todos' &&
+                                        filters.rqe === 'Todos' &&
+                                        filters.especialidade === 'Todas'
+                                    );
+
+                                    if (noSpecificFilters) return 468;
+
+                                    if (onlyUfFilter && ufData[filters.uf]) {
+                                        return ufData[filters.uf].total;
+                                    }
+
+                                    return filteredData.length;
                                 })()}
                             </strong> egressos
                         </div>
@@ -234,7 +249,7 @@ const DashboardManager = () => {
 
                     <div className="dashboard-charts-row">
                         <div className="dashboard-card glass-panel flex-1">
-                            <StateHeatmap data={filteredData} filters={filters} />
+                            <StateHeatmap data={filteredData} filters={filters} onStateClick={(uf) => handleFilterChange('uf', uf)} />
                         </div>
                         <div className="dashboard-card glass-panel flex-2">
                             <StackedBar data={filteredData} filters={filters} />
