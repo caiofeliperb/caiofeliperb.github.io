@@ -6,133 +6,108 @@ import './NarrativeMap.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Donut Component for reusable, smooth circular charts
+const Donut = ({ percentage, color, id }) => {
+    const radius = 40;
+    const circ = 2 * Math.PI * radius; // Approx 251.32
+
+    return (
+        <svg width="100" height="100" viewBox="0 0 100 100" style={{ filter: 'drop-shadow(0px 4px 6px rgba(0,0,0,0.05))', overflow: 'visible' }}>
+            <circle cx="50" cy="50" r={radius} stroke="rgba(0,0,0,0.06)" strokeWidth="12" fill="none" />
+            <circle
+                className={`donut-path-${id}`}
+                cx="50" cy="50" r={radius}
+                stroke={color}
+                strokeWidth="12"
+                fill="none"
+                strokeDasharray={circ}
+                strokeDashoffset={circ}
+                strokeLinecap="round"
+                transform="rotate(-90 50 50)"
+            />
+        </svg>
+    );
+};
+
 const NarrativeMap = () => {
     const containerRef = useRef(null);
-    const mapRef = useRef(null);
-    const svgContainerRef = useRef(null);
     const stepsRef = useRef([]);
-    // Refs for SVG elements
-    const pathMossoroRef = useRef(null);
-    const pathNatalRef = useRef(null);
-    const pathCERef = useRef(null);
-    const pathPBRef = useRef(null);
-    const pathPERef = useRef(null);
-    const pathNYRef = useRef(null);
-
-    const labelRNRef = useRef(null);
-    const labelNERef = useRef(null);
-    const gMapRef = useRef(null);
 
     useEffect(() => {
-        const paths = [pathMossoroRef, pathNatalRef, pathCERef, pathPBRef, pathPERef, pathNYRef];
-
-        paths.forEach(pRef => {
-            if (pRef.current) {
-                const length = pRef.current.getTotalLength() || 1500;
-                // Save original length for precise toggles
-                pRef.current.dataset.length = length;
-                gsap.set(pRef.current, { strokeDasharray: length, strokeDashoffset: length });
-            }
-        });
-
-        // Hide data labels and NY elements initially
-        gsap.set([labelRNRef.current, labelNERef.current, document.getElementById('ny-dot'), document.getElementById('ny-text'), pathNYRef.current], { opacity: 0 });
-        gsap.set([labelRNRef.current, labelNERef.current, document.getElementById('ny-dot'), document.getElementById('ny-text')], { scale: 0.8 });
-
-        // Initial Map Transform
-        gsap.set(gMapRef.current, { scale: 0.85, transformOrigin: 'center center', opacity: 0.3 });
-
         const mm = gsap.matchMedia();
+        const circ = 2 * Math.PI * 40; // 251.32
 
-        // Scrollytelling Triggers using MatchMedia for correct cleanup
+        // Initial setup for Cards and Donuts (hide and reset)
+        gsap.set('.card-rn', { opacity: 0, y: 30, scale: 0.95 });
+        gsap.set('.cards-expandable', { height: 0, opacity: 0, marginTop: 0 });
+        gsap.set('.donut-path-rn, .donut-path-ne', { strokeDashoffset: circ });
+
         mm.add("(min-width: 0px)", () => {
-
-            // Map general appearance bound to scrub scroll
-            gsap.to(gMapRef.current, {
-                opacity: 1,
-                scale: 1,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top 70%",
-                    end: "top 20%",
-                    scrub: true
-                }
-            });
-
-            // Animate based on step entering
-            stepsRef.current.forEach((step, i) => {
-                if (!step) return;
+            // First text block (RN Focus)
+            if (stepsRef.current[1]) {
                 ScrollTrigger.create({
-                    trigger: step,
-                    start: "top 60%", // Activate when step card hits 60% of viewport
-                    end: "bottom center",
-                    onEnter: () => animateStep(i + 1), // Offset index since array starts at index 1 for scrolling
-                    onEnterBack: () => animateStep(i + 1),
+                    trigger: stepsRef.current[1],
+                    start: "top 60%",
+                    onEnter: () => animateStep(1),
+                    onLeaveBack: () => animateStep(0),
                 });
-            });
+            }
 
-            // Trigger step 0 immediately if already in view
+            // Second text block (NE + NY)
+            if (stepsRef.current[2]) {
+                ScrollTrigger.create({
+                    trigger: stepsRef.current[2],
+                    start: "top 60%",
+                    onEnter: () => animateStep(2),
+                    onLeaveBack: () => animateStep(1),
+                });
+            }
+
+            // Intro step trigger
             ScrollTrigger.create({
                 trigger: ".narrative-intro",
                 start: "top bottom",
                 onEnter: () => animateStep(0),
                 onEnterBack: () => animateStep(0)
-            })
+            });
         });
 
-        // Ensure visible initially if it's high enough on load
-        gsap.set(svgContainerRef.current, { opacity: 1 });
+        // The animation logic switching cards based on the active step
+        const animateStep = (index) => {
+            if (index === 0) {
+                // Step 0: Intro. Cards are dim, rings are empty.
+                gsap.to('.card-rn', { opacity: 0, y: 30, scale: 0.95, duration: 0.6, ease: "power2.out", overwrite: "auto" });
+                gsap.to('.cards-expandable', { height: 0, opacity: 0, marginTop: 0, duration: 0.6, ease: "power2.out", overwrite: "auto" });
+                gsap.to('.donut-path-rn, .donut-path-ne', { strokeDashoffset: circ, duration: 0.8, ease: "power2.inOut", overwrite: "auto" });
+
+            } else if (index === 1) {
+                // Step 1: Nossas Raízes Fortes (RN Focus)
+                // Highlight RN Card beautifully, hide the rest
+                gsap.to('.card-rn', { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out", overwrite: "auto" });
+                gsap.to('.cards-expandable', { height: 0, opacity: 0, marginTop: 0, duration: 0.6, ease: "power2.out", overwrite: "auto" });
+
+                // Animate RN Donut
+                gsap.to('.donut-path-rn', { strokeDashoffset: circ - (circ * 0.845), duration: 1.5, ease: "power3.out", overwrite: "auto" });
+                gsap.to('.donut-path-ne', { strokeDashoffset: circ, duration: 0.8, overwrite: "auto" });
+
+            } else if (index === 2) {
+                // Step 2: Do Nordeste para o Mundo (NE + NY Focus)
+                // Dim RN slightly, expand container to reveal NE and NY
+                gsap.to('.card-rn', { opacity: 0.8, scale: 0.98, duration: 0.6, overwrite: "auto" });
+
+                gsap.to('.cards-expandable', { height: 'auto', opacity: 1, marginTop: '1.5rem', duration: 0.8, ease: "power3.inOut", overwrite: "auto" });
+
+                // Maintain RN Donut filled, animate NE Donut
+                gsap.to('.donut-path-rn', { strokeDashoffset: circ - (circ * 0.845), duration: 0.5, overwrite: "auto" });
+                gsap.to('.donut-path-ne', { strokeDashoffset: circ - (circ * 0.80), duration: 1.5, ease: "power3.out", overwrite: "auto", delay: 0.3 });
+            }
+        };
 
         return () => {
             ScrollTrigger.getAll().forEach(t => t.kill());
             mm.revert();
         };
     }, []);
-
-    const animateStep = (index) => {
-        if (index === 0) {
-            // Step 1: Base - Reset globally, keep SVG map visible but clean
-            gsap.to([pathMossoroRef.current, pathNatalRef.current, pathCERef.current, pathPBRef.current, pathPERef.current, pathNYRef.current], {
-                strokeDashoffset: (i, target) => target.dataset.length || 1500,
-                duration: 0.8, ease: "power2.out", overwrite: "auto"
-            });
-            gsap.to([labelRNRef.current, labelNERef.current, document.getElementById('ny-dot'), document.getElementById('ny-text'), pathNYRef.current], { opacity: 0, scale: 0.8, duration: 0.5, overwrite: "auto" });
-
-        } else if (index === 1) {
-            // Step 2: RN Focus (Mossoró and Natal)
-            // Show base paths and animate local
-            gsap.to([pathMossoroRef.current, pathNatalRef.current], {
-                strokeDashoffset: 0, duration: 1.5, ease: "power2.inOut", overwrite: "auto"
-            });
-            // O texto 84.5% no RN surge aqui
-            gsap.to(labelRNRef.current, { opacity: 1, scale: 1, duration: 0.8, delay: 0.3, ease: "back.out(1.5)", overwrite: "auto" });
-
-            // Hide global - GARANTINDO QUE NY SUME E SÓ APAREÇA DEPOIS
-            gsap.to([pathCERef.current, pathPBRef.current, pathPERef.current, pathNYRef.current], {
-                strokeDashoffset: (i, target) => target.dataset.length || 1500,
-                duration: 0.8, overwrite: "auto"
-            });
-            gsap.to([labelNERef.current, document.getElementById('ny-dot'), document.getElementById('ny-text'), pathNYRef.current], { opacity: 0, scale: 0.8, duration: 0.5, overwrite: "auto" });
-
-        } else if (index === 2) {
-            // Step 3: BR/NY Expansion
-            gsap.to(pathMossoroRef.current, { strokeDashoffset: 0, duration: 0.5, overwrite: "auto" });
-            gsap.to(pathNatalRef.current, { strokeDashoffset: 0, duration: 0.5, overwrite: "auto" });
-            gsap.to(labelRNRef.current, { opacity: 1, scale: 1, duration: 0.5, overwrite: "auto" });
-
-            gsap.to([pathCERef.current, pathPBRef.current, pathPERef.current], {
-                strokeDashoffset: 0, duration: 2, ease: "power2.out", overwrite: "auto"
-            });
-
-            // O texto de 80% do NE só surge AGORA JUNTO com Nova York, no Step 3 de expansão
-            gsap.to(labelNERef.current, { opacity: 1, scale: 1, duration: 1.2, delay: 0.5, ease: "power2.out", overwrite: "auto" });
-
-            // NY Line gets opacity 1, and drawing starts properly
-            gsap.to([document.getElementById('ny-dot'), document.getElementById('ny-text')], { opacity: 1, scale: 1, duration: 1.5, delay: 0.5, ease: "power2.out", overwrite: "auto" });
-            gsap.to(pathNYRef.current, { opacity: 1, strokeDashoffset: 0, duration: 3, ease: "power2.inOut", delay: 0.5, overwrite: "auto" });
-        }
-    };
 
     const steps = [
         {
@@ -151,8 +126,7 @@ const NarrativeMap = () => {
 
     return (
         <section className="narrative-section" ref={containerRef}>
-
-            {/* INTRO CARD - ALWAYS 100% WIDTH, BEFORE MAP  */}
+            {/* INTRO CARD - ALWAYS 100% WIDTH */}
             <div className="narrative-intro container">
                 <div className="step-content glass-panel" style={{ opacity: 0.95, margin: '2rem auto', maxWidth: '800px', textAlign: 'center' }}>
                     <div className="step-icon" style={{ margin: '0 auto 1rem' }}>
@@ -163,93 +137,69 @@ const NarrativeMap = () => {
                 </div>
             </div>
 
-            {/* Wrapper for the SCROLLY parts only */}
-            <div className="narrative-map-wrapper">
-                {/* Sticky Map Container */}
-                <div className="map-sticky" ref={mapRef}>
-                    <div className="map-wrapper glass-panel" style={{ position: 'relative', zIndex: 2 }}>
-                        {/* SVG Map Container */}
-                        <div ref={svgContainerRef} style={{ width: '100%', height: '100%', opacity: 0 }}>
-                            <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" className="map-svg">
-                                <defs>
-                                    <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stopColor="var(--color-primary-light)" />
-                                        <stop offset="100%" stopColor="var(--color-secondary)" />
-                                    </linearGradient>
-                                    <linearGradient id="nyGradient" x1="100%" y1="100%" x2="0%" y2="0%">
-                                        <stop offset="0%" stopColor="var(--color-primary-light)" />
-                                        <stop offset="100%" stopColor="var(--color-accent)" />
-                                    </linearGradient>
-                                    <filter id="glow">
-                                        <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                                        <feMerge>
-                                            <feMergeNode in="coloredBlur" />
-                                            <feMergeNode in="SourceGraphic" />
-                                        </feMerge>
-                                    </filter>
-                                    <pattern id="dotGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                        <circle cx="2" cy="2" r="1.5" fill="rgba(255, 255, 255, 0.05)" />
-                                    </pattern>
-                                    <path id="brShape" d="M 450 100 L 750 20 L 950 220 L 700 550 L 400 450 L 250 300 Z" />
-                                </defs>
+            <div className="narrative-map-wrapper container">
+                {/* Sticky Right Container for Infographics */}
+                <div className="map-sticky" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
-                                {/* Background Map Styling */}
-                                <rect width="100%" height="100%" fill="url(#dotGrid)" />
-                                <g ref={gMapRef}>
-                                    <use href="#brShape" fill="rgba(30, 41, 59, 0.4)" stroke="rgba(255, 255, 255, 0.03)" strokeWidth="2" />
-                                    <polygon points="650,80 920,100 950,220 800,450 550,250" fill="rgba(14, 165, 233, 0.03)" stroke="rgba(14, 165, 233, 0.2)" strokeWidth="1" strokeDasharray="4 4" />
-                                    <text x="600" y="350" fill="rgba(255,255,255,0.05)" fontSize="32" fontWeight="600" style={{ letterSpacing: '8px', textTransform: 'uppercase' }}>Brasil</text>
+                    <div className="infographics-wrapper" style={{ display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '550px', padding: '1rem' }}>
 
-                                    {/* Origin Point: Mossoró RN */}
-                                    <circle cx="750" cy="200" r="10" fill="var(--color-primary)" filter="url(#glow)" />
-                                    <text x="765" y="205" fill="var(--text-main)" fontSize="18" fontWeight="600" className="map-label">UERN Mossoró</text>
-
-                                    {/* Path inside Mossoró (Simulated loop/stay) */}
-                                    <path ref={pathMossoroRef} d="M 750 200 C 720 180 730 230 750 200" fill="none" stroke="var(--color-primary-light)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" />
-
-                                    {/* Path to Natal */}
-                                    <path ref={pathNatalRef} d="M 750 200 Q 800 210 850 240" fill="none" stroke="url(#pathGradient)" strokeWidth="4" filter="url(#glow)" strokeLinecap="round" />
-                                    <circle cx="850" cy="240" r="6" fill="var(--color-secondary)" />
-                                    <text x="865" y="245" fill="var(--text-muted)" fontSize="14" className="map-label">Natal</text>
-
-                                    {/* Paths to CE, PE, PB */}
-                                    {/* CE (Fortaleza) */}
-                                    <path ref={pathCERef} d="M 750 200 Q 700 160 630 140" fill="none" stroke="url(#pathGradient)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" />
-                                    <circle cx="630" cy="140" r="5" fill="var(--color-secondary)" />
-                                    <text x="610" y="130" fill="var(--text-muted)" fontSize="13" className="map-label">CE</text>
-
-                                    {/* PB (João Pessoa) */}
-                                    <path ref={pathPBRef} d="M 750 200 Q 820 280 870 300" fill="none" stroke="url(#pathGradient)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" />
-                                    <circle cx="870" cy="300" r="5" fill="var(--color-secondary)" />
-                                    <text x="885" y="305" fill="var(--text-muted)" fontSize="13" className="map-label">PB</text>
-
-                                    {/* PE (Recife) */}
-                                    <path ref={pathPERef} d="M 750 200 Q 800 320 850 370" fill="none" stroke="url(#pathGradient)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" />
-                                    <circle cx="850" cy="370" r="5" fill="var(--color-secondary)" />
-                                    <text x="865" y="375" fill="var(--text-muted)" fontSize="13" className="map-label">PE</text>
-
-                                    {/* Long Path to New York - Origem em 750,200 (certificando ponto exato) */}
-                                    <path ref={pathNYRef} d="M 750 200 C 600 -50 400 -50 200 150" fill="none" stroke="var(--color-accent)" strokeWidth="3" filter="url(#glow)" strokeLinecap="round" opacity="0" />
-                                    <circle cx="200" cy="150" r="6" fill="var(--color-accent)" filter="url(#glow)" id="ny-dot" opacity="0" />
-                                    <text x="130" y="140" fill="var(--color-accent)" fontSize="16" fontWeight="600" className="map-label" id="ny-text" opacity="0">Nova York</text>
-
-                                    {/* DATA HIGHLIGHTS */}
-                                    <g ref={labelRNRef} style={{ transformOrigin: '780px 180px' }}>
-                                        <rect x="620" y="140" width="310" height="40" rx="20" fill="rgba(14, 165, 233, 0.2)" stroke="var(--color-primary-light)" />
-                                        <text x="775" y="165" fill="var(--text-main)" fontSize="13" fontWeight="700" textAnchor="middle">84.5% iniciam a atuação no RN (n=164)</text>
-                                    </g>
-
-                                    <g ref={labelNERef} style={{ transformOrigin: '700px 300px', opacity: 0 }}>
-                                        <rect x="580" y="450" width="220" height="40" rx="20" fill="rgba(16, 185, 129, 0.2)" stroke="var(--color-secondary)" />
-                                        <text x="690" y="475" fill="var(--text-main)" fontSize="14" fontWeight="700" textAnchor="middle">~80% permanecem no Nordeste</text>
-                                    </g>
-                                </g>
-                            </svg>
+                        {/* Card 1: RN */}
+                        <div className="info-card card-rn" style={{
+                            display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '1.8rem 1.5rem',
+                            background: '#eff6ff', borderRadius: '24px', border: '1px solid #bfdbfe',
+                            boxShadow: '0 10px 30px -10px rgba(14, 165, 233, 0.2)'
+                        }}>
+                            <Donut percentage={84.5} color="#2563eb" id="rn" />
+                            <div style={{ paddingLeft: '0.5rem' }}>
+                                <h3 style={{ fontSize: '3.6rem', fontWeight: '900', color: '#1d4ed8', lineHeight: 1, margin: 0, letterSpacing: '-2px' }}>
+                                    84,5%
+                                </h3>
+                                <p style={{ fontSize: '1.3rem', color: '#1e3a8a', margin: '0.4rem 0 0', fontWeight: '700', lineHeight: 1.1 }}>
+                                    Iniciam a atuação no RN
+                                </p>
+                            </div>
                         </div>
+
+                        {/* Expandable Wrapper for Card 2 and 3 */}
+                        <div className="cards-expandable" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', overflow: 'hidden', height: 0, opacity: 0, marginTop: 0 }}>
+                            {/* Card 2: Nordeste */}
+                            <div className="info-card card-ne" style={{
+                                display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '1.8rem 1.5rem',
+                                background: '#f0fdf4', borderRadius: '24px', border: '1px solid #bbf7d0',
+                                boxShadow: '0 10px 30px -10px rgba(16, 185, 129, 0.2)'
+                            }}>
+                                <Donut percentage={80} color="#10b981" id="ne" />
+                                <div style={{ paddingLeft: '0.5rem' }}>
+                                    <h3 style={{ fontSize: '3.6rem', fontWeight: '900', color: '#047857', lineHeight: 1, margin: 0, letterSpacing: '-2px' }}>
+                                        ~80%
+                                    </h3>
+                                    <p style={{ fontSize: '1.3rem', color: '#064e3b', margin: '0.4rem 0 0', fontWeight: '700', lineHeight: 1.1 }}>
+                                        Permanecem no Nordeste
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Card 3: Mundo */}
+                            <div className="info-card card-ny" style={{
+                                display: 'flex', alignItems: 'center', gap: '1.2rem', padding: '1.2rem 1.8rem',
+                                background: '#ffffff', borderRadius: '20px', border: '2px dashed #cbd5e1'
+                            }}>
+                                <div style={{ flex: '0 0 45px', display: 'flex', justifyContent: 'center' }}>
+                                    <span style={{ fontSize: '2.4rem' }}>💡</span>
+                                </div>
+                                <div>
+                                    <p style={{ fontSize: '1.1rem', color: '#475569', margin: 0, fontWeight: '500', lineHeight: 1.4 }}>
+                                        O impacto transcende fronteiras, chegando até a <strong>Nova York, EUA</strong>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
 
-                {/* Scrolling Text Blocks */}
+                {/* Scrolling Text Blocks (Left) */}
                 <div className="narrative-scroll">
                     {steps.slice(1).map((step, i) => (
                         <div
@@ -267,7 +217,6 @@ const NarrativeMap = () => {
                         </div>
                     ))}
                 </div>
-                {/* End wrapper */}
             </div>
         </section>
     );

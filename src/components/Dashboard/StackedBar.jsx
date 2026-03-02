@@ -9,17 +9,17 @@ const CUSTOM_SUB_SPECIALTY_COLORS = {
     "otorrinolaringologia": "#922B21", // Vinho Tinto
 
     "clínica médica": "#007FFF", // Azul Azure
-    "psiquiatria": "#FFEB3B", // Amarelo Brilhante
+    "psiquiatria": "#1E3A8A", // Azul Escuro Profundo
     "dermatologia": "#9C27B0", // Roxo Magenta
     "endocrinologia e metabologia": "#FF9800", // Laranja Vibrante
     "cardiologia": "#00BCD4", // Azul Ciano
     "reumatologia": "#F44336", // Vermelho Vivo
-    "hematologia e hemoterapia": "#9E9E9E", // Cinza Médio
+    "hematologia e hemoterapia": "#DC2626", // Vermelho Carmesim
     "nefrologia": "#CDDC39", // Verde Lima
     "gastroenterologia": "#795548", // Marrom Escuro
 
     "neurologia": "#8A2BE2", // Blue Violet
-    "infectologia": "#FF0000", // Red
+    "infectologia": "#10B981", // Verde Esmeralda
 
     "neurocirurgia": "#007FFF", // Azul Azure
     "cirurgia geral": "#86A18C", // Verde Musgo Suave

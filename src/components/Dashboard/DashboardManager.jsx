@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useData } from '../../hooks/useData';
 import { ufData } from '../../data/ufData';
+import { formaturasData } from '../../data/formaturasData';
 import KPIs from './KPIs';
 import StateHeatmap from './StateHeatmap';
 import StackedBar from './StackedBar';
@@ -230,10 +231,22 @@ const DashboardManager = () => {
                                         filters.especialidade === 'Todas'
                                     );
 
+                                    const onlyAnoFilter = (
+                                        filters.ano !== 'Todos' &&
+                                        filters.uf === 'Todos' &&
+                                        filters.social === 'Todos' &&
+                                        filters.rqe === 'Todos' &&
+                                        filters.especialidade === 'Todas'
+                                    );
+
                                     if (noSpecificFilters) return 468;
 
                                     if (onlyUfFilter && ufData[filters.uf]) {
                                         return ufData[filters.uf].total;
+                                    }
+
+                                    if (onlyAnoFilter && formaturasData[filters.ano]) {
+                                        return formaturasData[filters.ano].total;
                                     }
 
                                     return filteredData.length;

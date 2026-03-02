@@ -154,3 +154,105 @@
         padding: var(--spacing-md);
     }
 }
+
+/* Info Cards Specific Adjustments */
+@media (max-width: 1024px) {
+    .info-card h3 {
+        font-size: 2.2rem !important;
+    }
+
+    .info-card p,
+    .card-ny p {
+        font-size: 1.1rem !important;
+    }
+
+    .info-card svg {
+        width: 70px !important;
+        height: 70px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .infographics-wrapper {
+        gap: 0.8rem !important;
+        padding: 0 !important;
+        justify-content: flex-start !important;
+    }
+
+    .info-card {
+        padding: 1rem 1.2rem !important;
+        gap: 1rem !important;
+        border-radius: 16px !important;
+    }
+
+    .info-card h3 {
+        font-size: 1.8rem !important;
+        letter-spacing: -1px !important;
+    }
+
+    .info-card p,
+    .card-ny p {
+        font-size: 0.95rem !important;
+        line-height: 1.15 !important;
+    }
+
+    .info-card svg {
+        width: 55px !important;
+        height: 55px !important;
+    }
+
+    .card-ny span {
+        font-size: 1.8rem !important;
+    }
+
+    .card-ny>div:first-child {
+        flex: 0 0 35px !important;
+        height: 35px !important;
+    }
+
+    /* Give sticky container more room on mobile to prevent squishing the 3 cards */
+    .map-sticky {
+        height: 52vh;
+    }
+
+    .narrative-scroll {
+        margin-top: 52vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .infographics-wrapper {
+        gap: 0.6rem !important;
+    }
+
+    .info-card {
+        padding: 0.8rem 1rem !important;
+        gap: 0.8rem !important;
+    }
+
+    .info-card h3 {
+        font-size: 1.5rem !important;
+    }
+
+    .info-card p,
+    .card-ny p {
+        font-size: 0.85rem !important;
+    }
+
+    .info-card svg {
+        width: 45px !important;
+        height: 45px !important;
+    }
+
+    .card-ny span {
+        font-size: 1.4rem !important;
+    }
+
+    .map-sticky {
+        height: 55vh;
+    }
+
+    .narrative-scroll {
+        margin-top: 55vh;
+    }
+}
