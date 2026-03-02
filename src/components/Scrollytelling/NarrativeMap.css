@@ -34,6 +34,7 @@
     justify-content: center;
     padding: var(--spacing-lg);
     z-index: var(--z-base);
+    will-change: transform, opacity;
 }
 
 .map-wrapper {
@@ -62,6 +63,8 @@
     padding: 2rem 5%;
     display: flex;
     flex-direction: column;
+    gap: 0;
+    row-gap: 0;
     position: relative;
     z-index: var(--z-content);
 }
@@ -72,7 +75,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-xl) 0;
+    padding: 0;
 }
 
 .step-content {
@@ -80,6 +83,7 @@
     transition: transform var(--transition-normal);
     width: 100%;
     box-sizing: border-box;
+    will-change: transform, opacity;
 }
 
 .step-icon {
@@ -153,10 +157,10 @@
 
     .narrative-step {
         /* Pushes text lower to not overlap with sticky map */
-        min-height: 100vh;
+        min-height: 70vh;
         align-items: flex-start;
-        padding-top: 50vh;
-        padding-bottom: 20vh;
+        padding-top: 30vh;
+        padding-bottom: 2vh;
     }
 
     .step-content {
