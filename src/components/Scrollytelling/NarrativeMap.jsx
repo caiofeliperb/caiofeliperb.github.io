@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MapPin, ArrowUpRight, Stethoscope } from 'lucide-react';
@@ -81,7 +81,7 @@ const NarrativeMap = () => {
                 gsap.to('.donut-path-rn, .donut-path-ne', { strokeDashoffset: circ, duration: 0.8, ease: "power2.inOut", overwrite: "auto" });
 
             } else if (index === 1) {
-                // Step 1: Nossas Ra├¡zes Fortes (RN Focus)
+                // Step 1: Nossas Raízes Fortes (RN Focus)
                 // Highlight RN Card beautifully, hide the rest
                 gsap.to('.card-rn', { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out", overwrite: "auto" });
                 gsap.to('.cards-expandable', { height: 0, opacity: 0, marginTop: 0, duration: 0.6, ease: "power2.out", overwrite: "auto" });
@@ -112,15 +112,15 @@ const NarrativeMap = () => {
     const steps = [
         {
             title: "O Ponto de Partida",
-            description: "Vestimos o jaleco de pesquisadores! Lan├ºamos um formul├írio detalhado que nos rendeu 194 respostas. Para completar a busca e garantir o quadro geral, recorremos aos dados do CFM, conseguindo mapear 468 egressos formados entre 2010 e 2024."
+            description: "Vestimos o jaleco de pesquisadores! Lançamos um formulário detalhado que nos rendeu 194 respostas. Para completar a busca e garantir o quadro geral, recorremos aos dados do CFM, conseguindo mapear 468 egressos formados entre 2010 e 2024."
         },
         {
-            title: "Nossas Ra├¡zes Fortes",
-            description: "O chamado da nossa terra fala mais alto! Entre os que responderam ├á pesquisa, 84,5% (n=164) escolheram dar seus primeiros passos profissionais aqui mesmo, no RN. ├ë o compromisso de fincar ra├¡zes e cuidar da nossa gente, com forte atua├º├úo em Mossor├│ e Natal."
+            title: "Nossas Raízes Fortes",
+            description: "O chamado da nossa terra fala mais alto! Entre os que responderam à pesquisa, 84,5% (n=164) escolheram dar seus primeiros passos profissionais aqui mesmo, no RN. É o compromisso de fincar raízes e cuidar da nossa gente, com forte atuação em Mossoró e Natal."
         },
         {
             title: "Do Nordeste para o Mundo",
-            description: "Quase 80% dos nossos 545 registros ativos est├úo concentrados no Rio Grande do Norte, Cear├í, Pernambuco e Para├¡ba. Mas o cuidado n├úo tem fronteiras: temos at├® egresso voando alto em Nova York!"
+            description: "Quase 80% dos nossos 545 registros ativos estão concentrados no Rio Grande do Norte, Ceará, Pernambuco e Paraíba. Mas o cuidado não tem fronteiras: temos até egresso voando alto em Nova York!"
         }
     ];
 
@@ -155,7 +155,7 @@ const NarrativeMap = () => {
                                     84,5%
                                 </h3>
                                 <p style={{ fontSize: '1.3rem', color: '#1e3a8a', margin: '0.4rem 0 0', fontWeight: '700', lineHeight: 1.1 }}>
-                                    Iniciam a atua├º├úo no RN
+                                    Iniciam a atuação no RN
                                 </p>
                             </div>
                         </div>
@@ -185,11 +185,11 @@ const NarrativeMap = () => {
                                 background: '#ffffff', borderRadius: '20px', border: '2px dashed #cbd5e1'
                             }}>
                                 <div style={{ flex: '0 0 45px', display: 'flex', justifyContent: 'center' }}>
-                                    <span style={{ fontSize: '2.4rem' }}>­ƒÆí</span>
+                                    <span style={{ fontSize: '2.4rem' }}>💡</span>
                                 </div>
                                 <div>
                                     <p style={{ fontSize: '1.1rem', color: '#475569', margin: 0, fontWeight: '500', lineHeight: 1.4 }}>
-                                        O impacto transcende fronteiras, chegando at├® a <strong>Nova York, EUA</strong>.
+                                        O impacto transcende fronteiras, chegando até a <strong>Nova York, EUA</strong>.
                                     </p>
                                 </div>
                             </div>

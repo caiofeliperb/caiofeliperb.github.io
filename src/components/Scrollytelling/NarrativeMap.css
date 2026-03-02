@@ -1,4 +1,4 @@
-﻿.narrative-section {
+.narrative-section {
     position: relative;
     background-color: var(--bg-color);
 }
@@ -118,52 +118,40 @@
 }
 
 @media (max-width: 768px) {
-    .narrative-intro {
-        min-height: auto;
-        padding: 5rem 1rem 3rem 1rem;
-    }
-
     .narrative-map-wrapper {
         flex-direction: column;
-        padding-bottom: 15vh;
-        /* Stops the sticky map earlier */
     }
 
     /* On mobile, map takes top half and sticks */
     .map-sticky {
         width: 100%;
-        height: auto;
-        max-height: 48vh;
-        /* Limit expansion */
+        height: 45vh;
+        /* Takes 45% of height */
         padding: var(--spacing-sm);
-        margin-bottom: 2rem;
         top: 0;
         bottom: auto;
-        z-index: 20;
-        background: var(--bg-color);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .narrative-scroll {
         width: 100%;
         padding: 0 var(--spacing-md);
-        margin-top: 0;
+        margin-top: 45vh;
+        margin-bottom: 0;
+        /* Push start below map */
     }
 
     .narrative-step {
-        /* Pushes text lower to not overlap with sticky map */
+        /* Snaps to viewport on mobile per requirements */
+        scroll-snap-align: center;
         min-height: 100vh;
         align-items: flex-start;
-        padding-top: 50vh;
-        padding-bottom: 20vh;
+        /* Align to top over map */
+        padding-top: 15vh;
+        padding-bottom: 10vh;
     }
 
     .step-content {
-        padding: var(--spacing-lg) var(--spacing-md);
-        background: var(--bg-surface);
-        box-shadow: var(--glass-shadow);
-        border-radius: 16px;
+        padding: var(--spacing-md);
     }
 }
 
@@ -186,28 +174,69 @@
 
 @media (max-width: 768px) {
     .infographics-wrapper {
-        gap: 0.5rem !important;
+        gap: 0.8rem !important;
         padding: 0 !important;
         justify-content: flex-start !important;
     }
 
     .info-card {
-        padding: 0.8rem 1rem !important;
-        gap: 0.8rem !important;
-        border-radius: 12px !important;
+        padding: 1rem 1.2rem !important;
+        gap: 1rem !important;
+        border-radius: 16px !important;
     }
 
     .info-card h3 {
-        font-size: 1.6rem !important;
+        font-size: 1.8rem !important;
         letter-spacing: -1px !important;
-        margin-bottom: 0 !important;
+    }
+
+    .info-card p,
+    .card-ny p {
+        font-size: 0.95rem !important;
+        line-height: 1.15 !important;
+    }
+
+    .info-card svg {
+        width: 55px !important;
+        height: 55px !important;
+    }
+
+    .card-ny span {
+        font-size: 1.8rem !important;
+    }
+
+    .card-ny>div:first-child {
+        flex: 0 0 35px !important;
+        height: 35px !important;
+    }
+
+    /* Give sticky container more room on mobile to prevent squishing the 3 cards */
+    .map-sticky {
+        height: 52vh;
+    }
+
+    .narrative-scroll {
+        margin-top: 52vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .infographics-wrapper {
+        gap: 0.6rem !important;
+    }
+
+    .info-card {
+        padding: 0.8rem 1rem !important;
+        gap: 0.8rem !important;
+    }
+
+    .info-card h3 {
+        font-size: 1.5rem !important;
     }
 
     .info-card p,
     .card-ny p {
         font-size: 0.85rem !important;
-        line-height: 1.1 !important;
-        margin-top: 0.2rem !important;
     }
 
     .info-card svg {
@@ -216,42 +245,14 @@
     }
 
     .card-ny span {
-        font-size: 1.5rem !important;
+        font-size: 1.4rem !important;
     }
 
-    .card-ny>div:first-child {
-        flex: 0 0 30px !important;
-        height: 30px !important;
+    .map-sticky {
+        height: 55vh;
     }
 
-}
-
-@media (max-width: 480px) {
-    .infographics-wrapper {
-        gap: 0.4rem !important;
+    .narrative-scroll {
+        margin-top: 55vh;
     }
-
-    .info-card {
-        padding: 0.6rem 0.8rem !important;
-        gap: 0.6rem !important;
-    }
-
-    .info-card h3 {
-        font-size: 1.3rem !important;
-    }
-
-    .info-card p,
-    .card-ny p {
-        font-size: 0.75rem !important;
-    }
-
-    .info-card svg {
-        width: 35px !important;
-        height: 35px !important;
-    }
-
-    .card-ny span {
-        font-size: 1.2rem !important;
-    }
-
 }
