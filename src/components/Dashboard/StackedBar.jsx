@@ -1,23 +1,71 @@
 import React, { useMemo, useRef, useEffect } from 'react';
 import * as d3 from 'd3';
 
-const StackedBar = ({ data }) => {
+const CUSTOM_SUB_SPECIALTY_COLORS = {
+    "oftalmologia": "#2A5C8A", // Azul Safira
+    "anestesiologia": "#E67E22", // Coral Suave
+    "ginecologia e obstetrícia": "#27AE60", // Verde Esmeralda
+    "ortopedia e traumatologia": "#4D5656", // Cinza Grafite
+    "otorrinolaringologia": "#922B21", // Vinho Tinto
+
+    "clínica médica": "#007FFF", // Azul Azure
+    "psiquiatria": "#FFEB3B", // Amarelo Brilhante
+    "dermatologia": "#9C27B0", // Roxo Magenta
+    "endocrinologia e metabologia": "#FF9800", // Laranja Vibrante
+    "cardiologia": "#00BCD4", // Azul Ciano
+    "reumatologia": "#F44336", // Vermelho Vivo
+    "hematologia e hemoterapia": "#9E9E9E", // Cinza Médio
+    "nefrologia": "#CDDC39", // Verde Lima
+    "gastroenterologia": "#795548", // Marrom Escuro
+
+    "neurologia": "#8A2BE2", // Blue Violet
+    "infectologia": "#FF0000", // Red
+
+    "neurocirurgia": "#007FFF", // Azul Azure
+    "cirurgia geral": "#86A18C", // Verde Musgo Suave
+    "cirurgia vascular": "#B46338", // Marrom Avermelhado
+    "coloproctologia": "#D6B564", // Dourado Queimado
+    "cirurgia pediátrica": "#6D122B", // Vinho Profundo
+    "cirurgia cardiovascular": "#1F498F", // Azul Petróleo
+    "mastologia": "#F5E6D8", // Pêssego Pálido
+
+    "pediatria": "#DA70D6", // Orchid
+    "endocrinologia pediátrica": "#4682B4", // Steel Blue
+
+    "radiologia e diagnóstico por imagem": "#145C6B", // Azul Petróleo Escuro
+    "patologia": "#0A9B6B", // Verde Esmeralda
+    "medicina do tráfego": "#C79733", // Amarelo Mostarda
+    "medicina do trabalho": "#3F4B55", // Cinza Chumbo
+    "perícia médica": "#F0E592", // Amarelo Pálido / Creme
+    "medicina de emergência": "#CB7B4A", // Laranja Queimado / Terracota
+    "medicina intensiva": "#6F1E2F", // Vermelho Vinho / Borgonha
+    "nutrologia": "#32573B", // Verde Oliva Escuro
+    "radioterapia": "#4D205F", // Roxo Profundo
+    "medicina paliativa": "#874A2B", // Marrom Terra
+
+    "geriatria": "#a9a9a9" // Gray
+};
+
+const StackedBar = ({ data, filters = {} }) => {
     const svgRef = useRef(null);
     const containerRef = useRef(null);
+
+    const isSpecialtyFiltered = filters.especialidade && filters.especialidade !== 'Todas';
+    const groupKey = isSpecialtyFiltered ? 'especialidade_rqe' : 'grande_area_rqe';
 
     const chartData = useMemo(() => {
         // 1. Group by Year
         const byYear = d3.rollup(
-            data.filter(d => Boolean(d.ano_formatura) && d.grande_area_rqe && d.grande_area_rqe !== 'N/A' && d.grande_area_rqe.trim() !== ''),
-            v => d3.rollup(v, leaves => leaves.length, d => d.grande_area_rqe),
+            data.filter(d => Boolean(d.ano_formatura) && d[groupKey] && d[groupKey] !== 'N/A' && d[groupKey].trim() !== ''),
+            v => d3.rollup(v, leaves => leaves.length, d => d[groupKey]),
             d => d.ano_formatura
         );
 
         // 2. Extract unique specialties
         const allSpecialties = new Set();
         data.forEach(d => {
-            if (d.grande_area_rqe && d.grande_area_rqe !== 'N/A' && d.grande_area_rqe.trim() !== '') {
-                allSpecialties.add(d.grande_area_rqe);
+            if (d[groupKey] && d[groupKey] !== 'N/A' && d[groupKey].trim() !== '') {
+                allSpecialties.add(d[groupKey]);
             }
         });
 
@@ -28,7 +76,20 @@ const StackedBar = ({ data }) => {
             return obj;
         }).sort((a, b) => parseInt(a.year) - parseInt(b.year));
 
-        return { parsedObj, keys };
+        const allPossibleSubSpecialties = [
+            "Anestesiologia", "Cardiologia", "Cardiopediatria", "Cirurgia Cardiovascular", "Cirurgia Geral",
+            "Cirurgia Pediátrica", "Cirurgia Vascular", "Clínica Médica", "Coloproctologia", "Dermatologia",
+            "Endocrinologia Pediátrica", "Endocrinologia e Metabologia", "Gastroenterologia", "Geriatria",
+            "Ginecologia e Obstetrícia", "Hematologia e Hemoterapia", "Infectologia", "Mastologia",
+            "Medicina Intensiva", "Medicina Intensiva Pediátrica", "Medicina Paliativa", "Medicina de Emergência",
+            "Medicina de Família e Comunidade", "Medicina do Trabalho", "Medicina do Tráfego", "Nefrologia",
+            "Neonatologia", "Neurocirurgia", "Neurologia", "Neurologia Pediátrica", "Nutrologia", "Oftalmologia",
+            "Oncologia Pediátrica", "Ortopedia e Traumatologia", "Otorrinolaringologia", "Patologia",
+            "Pediatria", "Perícia Médica", "Psiquiatria", "Radiologia e Diagnóstico por Imagem", "Radioterapia",
+            "Reumatologia"
+        ];
+
+        return { parsedObj, keys, allPossibleSubSpecialties };
     }, [data]);
 
     useEffect(() => {
@@ -39,7 +100,7 @@ const StackedBar = ({ data }) => {
         svg.selectAll("*").remove();
 
         const width = containerRef.current.clientWidth;
-        const height = 300;
+        const height = 240; // Diminui a altura total para a barra não ficar tão "esticada"
         const margin = { top: 20, right: 30, bottom: 40, left: 40 };
 
         svg.attr("viewBox", [0, 0, width, height]);
@@ -48,12 +109,12 @@ const StackedBar = ({ data }) => {
         const x0 = d3.scaleBand()
             .domain(parsedObj.map(d => d.year))
             .rangeRound([margin.left, width - margin.right])
-            .paddingInner(0.1); // Thicker grouped cluster
+            .paddingInner(0.05); // Deixa os grupos de anos MUITO MAIS JUNTOS (aumenta o espaço para as barras)
 
         const x1 = d3.scaleBand()
             .domain(keys)
             .rangeRound([0, x0.bandwidth()])
-            .padding(0.01); // Thicker individual bars within cluster
+            .padding(0); // Elimina o espaço extra entre as barras de um mesmo ano
 
         // Find max value in any sub-group
         const maxVal = d3.max(parsedObj, d => d3.max(keys, key => d[key]));
@@ -62,8 +123,28 @@ const StackedBar = ({ data }) => {
             .domain([0, maxVal]).nice()
             .rangeRound([height - margin.bottom, margin.top]);
 
+        const distinctColors = [
+            '#e6194B', '#3cb44b', '#ffe119', '#4363d8', '#f58231',
+            '#911eb4', '#42d4f4', '#f032e6', '#bfef45', '#fabed4',
+            '#469990', '#dcbeff', '#9A6324', '#fffac8', '#800000',
+            '#aaffc3', '#808000', '#ffd8b1', '#000075', '#a9a9a9',
+            '#8B4513', '#2E8B57', '#DAA520', '#483D8B', '#B8860B',
+            '#556B2F', '#8B008B', '#FF8C00', '#9932CC', '#E9967A',
+            '#8FBC8F', '#48D1CC', '#C71585', '#191970', '#FF4500' // Extended to 35 to prevent wrapping overlaps
+        ];
+        const specificColorScale = d3.scaleOrdinal(distinctColors).domain(chartData.allPossibleSubSpecialties);
+
         const getColor = (key) => {
             if (!key) return "#0097A7"; // Fallback para keys vazios
+
+            if (isSpecialtyFiltered) {
+                const lowerKey = key.toLowerCase();
+                if (CUSTOM_SUB_SPECIALTY_COLORS[lowerKey]) {
+                    return CUSTOM_SUB_SPECIALTY_COLORS[lowerKey];
+                }
+                return specificColorScale(key);
+            }
+
             const k = key.toLowerCase();
             // CLÍNICO-CIRÚRGICA
             if (k.includes("clínico-cirúrgic") || k.includes("clinico-cirurgi")) return "#1D5C8F";
@@ -75,9 +156,7 @@ const StackedBar = ({ data }) => {
             return "#0097A7"; // Outras
         };
 
-        const color = d3.scaleOrdinal()
-            .domain(keys)
-            .range(keys.map(getColor));
+        const color = (key) => getColor(key);
 
         // Draw groups
         svg.append("g")
@@ -127,15 +206,36 @@ const StackedBar = ({ data }) => {
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '10px', justifyContent: 'center' }}>
                         {chartData.keys.map((key, i) => {
                             if (!key) return null; // Prevenção contra nulos na legenda
-                            const k = key.toLowerCase();
+
                             let col = "#0097A7"; // Fallback (Outras)
-                            // CLÍNICO-CIRÚRGICA
-                            if (k.includes("clínico-cirúrgic") || k.includes("clinico-cirurgi")) col = "#1D5C8F";
-                            // ESPECIALIDADES CLÍNICAS
-                            else if (k.includes("clínica") || k.includes("clinica") || k.includes("clínic") || k.includes("clinic")) col = "#ECA427";
-                            else if (k.includes("mfc") || k.includes("família")) col = "#2E7D32";
-                            else if (k.includes("pediatria")) col = "#7B1FA2";
-                            else if (k.includes("cirurgia")) col = "#C62828";
+
+                            if (isSpecialtyFiltered) {
+                                const distinctColors = [
+                                    '#e6194B', '#3cb44b', '#ffe119', '#4363d8', '#f58231',
+                                    '#911eb4', '#42d4f4', '#f032e6', '#bfef45', '#fabed4',
+                                    '#469990', '#dcbeff', '#9A6324', '#fffac8', '#800000',
+                                    '#aaffc3', '#808000', '#ffd8b1', '#000075', '#a9a9a9',
+                                    '#8B4513', '#2E8B57', '#DAA520', '#483D8B', '#B8860B',
+                                    '#556B2F', '#8B008B', '#FF8C00', '#9932CC', '#E9967A',
+                                    '#8FBC8F', '#48D1CC', '#C71585', '#191970', '#FF4500'
+                                ];
+                                const specificColorScale = d3.scaleOrdinal(distinctColors).domain(chartData.allPossibleSubSpecialties);
+                                const lowerKey = key.toLowerCase();
+                                if (CUSTOM_SUB_SPECIALTY_COLORS[lowerKey]) {
+                                    col = CUSTOM_SUB_SPECIALTY_COLORS[lowerKey];
+                                } else {
+                                    col = specificColorScale(key);
+                                }
+                            } else {
+                                const k = key.toLowerCase();
+                                // CLÍNICO-CIRÚRGICA
+                                if (k.includes("clínico-cirúrgic") || k.includes("clinico-cirurgi")) col = "#1D5C8F";
+                                // ESPECIALIDADES CLÍNICAS
+                                else if (k.includes("clínica") || k.includes("clinica") || k.includes("clínic") || k.includes("clinic")) col = "#ECA427";
+                                else if (k.includes("mfc") || k.includes("família")) col = "#2E7D32";
+                                else if (k.includes("pediatria")) col = "#7B1FA2";
+                                else if (k.includes("cirurgia")) col = "#C62828";
+                            }
 
                             return (
                                 <div key={i} style={{ display: 'flex', alignItems: 'center', fontSize: '0.8rem', color: 'var(--text-muted)' }}>

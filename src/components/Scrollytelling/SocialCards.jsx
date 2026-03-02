@@ -41,7 +41,7 @@ const SocialCards = () => {
 
     return (
         <section className="social-section container">
-            <div className="section-header" style={{ marginTop: '30px' }}>
+            <div className="section-header" style={{ marginTop: '60px' }}>
                 <h2>Muito Além do Consultório</h2>
                 <p className="section-subtitle text-muted">
                     Sabe a ideia do médico só no consultório? Esqueça. Dos 194 que ouvimos, 92 estão com a mão na massa na Educação Médica, atuando como preceptores e professores. E cerca de 12% lideram projetos que mudam realidades.

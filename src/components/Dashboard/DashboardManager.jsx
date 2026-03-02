@@ -149,7 +149,7 @@ const DashboardManager = () => {
 
     return (
         <section className="dashboard-section container">
-            <div className="section-header">
+            <div className="section-header" style={{ marginTop: '60px' }}>
                 <h2>A Base de Dados: Explore Nossa Trajetória</h2>
                 <p className="section-subtitle text-muted">
                     Utilize os filtros abaixo para cruzar especialidades, anos de formatura e áreas de atuação. Descubra os detalhes do nosso impacto.
@@ -237,7 +237,7 @@ const DashboardManager = () => {
                             <StateHeatmap data={filteredData} filters={filters} />
                         </div>
                         <div className="dashboard-card glass-panel flex-2">
-                            <StackedBar data={filteredData} />
+                            <StackedBar data={filteredData} filters={filters} />
                         </div>
                     </div>
 
