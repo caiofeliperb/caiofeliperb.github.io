@@ -33,7 +33,7 @@
     align-items: center;
     justify-content: center;
     padding: var(--spacing-lg);
-    z-index: 10;
+    z-index: var(--z-base);
 }
 
 .map-wrapper {
@@ -72,7 +72,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    padding: var(--spacing-xl) 0;
 }
 
 .step-content {
@@ -118,50 +118,112 @@
 }
 
 @media (max-width: 768px) {
+    .narrative-intro {
+        min-height: 90vh !important;
+        padding: 2rem 1rem;
+    }
+
     .narrative-map-wrapper {
         flex-direction: column;
+        gap: 0;
     }
 
-    /* On mobile, sticky container is transparent to allow text to scroll behind cards clearly */
+    /* Sequential Flow: No more sticky infographics on mobile */
     .map-sticky {
-        width: 100%;
-        height: 35vh;
-        padding: var(--spacing-sm);
-        top: 0;
-        bottom: auto;
-        z-index: 10;
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 0 !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
         background: transparent;
-        pointer-events: none;
-        /* Let clicks pass to text if necessary */
-    }
-
-    .map-sticky>* {
-        pointer-events: auto;
-        /* Re-enable for the cards themselves */
+        z-index: 10;
+        margin: 0 !important;
     }
 
     .narrative-scroll {
         width: 100%;
-        padding: 0 var(--spacing-md);
+        padding: 0 1rem;
         margin-top: 0;
-        z-index: 20;
+        position: relative;
     }
 
     .narrative-step {
-        scroll-snap-align: start;
-        min-height: 80vh;
-        align-items: flex-start;
-        /* First and subsequent steps start with breathing room for the compact cards */
-        padding-top: 38vh;
-        padding-bottom: 5vh;
+        scroll-snap-align: none;
+        min-height: auto;
+        padding: 0.5rem 0;
     }
 
     .step-content {
-        padding: var(--spacing-md);
-        background: var(--bg-color);
-        border-radius: 20px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        padding: 1rem;
+        margin: 0.5rem 0;
     }
+
+    /* Reveal effect classes */
+    .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .reveal-on-scroll.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Base styles for infographic cards (moved from inline) */
+.info-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.8rem 1.5rem;
+    border-radius: 24px;
+    transition: all 0.3s ease;
+}
+
+.card-rn {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    box-shadow: 0 10px 30px -10px rgba(14, 165, 233, 0.2);
+}
+
+.card-ne {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.2);
+}
+
+.card-ny {
+    background: #ffffff;
+    border: 2px dashed #cbd5e1;
+    border-radius: 20px;
+    padding: 1.2rem 1.8rem;
+    gap: 1.2rem;
+}
+
+.info-card h3 {
+    font-size: 3.6rem;
+    font-weight: 900;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -2px;
+}
+
+.info-card p {
+    font-size: 1.3rem;
+    margin: 0.4rem 0 0;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.card-ny p {
+    font-size: 1.1rem;
+    color: #475569;
+    font-weight: 500;
+    line-height: 1.4;
 }
 
 /* Info Cards Specific Adjustments */
@@ -183,86 +245,50 @@
 
 @media (max-width: 768px) {
     .infographics-wrapper {
-        gap: 0.8rem !important;
+        gap: 0.25rem !important;
         padding: 0 !important;
-        justify-content: flex-start !important;
+        max-width: 100% !important;
     }
 
     .info-card {
-        padding: 1rem 1.2rem !important;
-        gap: 1rem !important;
-        border-radius: 16px !important;
+        padding: 0.5rem 0.8rem !important;
+        gap: 0.6rem !important;
+        border-radius: 12px !important;
     }
 
     .info-card h3 {
-        font-size: 1.8rem !important;
-        letter-spacing: -1px !important;
+        font-size: 1.4rem !important;
     }
 
-    .info-card p,
+    .info-card p {
+        font-size: 0.85rem !important;
+    }
+
+    .card-ny {
+        padding: 0.5rem 0.8rem !important;
+    }
+
     .card-ny p {
-        font-size: 0.95rem !important;
-        line-height: 1.15 !important;
+        font-size: 0.8rem !important;
     }
 
     .info-card svg {
-        width: 55px !important;
-        height: 55px !important;
-    }
-
-    .card-ny span {
-        font-size: 1.8rem !important;
-    }
-
-    .card-ny>div:first-child {
-        flex: 0 0 35px !important;
-        height: 35px !important;
-    }
-
-    /* Give sticky container more room on mobile to prevent squishing the 3 cards */
-    .map-sticky {
-        height: 52vh;
-    }
-
-    /* Update padding-top to match new map height */
-    .narrative-step {
-        padding-top: 55vh;
+        width: 40px !important;
+        height: 40px !important;
     }
 }
 
 @media (max-width: 480px) {
-    .infographics-wrapper {
-        gap: 0.6rem !important;
-    }
-
-    .info-card {
-        padding: 0.8rem 1rem !important;
-        gap: 0.8rem !important;
-    }
-
     .info-card h3 {
-        font-size: 1.5rem !important;
-    }
-
-    .info-card p,
-    .card-ny p {
-        font-size: 0.85rem !important;
-    }
-
-    .info-card svg {
-        width: 45px !important;
-        height: 45px !important;
-    }
-
-    .card-ny span {
         font-size: 1.4rem !important;
     }
 
-    .map-sticky {
-        height: 55vh;
+    .infographics-wrapper {
+        gap: 0.4rem !important;
     }
 
-    .narrative-step {
-        padding-top: 58vh;
+    .info-card {
+        padding: 0.6rem 0.8rem !important;
+        border-radius: 10px !important;
     }
 }
