@@ -83,8 +83,12 @@ const KPIs = ({ data, totalData, filters }) => {
             }
         }
 
-        // COMBINED FILTER: Se tiver filtro combinado (ex: UF + Ano, ou múltiplos), recálculo dinâmico
-        const isCombinedFilter = filters && ((filters.uf !== 'Todos' && filters.ano !== 'Todos') || filters.social !== 'Todos');
+        // COMBINED FILTER: Se tiver filtro combinado (ex: UF + Ano, especialidade + UF, etc.), recálculo dinâmico
+        const isCombinedFilter = filters && (
+            (filters.uf !== 'Todos' && filters.ano !== 'Todos') ||
+            filters.social !== 'Todos' ||
+            (filters.especialidade !== 'Todas' && filters.uf !== 'Todos')  // <-- especialidade + estado
+        );
 
         if (isCombinedFilter) {
             // Conta formados: quantidade total no array filtrado
