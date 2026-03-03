@@ -38,7 +38,37 @@ const KPIs = ({ data, totalData, filters }) => {
         // Use formaturasData when RQE is "Todos", otherwise use rqeData when RQE is "Sim"
         const dataSource = filters?.rqe === 'Sim' ? rqeData : formaturasData;
 
-        if (noSpecificFilters) {
+        // NEW LOGIC: Se tiver filtro combinado (ex: UF + Ano), recálculo dinâmico baseado no filteredData (data real da tela)
+        const isCombinedFilter = filters && ((filters.uf !== 'Todos' && filters.ano !== 'Todos') || filters.social !== 'Todos' || filters.especialidade !== 'Todas');
+
+        if (isCombinedFilter) {
+            // Conta formados: quantidade total no array filtrado
+            formados = data.length;
+
+            // Conta CRMs no estado filtrado (ou em todos os estados se for 'Todos')
+            crmsAtivos = 0;
+            data.forEach(d => {
+                if (d.uf_atuacao_cfm && d.uf_atuacao_cfm !== 'N/A') {
+                    if (filters.uf !== 'Todos') {
+                        if (d.uf_atuacao_cfm.includes(filters.uf)) crmsAtivos++;
+                    } else {
+                        crmsAtivos += d.uf_atuacao_cfm.split('/').length;
+                    }
+                }
+            });
+
+            // Conta RQE: quantos no array filtrado têm RQE
+            comRQE = data.filter(d => d.tem_rqe).length;
+
+            // Se for RQE "Não", ajustamos o label e value
+            if (filters.rqe === 'Não') {
+                finalLabelRQE = "Sem RQE";
+                comRQE = formados; // Quando já está filtrado por "Não", todos na tela não têm RQE
+            } else if (filters.rqe === 'Sim') {
+                formados = comRQE;
+            }
+
+        } else if (noSpecificFilters) {
             const anoKey = filters?.ano || 'Todos';
             const fd = dataSource[anoKey];
             if (fd) {
@@ -53,7 +83,7 @@ const KPIs = ({ data, totalData, filters }) => {
                 comRQE = dataSource['Todos'].rqe;
             }
 
-            // Requisito: Exibir dados absolutos atrelados à UF de atuação
+            // Requisito: Exibir dados absolutos atrelados à UF de atuação (Sozinho)
             if (filters?.uf && filters.uf !== 'Todos') {
                 if (ufData[filters.uf]) {
                     formados = ufData[filters.uf].total;
@@ -63,46 +93,32 @@ const KPIs = ({ data, totalData, filters }) => {
             }
         }
 
-        // Requisito: Filtro Especialidades - numero de formados = numero com rqe
-        if (filters?.especialidade && filters.especialidade !== 'Todas') {
-            if (filters.especialidade.startsWith('CAT:')) {
-                const catName = filters.especialidade.replace('CAT:', '');
-                if (categoriaEspecialidadesData[catName]) {
-                    formados = categoriaEspecialidadesData[catName].total;
-                    crmsAtivos = categoriaEspecialidadesData[catName].crms;
-                    comRQE = categoriaEspecialidadesData[catName].total; // Formados = RQE
-                }
-            } else if (filters.especialidade.startsWith('SPEC:')) {
-                const specName = filters.especialidade.replace('SPEC:', '');
-                if (especialidadesData[specName]) {
-                    formados = especialidadesData[specName].total;
-                    crmsAtivos = especialidadesData[specName].crms;
-                    comRQE = especialidadesData[specName].total; // Formados = RQE
-                }
-            }
-        }
+        // Requisito original de substituição de nomes para filtros de especialidade já é coberto pelo isCombinedFilter acima dinamicamente
 
-        // Adjust for RQE specific filters (Hardcoded user requested overrides for 'Todos')
         let finalLabelRQE = "Com RQE";
 
-        if (filters?.rqe === 'Sim') {
-            formados = comRQE;
-            if (noSpecificFilters && (!filters.ano || filters.ano === 'Todos')) {
-                formados = 250;
-                crmsAtivos = 288;
-                comRQE = 250;
+        if (!isCombinedFilter) {
+            if (filters?.rqe === 'Sim') {
+                formados = comRQE;
+                if (noSpecificFilters && (!filters.ano || filters.ano === 'Todos')) {
+                    formados = 250;
+                    crmsAtivos = 288;
+                    comRQE = 250;
+                }
+            } else if (filters?.rqe === 'Não') {
+                finalLabelRQE = "Sem RQE";
+                if (noSpecificFilters && (!filters.ano || filters.ano === 'Todos')) {
+                    formados = 218;
+                    crmsAtivos = 257;
+                    comRQE = 218; // The user requested the third card to show 218 as well.
+                } else if (noSpecificFilters && formaturasData[filters?.ano || 'Todos']) {
+                    formados = formaturasData[filters?.ano || 'Todos'].total - formaturasData[filters?.ano || 'Todos'].rqe;
+                    crmsAtivos = formaturasData[filters?.ano || 'Todos'].crms - rqeData[filters?.ano || 'Todos'].crms;
+                    comRQE = formados; // Keep it consistent with total for 'Não'
+                }
             }
-        } else if (filters?.rqe === 'Não') {
-            finalLabelRQE = "Sem RQE";
-            if (noSpecificFilters && (!filters.ano || filters.ano === 'Todos')) {
-                formados = 218;
-                crmsAtivos = 257;
-                comRQE = 218; // The user requested the third card to show 218 as well.
-            } else if (noSpecificFilters && formaturasData[filters?.ano || 'Todos']) {
-                formados = formaturasData[filters?.ano || 'Todos'].total - formaturasData[filters?.ano || 'Todos'].rqe;
-                crmsAtivos = formaturasData[filters?.ano || 'Todos'].crms - rqeData[filters?.ano || 'Todos'].crms;
-                comRQE = formados; // Keep it consistent with total for 'Não'
-            }
+        } else {
+            if (filters?.rqe === 'Não') finalLabelRQE = "Sem RQE";
         }
 
         return [
