@@ -48,8 +48,43 @@ const KPIs = ({ data, totalData, filters }) => {
         // Use formaturasData when RQE is "Todos", otherwise use rqeData when RQE is "Sim"
         const dataSource = filters?.rqe === 'Sim' ? rqeData : formaturasData;
 
-        // NEW LOGIC: Se tiver filtro combinado (ex: UF + Ano), recálculo dinâmico baseado no filteredData (data real da tela)
-        const isCombinedFilter = filters && ((filters.uf !== 'Todos' && filters.ano !== 'Todos') || filters.social !== 'Todos' || filters.especialidade !== 'Todas');
+        // SPECIALTY-ONLY FILTER: Se apenas especialidade está ativa (sem UF, ano, ou social),
+        // usar os dados estáticos (que têm CRMs calculados corretamente da tabela de dados).
+        const onlySpecialtyFilter = (
+            filters?.especialidade && filters.especialidade !== 'Todas' &&
+            filters.uf === 'Todos' &&
+            filters.ano === 'Todos' &&
+            filters.rqe !== 'Não' &&
+            filters.social === 'Todos'
+        );
+
+        if (onlySpecialtyFilter) {
+            if (filters.especialidade.startsWith('CAT:')) {
+                const catName = filters.especialidade.replace('CAT:', '');
+                if (categoriaEspecialidadesData[catName]) {
+                    const cat = categoriaEspecialidadesData[catName];
+                    const rqeTotal = filters.rqe === 'Sim' ? cat.total : cat.total;
+                    return [
+                        { label: "Total Formados", value: cat.total },
+                        { label: "CRMs Ativos", value: cat.crms },
+                        { label: "Com RQE", value: rqeTotal }
+                    ];
+                }
+            } else if (filters.especialidade.startsWith('SPEC:')) {
+                const specName = filters.especialidade.replace('SPEC:', '');
+                if (especialidadesData[specName]) {
+                    const spec = especialidadesData[specName];
+                    return [
+                        { label: "Total Formados", value: spec.total },
+                        { label: "CRMs Ativos", value: spec.crms },
+                        { label: "Com RQE", value: spec.total }
+                    ];
+                }
+            }
+        }
+
+        // COMBINED FILTER: Se tiver filtro combinado (ex: UF + Ano, ou múltiplos), recálculo dinâmico
+        const isCombinedFilter = filters && ((filters.uf !== 'Todos' && filters.ano !== 'Todos') || filters.social !== 'Todos');
 
         if (isCombinedFilter) {
             // Conta formados: quantidade total no array filtrado
@@ -103,7 +138,7 @@ const KPIs = ({ data, totalData, filters }) => {
             }
         }
 
-        // Requisito original de substituição de nomes para filtros de especialidade já é coberto pelo isCombinedFilter acima dinamicamente
+        // Ajuste de labels de especialidade com ano selecionado (dinâmico)
 
         let finalLabelRQE = "Com RQE";
 

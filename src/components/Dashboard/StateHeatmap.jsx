@@ -42,13 +42,13 @@ const StateHeatmap = ({ data, filters, onStateClick }) => {
 
     // Simplified schematic grid of Brazil UFs
     const gridLayout = [
-        ['RR', 'AP', '', '', ''],
-        ['AM', 'PA', 'MA', 'CE', 'RN'],
+        ['RR', 'AP', '', '', '', ''],
+        ['AM', 'PA', 'MA', 'CE', 'RN', ''],
         ['AC', 'RO', 'MT', 'TO', 'PI', 'PB'],
         ['', '', 'MS', 'GO', 'BA', 'PE'],
-        ['', '', 'PR', 'SP', 'MG', 'AL'],
-        ['', '', 'SC', 'RJ', 'ES', 'SE'],
-        ['', '', 'RS', '', '', '']
+        ['', '', 'PR', 'DF', 'MG', 'AL'],
+        ['', '', 'SC', 'SP', 'RJ', 'SE'],
+        ['', '', 'RS', 'ES', '', '']
     ];
 
     return (

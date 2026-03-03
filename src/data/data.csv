@@ -10,18 +10,18 @@ id_egresso,ano_formatura,respondeu_formulario,tem_rqe,grande_area_rqe,especialid
 9,2010,Sim,Sim,Clínica-Cirúrgica,Oftalmologia,RN,Mossoro,Não,Não,N/A,N/A
 10,2010,Não,Sim,MFC,MFC e Clínica Médica,RN,Mossoró,N/A,N/A,N/A,N/A
 11,2010,Sim,Sim,Clínica Médica,Clínica Médica e Nefrologia,RN,Natal,Preceptor,Não,N/A,N/A
-12,2010,Não,Sim,Pediatria,Pediatria e Neonatologia,RN,Natal,N/A,N/A,N/A,N/A
+12,2010,Não,Sim,Pediatria,Neonatologia,RN,Natal,N/A,N/A,N/A,N/A
 13,2010,Sim,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,Cruzeta,Preceptor,Não,N/A,N/A
 14,2010,Não,Sim,Clínica-Cirúrgica,Ginecologia e Medicina Fetal,RN,Mossoró,N/A,N/A,N/A,N/A
-15,2010,Sim,Sim,Pediatria,Pediatria e Neonatologia,DF,Brasília,Preceptor,Não,N/A,N/A
+15,2010,Sim,Sim,Pediatria,Neonatologia,DF,Brasília,Preceptor,Não,N/A,N/A
 16,2010,Não,Não,N/A,N/A,RN / PE,N/A,N/A,N/A,N/A,N/A
-17,2010,Sim,Sim,Pediatria,Pediatria e Neonatologia,RN,Natal,Preceptor,Não,N/A,N/A
+17,2010,Sim,Sim,Pediatria,Neonatologia,RN,Natal,Preceptor,Não,N/A,N/A
 18,2010,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
 19,2010,Sim,Sim,Clínica Médica,Psiquiatria,RN,Mossoró,Docente,Não,N/A,N/A
 20,2010,Não,Sim,Clínica Médica,Dermatologia,RN,Caicó,N/A,N/A,N/A,N/A
 21,2010,Não,Sim,Clínica-Cirúrgica,Ginecologia e Obstetrícia,RN,Mossoró,N/A,N/A,N/A,N/A
 22,2010,Sim,Sim,Cirurgia,Neurocirurgia,RN / RJ,Pau dos Ferros,Não,Sim,Voluntariado,Trabalho na APAE
-23,2010,Não,Sim,Pediatria,Cancerologia Pediátrica,RN,N/A,N/A,N/A,N/A,N/A
+23,2010,Não,Sim,Pediatria,Oncologia Pediátrica,RN,N/A,N/A,N/A,N/A,N/A
 24,2010,Não,Sim,Outras,Anestesiologia,RN / CE,N/A,N/A,N/A,N/A,N/A
 25,2011,Sim,Sim,Clínica Médica,Endocrinologia,RN,Mossoró,Não,Não,N/A,N/A
 26,2011,Sim,Sim,Cirurgia,Cirurgia Geral e Patologia,CE,Fortaleza,Preceptor,Não,N/A,N/A

@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useData } from '../../hooks/useData';
 import { ufData } from '../../data/ufData';
 import { formaturasData } from '../../data/formaturasData';
+import { especialidadesData, categoriaEspecialidadesData } from '../../data/especialidadesData';
 import KPIs from './KPIs';
 import StateHeatmap from './StateHeatmap';
 import StackedBar from './StackedBar';
@@ -248,6 +249,17 @@ const DashboardManager = () => {
 
                                     if (onlyAnoFilter && formaturasData[filters.ano]) {
                                         return formaturasData[filters.ano].total;
+                                    }
+
+                                    // Filtro somente de especialidade: usar dados estáticos
+                                    if (filters.especialidade !== 'Todas' && filters.uf === 'Todos' && filters.ano === 'Todos') {
+                                        if (filters.especialidade.startsWith('CAT:')) {
+                                            const cat = categoriaEspecialidadesData[filters.especialidade.replace('CAT:', '')];
+                                            if (cat) return cat.total;
+                                        } else if (filters.especialidade.startsWith('SPEC:')) {
+                                            const spec = especialidadesData[filters.especialidade.replace('SPEC:', '')];
+                                            if (spec) return spec.total;
+                                        }
                                     }
 
                                     return filteredData.length;
