@@ -274,12 +274,22 @@ const DashboardManager = () => {
                     <KPIs data={filteredData} totalData={data} filters={filters} />
 
                     <div className="dashboard-charts-row">
-                        <div className="dashboard-card glass-panel flex-1">
-                            <StateHeatmap data={filteredData} filters={filters} onStateClick={(uf) => handleFilterChange('uf', uf)} />
-                        </div>
-                        <div className="dashboard-card glass-panel flex-2">
-                            <StackedBar data={filteredData} filters={filters} />
-                        </div>
+                        {filters.social === 'Sim' ? (
+                            <div className="dashboard-card glass-panel w-full" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '220px', opacity: 0.5 }}>
+                                <p style={{ fontSize: '1rem', fontStyle: 'italic', color: 'var(--text-muted, #888)' }}>
+                                    Heatmap e gráfico de barras — <strong>não se aplica</strong> ao filtro de Impacto Social
+                                </p>
+                            </div>
+                        ) : (
+                            <>
+                                <div className="dashboard-card glass-panel flex-1">
+                                    <StateHeatmap data={filteredData} filters={filters} onStateClick={(uf) => handleFilterChange('uf', uf)} />
+                                </div>
+                                <div className="dashboard-card glass-panel flex-2">
+                                    <StackedBar data={filteredData} filters={filters} />
+                                </div>
+                            </>
+                        )}
                     </div>
 
                     <div className="dashboard-card glass-panel w-full">
