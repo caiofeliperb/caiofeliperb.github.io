@@ -43,39 +43,21 @@ const NarrativeMap = () => {
         gsap.set('.donut-path-rn, .donut-path-ne', { strokeDashoffset: circ });
 
         mm.add("(min-width: 0px)", () => {
-            const isMobile = window.innerWidth <= 768;
-
-            if (isMobile) {
-                // Mobile Sequential Reveal
-                gsap.utils.toArray('.reveal-on-scroll').forEach((elem) => {
-                    ScrollTrigger.create({
-                        trigger: elem,
-                        start: "top 85%",
-                        onEnter: () => elem.classList.add('active'),
-                        // Reset if scrolling back up
-                        onLeaveBack: () => elem.classList.remove('active'),
-                    });
-                });
-
-                // Force everything visible if already past
-                ScrollTrigger.refresh();
-            }
-
-            // First text block (RN Focus) triggers donut animation
+            // First text block (RN Focus)
             if (stepsRef.current[1]) {
                 ScrollTrigger.create({
                     trigger: stepsRef.current[1],
-                    start: isMobile ? "top 85%" : "top 60%",
+                    start: "top 60%",
                     onEnter: () => animateStep(1),
                     onLeaveBack: () => animateStep(0),
                 });
             }
 
-            // Second text block (NE + NY) triggers donut animation
+            // Second text block (NE + NY)
             if (stepsRef.current[2]) {
                 ScrollTrigger.create({
                     trigger: stepsRef.current[2],
-                    start: isMobile ? "top 85%" : "top 60%",
+                    start: "top 60%",
                     onEnter: () => animateStep(2),
                     onLeaveBack: () => animateStep(1),
                 });
@@ -92,19 +74,17 @@ const NarrativeMap = () => {
 
         // The animation logic switching cards based on the active step
         const animateStep = (index) => {
-            const isMobile = window.innerWidth <= 768;
-
             if (index === 0) {
                 // Step 0: Intro. Cards are dim, rings are empty.
-                gsap.to('.card-rn', { opacity: 0.8, y: 0, scale: isMobile ? 0.9 : 0.95, duration: 0.6, ease: "power2.out", overwrite: "auto" });
+                gsap.to('.card-rn', { opacity: 0, y: 30, scale: 0.95, duration: 0.6, ease: "power2.out", overwrite: "auto" });
                 gsap.to('.cards-expandable', { height: 0, opacity: 0, marginTop: 0, duration: 0.6, ease: "power2.out", overwrite: "auto" });
                 gsap.to('.donut-path-rn, .donut-path-ne', { strokeDashoffset: circ, duration: 0.8, ease: "power2.inOut", overwrite: "auto" });
 
             } else if (index === 1) {
                 // Step 1: Nossas Raízes Fortes (RN Focus)
                 // Highlight RN Card beautifully, hide the rest
-                gsap.to('.card-rn', { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "back.out(1.2)", overwrite: "auto" });
-                gsap.to('.cards-expandable', { height: 0, opacity: 0, marginTop: 0, duration: 0.6, ease: "power3.inOut", overwrite: "auto" });
+                gsap.to('.card-rn', { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out", overwrite: "auto" });
+                gsap.to('.cards-expandable', { height: 0, opacity: 0, marginTop: 0, duration: 0.6, ease: "power2.out", overwrite: "auto" });
 
                 // Animate RN Donut
                 gsap.to('.donut-path-rn', { strokeDashoffset: circ - (circ * 0.845), duration: 1.5, ease: "power3.out", overwrite: "auto" });
@@ -113,17 +93,9 @@ const NarrativeMap = () => {
             } else if (index === 2) {
                 // Step 2: Do Nordeste para o Mundo (NE + NY Focus)
                 // Dim RN slightly, expand container to reveal NE and NY
-                gsap.to('.card-rn', { opacity: 1, scale: isMobile ? 0.95 : 0.98, duration: 0.6, overwrite: "auto" });
+                gsap.to('.card-rn', { opacity: 0.8, scale: 0.98, duration: 0.6, overwrite: "auto" });
 
-                gsap.to('.cards-expandable', {
-                    height: isMobile ? '220px' : 'auto', // Slightly more compact for mobile
-                    opacity: 1,
-                    marginTop: isMobile ? '0.5rem' : '1.5rem',
-                    duration: 0.8,
-                    ease: "power3.inOut",
-                    overwrite: "auto",
-                    scale: isMobile ? 0.95 : 1
-                });
+                gsap.to('.cards-expandable', { height: 'auto', opacity: 1, marginTop: '1.5rem', duration: 0.8, ease: "power3.inOut", overwrite: "auto" });
 
                 // Maintain RN Donut filled, animate NE Donut
                 gsap.to('.donut-path-rn', { strokeDashoffset: circ - (circ * 0.845), duration: 0.5, overwrite: "auto" });
@@ -166,38 +138,57 @@ const NarrativeMap = () => {
             </div>
 
             <div className="narrative-map-wrapper container">
-                {/* Infographics Container */}
-                <div className="map-sticky reveal-on-scroll">
+                {/* Sticky Right Container for Infographics */}
+                <div className="map-sticky" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
-                    <div className="infographics-wrapper">
+                    <div className="infographics-wrapper" style={{ display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '550px', padding: '1rem' }}>
 
                         {/* Card 1: RN */}
-                        <div className="info-card card-rn reveal-on-scroll">
+                        <div className="info-card card-rn" style={{
+                            display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '1.8rem 1.5rem',
+                            background: '#eff6ff', borderRadius: '24px', border: '1px solid #bfdbfe',
+                            boxShadow: '0 10px 30px -10px rgba(14, 165, 233, 0.2)'
+                        }}>
                             <Donut percentage={84.5} color="#2563eb" id="rn" />
-                            <div className="card-text">
-                                <h3>84,5%</h3>
-                                <p>Iniciam a atuação no RN</p>
+                            <div style={{ paddingLeft: '0.5rem' }}>
+                                <h3 style={{ fontSize: '3.6rem', fontWeight: '900', color: '#1d4ed8', lineHeight: 1, margin: 0, letterSpacing: '-2px' }}>
+                                    84,5%
+                                </h3>
+                                <p style={{ fontSize: '1.3rem', color: '#1e3a8a', margin: '0.4rem 0 0', fontWeight: '700', lineHeight: 1.1 }}>
+                                    Iniciam a atuação no RN
+                                </p>
                             </div>
                         </div>
 
                         {/* Expandable Wrapper for Card 2 and 3 */}
-                        <div className="cards-expandable">
+                        <div className="cards-expandable" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', overflow: 'hidden', height: 0, opacity: 0, marginTop: 0 }}>
                             {/* Card 2: Nordeste */}
-                            <div className="info-card card-ne reveal-on-scroll">
+                            <div className="info-card card-ne" style={{
+                                display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '1.8rem 1.5rem',
+                                background: '#f0fdf4', borderRadius: '24px', border: '1px solid #bbf7d0',
+                                boxShadow: '0 10px 30px -10px rgba(16, 185, 129, 0.2)'
+                            }}>
                                 <Donut percentage={80} color="#10b981" id="ne" />
-                                <div className="card-text">
-                                    <h3>~80%</h3>
-                                    <p>Permanecem no Nordeste</p>
+                                <div style={{ paddingLeft: '0.5rem' }}>
+                                    <h3 style={{ fontSize: '3.6rem', fontWeight: '900', color: '#047857', lineHeight: 1, margin: 0, letterSpacing: '-2px' }}>
+                                        ~80%
+                                    </h3>
+                                    <p style={{ fontSize: '1.3rem', color: '#064e3b', margin: '0.4rem 0 0', fontWeight: '700', lineHeight: 1.1 }}>
+                                        Permanecem no Nordeste
+                                    </p>
                                 </div>
                             </div>
 
                             {/* Card 3: Mundo */}
-                            <div className="info-card card-ny reveal-on-scroll">
-                                <div className="card-icon-mundo">
+                            <div className="info-card card-ny" style={{
+                                display: 'flex', alignItems: 'center', gap: '1.2rem', padding: '1.2rem 1.8rem',
+                                background: '#ffffff', borderRadius: '20px', border: '2px dashed #cbd5e1'
+                            }}>
+                                <div style={{ flex: '0 0 45px', display: 'flex', justifyContent: 'center' }}>
                                     <span style={{ fontSize: '2.4rem' }}>💡</span>
                                 </div>
-                                <div className="card-text">
-                                    <p>
+                                <div>
+                                    <p style={{ fontSize: '1.1rem', color: '#475569', margin: 0, fontWeight: '500', lineHeight: 1.4 }}>
                                         O impacto transcende fronteiras, chegando até a <strong>Nova York, EUA</strong>.
                                     </p>
                                 </div>
@@ -213,7 +204,7 @@ const NarrativeMap = () => {
                     {steps.slice(1).map((step, i) => (
                         <div
                             key={i + 1}
-                            className="narrative-step reveal-on-scroll"
+                            className="narrative-step"
                             ref={el => stepsRef.current[i + 1] = el}
                         >
                             <div className="step-content glass-panel" style={{ opacity: 0.95 }}>

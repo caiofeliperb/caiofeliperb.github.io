@@ -62,6 +62,8 @@
     padding: 2rem 5%;
     display: flex;
     flex-direction: column;
+    gap: 0;
+    row-gap: 0;
     position: relative;
     z-index: var(--z-content);
 }
@@ -72,7 +74,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-xl) 0;
+    padding: 0;
 }
 
 .step-content {
@@ -119,111 +121,51 @@
 
 @media (max-width: 768px) {
     .narrative-intro {
-        min-height: 90vh !important;
-        padding: 2rem 1rem;
+        min-height: auto;
+        padding: 5rem 1rem 3rem 1rem;
     }
 
     .narrative-map-wrapper {
         flex-direction: column;
-        gap: 0;
+        padding-bottom: 15vh;
+        /* Stops the sticky map earlier */
     }
 
-    /* Sequential Flow: No more sticky infographics on mobile */
+    /* On mobile, map takes top half and sticks */
     .map-sticky {
-        position: relative !important;
-        width: 100% !important;
-        height: auto !important;
-        padding: 0 !important;
-        top: auto !important;
-        bottom: auto !important;
-        left: auto !important;
-        right: auto !important;
-        background: transparent;
-        z-index: 10;
-        margin: 0 !important;
+        width: 100%;
+        height: auto;
+        max-height: 48vh;
+        /* Limit expansion */
+        padding: var(--spacing-sm);
+        margin-bottom: 2rem;
+        top: 0;
+        bottom: auto;
+        z-index: 20;
+        background: var(--bg-color);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .narrative-scroll {
         width: 100%;
-        padding: 0 1rem;
+        padding: 0 var(--spacing-md);
         margin-top: 0;
-        position: relative;
     }
 
     .narrative-step {
-        scroll-snap-align: none;
-        min-height: auto;
-        padding: 0.5rem 0;
+        /* Pushes text lower to not overlap with sticky map */
+        min-height: 70vh;
+        align-items: flex-start;
+        padding: 0;
     }
 
     .step-content {
-        padding: 1rem;
-        margin: 0.5rem 0;
+        padding: var(--spacing-lg) var(--spacing-md);
+        background: var(--bg-surface);
+        box-shadow: var(--glass-shadow);
+        border-radius: 16px;
     }
-
-    /* Reveal effect classes */
-    .reveal-on-scroll {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .reveal-on-scroll.active {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Base styles for infographic cards (moved from inline) */
-.info-card {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1.8rem 1.5rem;
-    border-radius: 24px;
-    transition: all 0.3s ease;
-}
-
-.card-rn {
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
-    box-shadow: 0 10px 30px -10px rgba(14, 165, 233, 0.2);
-}
-
-.card-ne {
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.2);
-}
-
-.card-ny {
-    background: #ffffff;
-    border: 2px dashed #cbd5e1;
-    border-radius: 20px;
-    padding: 1.2rem 1.8rem;
-    gap: 1.2rem;
-}
-
-.info-card h3 {
-    font-size: 3.6rem;
-    font-weight: 900;
-    line-height: 1;
-    margin: 0;
-    letter-spacing: -2px;
-}
-
-.info-card p {
-    font-size: 1.3rem;
-    margin: 0.4rem 0 0;
-    font-weight: 700;
-    line-height: 1.1;
-}
-
-.card-ny p {
-    font-size: 1.1rem;
-    color: #475569;
-    font-weight: 500;
-    line-height: 1.4;
 }
 
 /* Info Cards Specific Adjustments */
@@ -245,50 +187,72 @@
 
 @media (max-width: 768px) {
     .infographics-wrapper {
-        gap: 0.25rem !important;
+        gap: 0.5rem !important;
         padding: 0 !important;
-        max-width: 100% !important;
+        justify-content: flex-start !important;
     }
 
     .info-card {
-        padding: 0.5rem 0.8rem !important;
-        gap: 0.6rem !important;
+        padding: 0.8rem 1rem !important;
+        gap: 0.8rem !important;
         border-radius: 12px !important;
     }
 
     .info-card h3 {
-        font-size: 1.4rem !important;
+        font-size: 1.6rem !important;
+        letter-spacing: -1px !important;
+        margin-bottom: 0 !important;
     }
 
-    .info-card p {
-        font-size: 0.85rem !important;
-    }
-
-    .card-ny {
-        padding: 0.5rem 0.8rem !important;
-    }
-
+    .info-card p,
     .card-ny p {
-        font-size: 0.8rem !important;
+        font-size: 0.85rem !important;
+        line-height: 1.1 !important;
+        margin-top: 0.2rem !important;
     }
 
     .info-card svg {
-        width: 40px !important;
-        height: 40px !important;
+        width: 45px !important;
+        height: 45px !important;
     }
+
+    .card-ny span {
+        font-size: 1.5rem !important;
+    }
+
+    .card-ny>div:first-child {
+        flex: 0 0 30px !important;
+        height: 30px !important;
+    }
+
 }
 
 @media (max-width: 480px) {
-    .info-card h3 {
-        font-size: 1.4rem !important;
-    }
-
     .infographics-wrapper {
         gap: 0.4rem !important;
     }
 
     .info-card {
         padding: 0.6rem 0.8rem !important;
-        border-radius: 10px !important;
+        gap: 0.6rem !important;
     }
+
+    .info-card h3 {
+        font-size: 1.3rem !important;
+    }
+
+    .info-card p,
+    .card-ny p {
+        font-size: 0.75rem !important;
+    }
+
+    .info-card svg {
+        width: 35px !important;
+        height: 35px !important;
+    }
+
+    .card-ny span {
+        font-size: 1.2rem !important;
+    }
+
 }

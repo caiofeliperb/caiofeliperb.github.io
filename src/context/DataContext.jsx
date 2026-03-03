@@ -11,12 +11,6 @@ export const DataProvider = ({ children }) => {
     useEffect(() => {
         // Parse the data on mount using d3's csvParse against the raw string
         try {
-            if (!rawData) {
-                console.warn("No raw data found to parse!");
-                setLoading(false);
-                return;
-            }
-
             const parsedData = csvParse(rawData, (d) => ({
                 id_egresso: +d.id_egresso,
                 ano_formatura: +d.ano_formatura,
@@ -31,13 +25,6 @@ export const DataProvider = ({ children }) => {
                 eixo_acao_social: d.eixo_acao_social,
                 descricao_acao_social: d.descricao_acao_social
             }));
-
-            if (!parsedData || !parsedData.length) {
-                console.warn("Parsed data is empty.");
-                setData([]);
-                setLoading(false);
-                return;
-            }
 
             console.log(`Loaded ${parsedData.length} records.`);
 
@@ -150,9 +137,6 @@ export const DataProvider = ({ children }) => {
             }
 
             setData(parsedData);
-        } catch (error) {
-            console.error("Critical error during data initialization:", error);
-            setData([]);
         } finally {
             setLoading(false);
         }
