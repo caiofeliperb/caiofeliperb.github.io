@@ -13,6 +13,6 @@ export const rqeData = {
     2021: { total: 15, crms: 39, rqe: 15 },
     2022: { total: 8, crms: 46, rqe: 8 },
     2023: { total: 26, crms: 58, rqe: 26 },
-    2024: { total: 7, crms: 70, rqe: 7 },
-    'Todos': { total: 250, crms: 288, rqe: 250 }
+    2024: { total: 3, crms: 3, rqe: 3 },
+    'Todos': { total: 248, crms: 284, rqe: 248 }
 };

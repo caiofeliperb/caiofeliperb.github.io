@@ -14,6 +14,16 @@ const KPIs = ({ data, totalData, filters }) => {
             ];
         }
 
+        // Se uma especialidade está filtrada E o usuário selecionou "Não" em RQE,
+        // não há dados disponíveis (especialidade só existe para quem tem RQE).
+        if (filters?.especialidade && filters.especialidade !== 'Todas' && filters?.rqe === 'Não') {
+            return [
+                { label: "Total Formados", value: 0 },
+                { label: "CRMs Ativos", value: 0 },
+                { label: "Sem RQE", value: 0 }
+            ];
+        }
+
         const isTotal = data.length === totalData.length;
         let formados = isTotal ? 468 : data.length;
 
@@ -101,16 +111,16 @@ const KPIs = ({ data, totalData, filters }) => {
             if (filters?.rqe === 'Sim') {
                 formados = comRQE;
                 if (noSpecificFilters && (!filters.ano || filters.ano === 'Todos')) {
-                    formados = 250;
-                    crmsAtivos = 288;
-                    comRQE = 250;
+                    formados = 248;
+                    crmsAtivos = 284;
+                    comRQE = 248;
                 }
             } else if (filters?.rqe === 'Não') {
                 finalLabelRQE = "Sem RQE";
                 if (noSpecificFilters && (!filters.ano || filters.ano === 'Todos')) {
-                    formados = 218;
-                    crmsAtivos = 257;
-                    comRQE = 218; // The user requested the third card to show 218 as well.
+                    formados = 220;
+                    crmsAtivos = 261;
+                    comRQE = 220;
                 } else if (noSpecificFilters && formaturasData[filters?.ano || 'Todos']) {
                     formados = formaturasData[filters?.ano || 'Todos'].total - formaturasData[filters?.ano || 'Todos'].rqe;
                     crmsAtivos = formaturasData[filters?.ano || 'Todos'].crms - rqeData[filters?.ano || 'Todos'].crms;

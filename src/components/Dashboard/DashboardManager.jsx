@@ -45,8 +45,9 @@ const DashboardManager = () => {
                 { name: "Ginecologia e Obstetrícia", count: 31 },
                 { name: "Anestesiologia", count: 19 },
                 { name: "Ortopedia e Traumatologia", count: 18 },
-                { name: "Oftalmologia", count: 12 },
-                { name: "Otorrinolaringologia", count: 8 }
+                { name: "Dermatologia", count: 8 },
+                { name: "Oftalmologia", count: 8 },
+                { name: "Otorrinolaringologia", count: 7 }
             ]
         },
         {
@@ -56,11 +57,10 @@ const DashboardManager = () => {
                 { name: "Psiquiatria", count: 15 },
                 { name: "Cardiologia", count: 7 },
                 { name: "Neurologia", count: 6 },
-                { name: "Endocrinologia e Metabologia", count: 5 },
-                { name: "Dermatologia", count: 4 },
-                { name: "Nefrologia", count: 2 },
-                { name: "Hematologia e Hemoterapia", count: 2 },
-                { name: "Gastroenterologia", count: 1 },
+                { name: "Endocrinologia e Metabologia", count: 4 },
+                { name: "Nefrologia", count: 3 },
+                { name: "Gastroenterologia", count: 3 },
+                { name: "Hematologia e Hemoterapia", count: 3 },
                 { name: "Reumatologia", count: 1 },
                 { name: "Infectologia", count: 1 },
                 { name: "Geriatria", count: 1 }
@@ -72,10 +72,11 @@ const DashboardManager = () => {
                 { name: "Cirurgia Geral", count: 6 },
                 { name: "Cirurgia Vascular", count: 5 },
                 { name: "Neurocirurgia", count: 4 },
-                { name: "Cirurgia Pediátrica", count: 2 },
+                { name: "Mastologia", count: 2 },
+                { name: "Cirurgia Pediátrica", count: 1 },
                 { name: "Coloproctologia", count: 1 },
                 { name: "Cirurgia Cardiovascular", count: 1 },
-                { name: "Mastologia", count: 1 }
+                { name: "Cirurgia de Cabeça e Pescoço", count: 1 }
             ]
         },
         {
@@ -83,10 +84,10 @@ const DashboardManager = () => {
             items: [
                 { name: "Pediatria", count: 9 },
                 { name: "Neonatologia", count: 6 },
-                { name: "Neurologia Pediátrica", count: 2 },
+                { name: "Endocrinologia Pediátrica", count: 2 },
+                { name: "Oncologia Pediátrica", count: 2 },
+                { name: "Neurologia Pediátrica", count: 1 },
                 { name: "Cardiopediatria", count: 1 },
-                { name: "Endocrinologia Pediátrica", count: 1 },
-                { name: "Oncologia Pediátrica", count: 1 },
                 { name: "Medicina Intensiva Pediátrica", count: 1 }
             ]
         },

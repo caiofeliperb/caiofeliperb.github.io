@@ -14,12 +14,12 @@ const Specialties = () => {
 
     // Hardcoded as per prompt instructions, though we could calculate this from data if needed
     const originalStats = [
-        { label: "Clínico-Cirúrgicas", value: 38.4, color: "#1D5C8F" },
-        { label: "Especialidades Clínicas", value: 25.6, color: "#ECA427" },
-        { label: "Medicina de Família (MFC)", value: 10, color: "#2E7D32" },
-        { label: "Pediatria", value: 8.4, color: "#7B1FA2" },
-        { label: "Cirurgia Geral", value: 8.4, color: "#C62828" },
-        { label: "Outras", value: 9.2, color: "#0097A7" }
+        { label: "Clínico-Cirúrgicas", value: 36.7, color: "#1D5C8F" },
+        { label: "Especialidades Clínicas", value: 26.2, color: "#ECA427" },
+        { label: "Medicina de Família (MFC)", value: 10.1, color: "#2E7D32" },
+        { label: "Pediatria", value: 8.9, color: "#7B1FA2" },
+        { label: "Cirurgia Geral", value: 8.5, color: "#C62828" },
+        { label: "Outras", value: 9.6, color: "#0097A7" }
     ];
 
     // ... [skipping middle because we want to replace from line 15 to 78? Wait, if I do a wide replacement it's safer to use multi_replace. Actually I'll just multi_replace Specialties.jsx below... aborting this replace by fixing start and end to just 15-20]
@@ -62,14 +62,14 @@ const Specialties = () => {
         <section className="specialties-section container" ref={containerRef}>
             <div className="section-header">
                 <h2>Eles não param de estudar!<br />
-                    Hoje, 250 dos nossos médicos já possuem o Registro de Qualificação de Especialista (RQE) ou estão em processo de obtenção.</h2>
+                    Hoje, 248 dos nossos médicos já possuem o Registro de Qualificação de Especialista (RQE) ou estão em processo de obtenção.</h2>
             </div>
 
             <div className="specialties-content">
                 <div className="chart-container" ref={chartRef}>
                     <svg viewBox={`0 0 ${width} ${height}`} className="donut-chart">
                         {/* Center Text */}
-                        <text x={227} y={height / 2 - 10} textAnchor="middle" className="donut-center-num">250</text>
+                        <text x={227} y={height / 2 - 10} textAnchor="middle" className="donut-center-num">248</text>
                         <text x={227} y={height / 2 + 20} textAnchor="middle" className="donut-center-label" style={{ fontSize: '10px' }}>COM RQE OU EM OBTENÇÃO</text>
 
                         <g transform={`translate(${width / 2},${height / 2})`}>

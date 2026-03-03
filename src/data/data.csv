@@ -456,7 +456,7 @@ id_egresso,ano_formatura,respondeu_formulario,tem_rqe,grande_area_rqe,especialid
 457,2024,Não,Não,N/A,N/A,SC,N/A,N/A,N/A,N/A,N/A
 458,2024,Sim,Sim,Clínica Médica,Clínica Médica,CE / RN,Ipu,Preceptor,Sim,Saúde Pública,Mais Médicos
 459,2024,Não,Não,N/A,N/A,RN,N/A,N/A,N/A,N/A,N/A
-460,2024,Sim,Não,N/A,Atenção Primária / Urgência,AM / RN,Tibau,Não,Não,N/A,N/A
+460,2024,Sim,Não,N/A,N/A,AM / RN,Tibau,Não,Não,N/A,N/A
 461,2024,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
 462,2024,Não,Não,N/A,N/A,SP,N/A,N/A,N/A,N/A,N/A
 463,2024,Não,Não,N/A,N/A,PR / RN,N/A,N/A,N/A,N/A,N/A
@@ -464,4 +464,4 @@ id_egresso,ano_formatura,respondeu_formulario,tem_rqe,grande_area_rqe,especialid
 465,2024,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
 466,2024,Não,Não,N/A,N/A,CE,N/A,N/A,N/A,N/A,N/A
 467,2024,Não,Não,N/A,N/A,CE / RN,N/A,N/A,N/A,N/A,N/A
-468,2024,Sim,Não,N/A,Ainda não estou atuando,GO,N/A,Não,Não,N/A,N/A
+468,2024,Sim,Não,N/A,N/A,GO,N/A,Não,Não,N/A,N/A

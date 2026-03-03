@@ -13,6 +13,6 @@ export const formaturasData = {
     2021: { total: 35, crms: 39, rqe: 15 },
     2022: { total: 42, crms: 46, rqe: 8 },
     2023: { total: 52, crms: 58, rqe: 25 },
-    2024: { total: 58, crms: 70, rqe: 5 },
-    'Todos': { total: 468, crms: 545, rqe: 250 }
+    2024: { total: 58, crms: 70, rqe: 3 },
+    'Todos': { total: 468, crms: 545, rqe: 248 }
 };
