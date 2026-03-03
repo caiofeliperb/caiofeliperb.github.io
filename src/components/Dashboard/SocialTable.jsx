@@ -28,6 +28,7 @@ const SocialTable = () => {
     return (
         <div className="table-container">
             <h3 className="card-title">Detalhamento de Impacto Social</h3>
+            <p className="card-subtitle">Veja as características dos 14 projetos sociais em que nossos egressos estão envolvidos</p>
 
             <div className="table-wrapper">
                 <table className="social-table">

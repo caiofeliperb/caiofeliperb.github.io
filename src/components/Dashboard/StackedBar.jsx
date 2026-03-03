@@ -50,7 +50,9 @@ const StackedBar = ({ data, filters = {} }) => {
     const svgRef = useRef(null);
     const containerRef = useRef(null);
 
-    const isSpecialtyFiltered = filters.especialidade && filters.especialidade !== 'Todas';
+    const isSpecialtyFiltered =
+        (filters.especialidade && filters.especialidade !== 'Todas') ||
+        (filters.ano && filters.ano !== 'Todos');
     const groupKey = isSpecialtyFiltered ? 'especialidade_rqe' : 'grande_area_rqe';
 
     const chartData = useMemo(() => {

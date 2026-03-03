@@ -21,8 +21,16 @@
 /* Force dark blue contrast on light mode */
 .section-header h2,
 .sidebar-title,
-.card-title {
+.card-title,
+.card-subtitle {
     color: var(--text-main) !important;
+}
+
+.card-subtitle {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin-top: -10px;
+    margin-bottom: 20px;
 }
 
 .heatmap-row {
