@@ -197,7 +197,7 @@ const DashboardManager = () => {
                                     <option value={`CAT:${group.category}`}>{"↳ TODAS DE " + group.category}</option>
                                     {group.items.map(item => (
                                         <option key={item.name} value={`SPEC:${item.name}`}>
-                                            {item.name} ({item.count})
+                                            {item.name}
                                         </option>
                                     ))}
                                 </optgroup>
